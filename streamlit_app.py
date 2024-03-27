@@ -17,7 +17,7 @@ def main():
     st.title('안내 메시지 예제')
 
     # 사용자에게 보여줄 메시지
-    message = "이것은 Streamlit에서 사용자에게 보여주는 안내 메시지입니다."
+    message = "환영합니다! 이 페이지는 네트워크 기기의 명령어를 안내하는 페이지입니다."
 
     # 안내 메시지를 보여주는 함수 호출
     show_info_message(message)
@@ -247,12 +247,7 @@ tables = {
 # 테이블 목록 표시
 st.write('')
 st.write('')
-st.write('')
-st.write('')
-st.write('')
-st.write('')
-st.write('')
-st.write('')
+
 
 table_names = list(tables.keys())
 selected_table = st.selectbox("Switch 명령어 리스트", table_names)
