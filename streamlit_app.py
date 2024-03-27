@@ -22,6 +22,12 @@ vlan_data = {
     "설명": ["현재 VLAN 설정을 표시", "VLAN 번호가 2인 VLAN을 생성", "VLAN의 이름을 'computers'로 설정", "~ 인터페이스에 접근", "해당 스위치포트를 Access 모드로 설정", "해당 스위치포트 Access를 VLAN 2로 지정", "지정된 포트의 스위치포트 설정 정보를 표시"]
 }
 
+# VTP 명령어
+vtp_commands = {
+    "명령어": ["vtp mode {server/client/transparent}", "vtp domain domain-name", "vtp password password", "vtp pruning", "vtp version {1/2/3}", "vtp file {filename}", "show vtp status", "show vtp counters", "clear vtp counters", "clear vtp counters {interface}"],
+    "설명": ["VTP 모드 설정", "VTP 도메인 이름 설정", "VTP 도메인 옵션 비밀번호 설정(server의 설정을 client가 적용시에도 사용)", "VTP Pruning 활성화", "VTP 버전 설정", "VTP 설정 파일 저장 또는 불러오기", "현재 VTP 설정 상태 표시", "VTP 정보 교환에 대한 통계 표시", "VTP 통계 재설정", "특정 인터페이스의 VTP 통계 재설정"]
+}
+
 # 트렁크 프로토콜 명령어
 trunk_protocol_data = {
     "명령어": ["interface <인터페이스 이름>", "switchport mode trunk", "switchport trunk allowed vlan <VLAN 번호>", "switchport mode trunk vlan add <VLAN 번호>", "switchport trunk native vlan <VLAN 번호>"],
@@ -127,6 +133,9 @@ basic_df = pd.DataFrame(basic_data)
 
 # vlan 설정 명령어
 vlan_df = pd.DataFrame(vlan_data)
+
+# VTP 설정 명령어
+vtp_commands_df = pd.DataFrame(vtp_commands)
 
 # 원격 접근 보안 설정 명령어
 remote_access_df = pd.DataFrame(remote_access_data)
