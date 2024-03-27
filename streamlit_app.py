@@ -197,6 +197,7 @@ vrrp_data_df = pd.DataFrame(vrrp_data)
 tables = {
     "기본설정 명령어": basic_df,
     "vlan 설정 명령어": vlan_df,
+    "VTP 설정 명령어": vtp_commands_df,
     "원격 접근 보안 설정 명령어": remote_access_df,
     "트렁크 프로토콜 설정 명령어": trunk_protocol_df,
     "부트 이미지 변경 명령어": boot_image_change_df,
