@@ -246,11 +246,16 @@ st.dataframe(selected_df, width=800)
 
 
 def main():
+    show_table = False  # 표를 숨기기 위한 변수
 
     # 'show 명령어 보기' 버튼 생성
     if st.button('show 명령어 보기'):
-        # 데이터프레임 출력
-        st.write(show_commands_df)
+        # 버튼을 누를 때마다 show_table 변수를 토글하여 표를 숨기거나 보이게 함
+        show_table = not show_table
+
+        # show_table 변수에 따라 데이터프레임 출력 여부 결정
+        if show_table:
+            st.dataframe(show_commands_df, width=0)
 
 if __name__ == '__main__':
     main()
