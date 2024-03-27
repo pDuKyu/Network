@@ -118,7 +118,6 @@ vrrp_data = {"명령어": ["interface vlan 10", "ip address 10.1.10.252 255.255.
              "설명": ["VLAN 10 인터페이스 설정 시작", "VLAN 10에 IP 주소를 설정", "VRRP 그룹 10의 가상 IP 주소를 설정", "VRRP 그룹 10에서 우선순위를 110으로 설정(높은 값이 Active)", "간략한 VRRP 정보 표시", "상세한 VRRP 정보 표시"]
 }
 
-# 추가 show 명령어
 # Show 명령어
 show_commands = {
     "명령어": ["show vlan", "show vtp", "show spanning-tree", "show ip route", "show running-config", "show interface", "show arp", "show history", "show vrrp", "show standby", "show ip", "show access-lists", "show adjacency", "show authentication", "show auto secure", "show bgp", "show cdp", "show cef", "show clock", "show cns", "show configuration", "show connection", "show crypto", "show controllers", "show dot11", "show dsl", "show eigrp", "show environment", "show event-history", "show firewall", "show flash", "show ftp", "show hardware", "show hosts", "show idprom", "show ip access-lists", "show ip accounting", "show ip arp", "show ip dhcp", "show ip eigrp", "show ip igmp", "show ip interface", "show ip nat", "show ip nbar", "show ip ospf", "show ip rsvp", "show ip wccp", "show ipx", "show isdn", "show key chain", "show ipv6", "show license", "show line", "show logging", "show mac-address-table", "show map-class", "show mls", "show multicast", "show network", "show nhrp", "show policy-map", "show ppp", "show process", "show protocol", "show queueing", "show redundancy", "show region", "show router", "show sccp", "show scheduler", "show sdm", "show session", "show snmp", "show ssh", "show stacks", "show startup-config", "show switch", "show tacacs+", "show tcp", "show tech-support", "show terminal", "show time", "show tftp", "show track", "show transceiver", "show version", "show voice", "show vpdn", "show vpn-sessiondb", "show wavelength"],
@@ -194,7 +193,8 @@ hsrp_data_df = pd.DataFrame(hsrp_data)
 # VRRP Master/Worker 명령어 데이터
 vrrp_data_df = pd.DataFrame(vrrp_data)
 
-
+# show 명령어
+show_commands_df = pd.DataFrame(show_commands)
 
 
 
@@ -220,8 +220,8 @@ tables = {
     "라우티드 포트 설정 명령어": routed_port_data_df,
     "SVI 설정 명령어": svi_data_df,
     "HSRP 설정 명령어": hsrp_data_df,
-    "VRRP Master/Worker 명령어": vrrp_data_df
-}
+    "VRRP Master/Worker 명령어": vrrp_data_df,
+    "show 명령어": show_commands_df}
 
 # 테이블 목록 표시
 st.write('')
