@@ -12,6 +12,18 @@ def show_info_message(message):
     message (str): 사용자에게 보여줄 메시지.
     """
     st.info(message)
+
+def main():
+    st.title('안내 메시지 예제')
+
+    # 사용자에게 보여줄 메시지
+    message = "이것은 Streamlit에서 사용자에게 보여주는 안내 메시지입니다."
+
+    # 안내 메시지를 보여주는 함수 호출
+    show_info_message(message)
+
+if __name__ == '__main__':
+    main()
     
 # 기본설정
 basic_data = {
