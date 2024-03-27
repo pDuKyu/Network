@@ -4,6 +4,15 @@ import pandas as pd
 # 네트워크 설정 명령어로 대제목 설정
 st.title('네트워크 설정 명령어')
 
+def show_info_message(message):
+    """
+    사용자에게 안내 메시지를 보여주는 함수.
+
+    Parameters:
+    message (str): 사용자에게 보여줄 메시지.
+    """
+    st.info(message)
+    
 # 기본설정
 basic_data = {
     "명령어": ["enable", "configure terminal", "hostname *", "enable secret ~", "line con 0", "service password-encryption", "banner motd #HI#", "no ip domain-lookup", "service timestamps log datatime msec", "show version"],
