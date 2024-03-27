@@ -1,281 +1,310 @@
-from collections import defaultdict
-from pathlib import Path
-import sqlite3
-
 import streamlit as st
-import altair as alt
 import pandas as pd
 
+# 네트워크 설정 명령어로 대제목 설정
+st.title('네트워크 설정 명령어')
 
-# Set the title and favicon that appear in the Browser's tab bar.
-st.set_page_config(
-    page_title='Inventory tracker',
-    page_icon=':shopping_bags:', # This is an emoji shortcode. Could be a URL too.
-)
+# 기본설정
+basic_data = {
+    "명령어": ["enable", "configure terminal", "hostname *", "enable secret ~", "line con 0", "service password-encryption", "banner motd #HI#", "no ip domain-lookup", "service timestamps log datatime msec", "show version"],
+    "설명": ["관리자 모드 (enable 모드)로 전환", "글로벌 설정(config) 모드로 전환", "장비 이름을 '*'로 변경 (장소나 특징을 구별할 수 있는 이름)", "관리자 모드 비밀번호를 '~'로 설정 (입력 후 암호화 됨)", "콘솔 접속 가능 설정", "설정된 모든 패스워드 암호화", "접속 시 #HI#라는 배너 띄우기 (경고 문구 등에 사용)", "DNS 찾지 말고 명령어 종료", "입력된 로그에 시간을 함께 추가", "장비 세부 정보 확인 (uptime, image file(경로: 파일명),  model number, system serial number 등)"]
+}
 
+# 원격 접근 보안 설정
+remote_access_data = {
+    "명령어": ["line vty 0 15", "password 7291", "login", "logging synchronous", "exec-timeout 1 0"],
+    "설명": ["동시에 16개의 원격 접속 가능 설정 (버츄얼 텔 타입)", "암호를 '7291'로 설정", "로그인 할 때 암호 요청 설정", "입력 중 로그가 들어와도 입력 값을 이어가게 설정", "1분간 입력 안 하면 접속 종료"]
+}
 
-# -----------------------------------------------------------------------------
-# Declare some useful functions.
+# VLAN 설정 명령어 데이터
+vlan_data = {
+    "명령어": ["show vlan", "vlan 2", "name computers", "interface ~", "switchport mode access", "switchport access vlan 2", "show interfaces '포트번호' switchport"],
+    "설명": ["현재 VLAN 설정을 표시", "VLAN 번호가 2인 VLAN을 생성", "VLAN의 이름을 'computers'로 설정", "~ 인터페이스에 접근", "해당 스위치포트를 Access 모드로 설정", "해당 스위치포트 Access를 VLAN 2로 지정", "지정된 포트의 스위치포트 설정 정보를 표시"]
+}
 
-def connect_db():
-    '''Connects to the sqlite database.'''
+# 트렁크 프로토콜 명령어
+trunk_protocol_data = {
+    "명령어": ["interface <인터페이스 이름>", "switchport mode trunk", "switchport trunk allowed vlan <VLAN 번호>", "switchport mode trunk vlan add <VLAN 번호>", "switchport trunk native vlan <VLAN 번호>"],
+    "설명": ["설정하려는 인터페이스로 이동", "해당 인터페이스를 트렁크 모드로 설정", "트렁크에서 허용할 VLAN을 지정", "트렁크에 VLAN 추가", "해당 인터페이스의 네이티브 VLAN을 설정"]
+}
 
-    DB_FILENAME = Path(__file__).parent/'inventory.db'
-    db_already_exists = DB_FILENAME.exists()
+# 부트 이미지 변경 명령어
+boot_image_change = {
+    "명령어": ["dir", "copy tftp: flash", "dir", "conf t", "boot system flash:파일명", "show boot", "wr", "reload"],
+    "설명": ["파일 경로 확인", "TFTP 서버에서 이미지 파일을 복사하여 라우터의 플래시 메모리에 저장", "파일 재확인", "설정 터미널 열기", "라우터가 부팅할 때 사용할 이미지를 지정", "부팅 이미지 지정 확인", "startup-running에 덮어쓰기", "재시작"]
+}
 
-    conn = sqlite3.connect(DB_FILENAME)
-    db_was_just_created = not db_already_exists
+# 로그 저장 서버 명령어
+server_logs = {
+    "명령어": ["configure terminal", "logging host 000.000.000.000", "logging trap debugging", "wr"],
+    "설명": ["관리자 모드 진입", "로그를 저장할 서버의 IP 설정", "디버깅 로그 저장 설정", "설정 저장"]
+}
 
-    return conn, db_was_just_created
+# 원격 접속을 위한 스위치 IP 할당 명령어
+remote_access_switch = {
+    "명령어": ["conf t", "interface vlan 1", "ip address [IP 주소] [서브넷 마스크]", "no shutdown", "end", "show ip interface brief", "wr", "ip default-gateway x.x.x.x"],
+    "설명": ["구성 모드 진입", "VLAN 1 인터페이스 선택", "IP 주소와 서브넷 마스크 할당", "인터페이스 활성화", "설정 모드 종료", "인터페이스 상태 확인", "설정 저장", "게이트웨이 설정"]
+}
 
+# 트래킹 설정 명령어
+tracking_commands = {
+    "명령어": ["track 10 interface e1/1 line-protocol", "interface vlan 10", "standby track 10 decrement 100"],
+    "설명": [ "트랙 10번은 e1/1의 연결 상태를 주시", "vlan 10 접근", "트랙 10번이 문제를 감지할 시 vlan10의 priority값을 100 뺌 (문제가 해결되면 다시 값을 돌려 놓음)"]
+}
 
-def initialize_data(conn):
-    '''Initializes the inventory table with some data.'''
-    cursor = conn.cursor()
+# 트렁크 설정 명령어
+trunk_protocol_commands = {
+    "명령어": ["interface <인터페이스 이름>", "switchport mode trunk", "switchport trunk allowed vlan <VLAN 번호>", "switchport mode trunk vlan add <VLAN 번호>"],
+    "설명": ["설정하려는 인터페이스로 이동", "해당 인터페이스를 트렁크 모드로 설정", "트렁크에서 허용할 VLAN을 지정", "트렁크에 VLAN 추가"]
+}
 
-    cursor.execute(
-        '''
-        CREATE TABLE IF NOT EXISTS inventory (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            item_name TEXT,
-            price REAL,
-            units_sold INTEGER,
-            units_left INTEGER,
-            cost_price REAL,
-            reorder_point INTEGER,
-            description TEXT
-        )
-        '''
-    )
+# 네이티브 vlan 설정 명령어
+native_vlan_commands = {
+    "명령어": ["interface <인터페이스 이름>", "switchport trunk native vlan <VLAN 번호>"],
+    "설명": ["설정하려는 인터페이스로 이동", "해당 인터페이스의 네이티브 VLAN을 설정"]
+}
 
-    cursor.execute(
-        '''
-        INSERT INTO inventory
-            (item_name, price, units_sold, units_left, cost_price, reorder_point, description)
-        VALUES
-            -- Beverages
-            ('Bottled Water (500ml)', 1.50, 115, 15, 0.80, 16, 'Hydrating bottled water'),
-            ('Soda (355ml)', 2.00, 93, 8, 1.20, 10, 'Carbonated soft drink'),
-            ('Energy Drink (250ml)', 2.50, 12, 18, 1.50, 8, 'High-caffeine energy drink'),
-            ('Coffee (hot, large)', 2.75, 11, 14, 1.80, 5, 'Freshly brewed hot coffee'),
-            ('Juice (200ml)', 2.25, 11, 9, 1.30, 5, 'Fruit juice blend'),
+# STP 설정 명령어
+stp_settings = {
+    "명령어": ["show spanning-tree vlan [x]", "spanning-tree mode [...]", "spanning-tree vlan [x] priority [....]", "spanning-tree vlan [x] root primary", "spanning-tree vlan [x] root secondary", "spanning-tree vlan [x] cost [...]"],
+    "설명": ["특정 VLAN의 스패닝 트리 설정 확인", "스패닝 트리 프로토콜 모드 변경", "특정 VLAN의 루트 브리지 우선순위 설정", "특정 VLAN에서 스위치가 루트 브리지로 자동 선출", "특정 VLAN에서 스위치가 루트 브리지 후보로 자동 선출", "특정 VLAN의 인터페이스 STP 경로 비용 변경"]
+}
 
-            -- Snacks
-            ('Potato Chips (small)', 2.00, 34, 16, 1.00, 10, 'Salted and crispy potato chips'),
-            ('Candy Bar', 1.50, 6, 19, 0.80, 15, 'Chocolate and candy bar'),
-            ('Granola Bar', 2.25, 3, 12, 1.30, 8, 'Healthy and nutritious granola bar'),
-            ('Cookies (pack of 6)', 2.50, 8, 8, 1.50, 5, 'Soft and chewy cookies'),
-            ('Fruit Snack Pack', 1.75, 5, 10, 1.00, 8, 'Assortment of dried fruits and nuts'),
+# 루트 브릿지 보안 설정 명령어
+root_bridge_security = {
+    "코드": ["spanning-tree portfast", "spanning-tree guard root", "spanning-tree bpduguard enable", "spanning-tree bpdufilter enable", "spanning-tree loopguard default", "spanning-tree vlan ~ root primery", "spanning-tree vlan ~ root seconfdery"],
+    "설명": ["리스닝/러닝 단계를 건너뛰는 포트를 설정", "루트 브리지 변경을 방지하고 낮은 BPDU 브리지 차단", "다른 브리지의 BPDU를 차단하여 루트 브리지 변경 방지", "BPDU를 해당 포트로 송신하지 않음", "단방향 링크로 인한 루프 형성 방지", "vlan을 루트 브릿지로 설정", "vlan을 두번 째 브릿지로 설정"]
+}
 
-            -- Personal Care
-            ('Toothpaste', 3.50, 1, 9, 2.00, 5, 'Minty toothpaste for oral hygiene'),
-            ('Hand Sanitizer (small)', 2.00, 2, 13, 1.20, 8, 'Small sanitizer bottle for on-the-go'),
-            ('Pain Relievers (pack)', 5.00, 1, 5, 3.00, 3, 'Over-the-counter pain relief medication'),
-            ('Bandages (box)', 3.00, 0, 10, 2.00, 5, 'Box of adhesive bandages for minor cuts'),
-            ('Sunscreen (small)', 5.50, 6, 5, 3.50, 3, 'Small bottle of sunscreen for sun protection'),
+# 트래킹 설정 명령어
+tracking_data = {
+    "명령어": ["track 10 interface e1/1 line-protocol", "interface vlan 10", "standby track 10 decrement 100"], 
+    "설명": ["트랙 10은 인터페이스 e1/1의 라인 프로토콜 연결 상태를 모니터링합니다.", "VLAN 10에 대한 인터페이스 설정을 수행합니다.", "트랙 10이 문제를 감지하면 VLAN 10의 우선 순위 값을 100만큼 감소시킵니다. (문제가 해결되면 우선 순위를 다시 증가시킵니다.)"]
+}
 
-            -- Household
-            ('Batteries (AA, pack of 4)', 4.00, 1, 5, 2.50, 3, 'Pack of 4 AA batteries'),
-            ('Light Bulbs (LED, 2-pack)', 6.00, 3, 3, 4.00, 2, 'Energy-efficient LED light bulbs'),
-            ('Trash Bags (small, 10-pack)', 3.00, 5, 10, 2.00, 5, 'Small trash bags for everyday use'),
-            ('Paper Towels (single roll)', 2.50, 3, 8, 1.50, 5, 'Single roll of paper towels'),
-            ('Multi-Surface Cleaner', 4.50, 2, 5, 3.00, 3, 'All-purpose cleaning spray'),
+# 트러블 슈팅 명령어 데이터
+trouble_shooting_data = {"명령어": ["show ip interface brief", "show vlan brief", "show spanning-tree", "show interfaces status", "show vrrp brief", "show standby brief"], 
+                         "설명": ["인터페이스의 간단한 IP 정보 표시", "VLAN의 간단한 정보 표시", "스패닝 트리 프로토콜 설정 정보 표시", "인터페이스 상태 요약 표시", "VRRP(Virtual Router Redundancy Protocol) 인스턴스의 간단한 정보 표시", "HSRP(Hot Standby Router Protocol) 인스턴스의 간단한 정보 표시"]
+}
 
-            -- Others
-            ('Lottery Tickets', 2.00, 17, 20, 1.50, 10, 'Assorted lottery tickets'),
-            ('Newspaper', 1.50, 22, 20, 1.00, 5, 'Daily newspaper')
-        '''
-    )
-    conn.commit()
+# 이더채널 설정 명령어 데이터
+etherchannel_data = {"명령어": ["int range [x/x-x]", "channel-group [x] mode [....]", "interface po[x]", "switchport mode access", "switchport access vlan 10", "no port-channel ~"], 
+                     "설명": ["여러 포트를 한 번에 설정하기 위한 범위 선택", "이더채널 그룹 생성 및 모드 설정", "이더채널 포트 설정", "포트를 액세스 모드로 설정", "특정 VLAN에 포트 연결", "포트채널 삭제"]
+}
 
+# 라우티드 포트 설정 명령어 데이터
+routed_port_data = {"명령어": ["interface [x/x]", "no switchport", "ip address x.x.x.x x.x.x.x", "ip routing"], 
+                    "설명": ["인터페이스 연결", "스위치포트로 안 쓴다고 선언하여 라우티드 포트로 전환", "이 포트에 게이트웨이 설정", "라우팅 활성화"]
+}
 
-def load_data(conn):
-    '''Loads the inventory data from the database.'''
-    cursor = conn.cursor()
+# SVI 설정 명령어 데이터
+svi_data = {"명령어": ["interface vlan [vlan 번호]", "ip address [IP 주소] [서브넷 마스크]", "no shutdown"], 
+            "설명": ["특정 VLAN에 접속하여 설정", "VLAN에 IP 주소와 서브넷 마스크 할당", "SVI 활성화"]
+}
 
-    try:
-        cursor.execute('SELECT * FROM inventory')
-        data = cursor.fetchall()
-    except:
-        return None
+# HSRP(핫 스탠바이 라우팅 프로토콜) 설정 명령어 데이터
+hsrp_data = {"명령어": ["interface vlan 10", "ip address 10.1.10.252 255.255.255.0", "standby 10 ip 10.1.10.254", "standby 10 preempt", "standby 10 priority 110", "standby [그룹명] timers ? ?", "show standby brief", "show standby"], 
+             "설명": ["VLAN 10에 대한 인터페이스 설정을 시작", "VLAN 10에 IP 주소 10.1.10.252를 할당하고 서브넷 마스크를 255.255.255.0으로 설정", "가상 게이트웨이의 IP 주소를 10.1.10.254로 설정", "게이트웨이 장비가 다시 활성화될 때 자동으로 우선순위를 갖게 함", "가상 게이트웨이에 우선순위를 110으로 설정. 높은 우선순위를 갖는 장비가 active, 낮으면 standby", "이중화된 기기들 끼리 정상 가동하는지 확인 (첫 숫자는 hello 타임, 둘째 숫자는 대기 시간)", "간략한 가상 게이트웨이 정보 확인", "상세한 가상 게이트웨이 정보 확인"]
+}
 
-    df = pd.DataFrame(data,
-        columns=[
-            'id',
-            'item_name',
-            'price',
-            'units_sold',
-            'units_left',
-            'cost_price',
-            'reorder_point',
-            'description',
-        ])
-
-    return df
-
-
-def update_data(conn, df, changes):
-    '''Updates the inventory data in the database.'''
-    cursor = conn.cursor()
-
-    if changes['edited_rows']:
-        deltas = st.session_state.inventory_table['edited_rows']
-        rows = []
-
-        for i, delta in deltas.items():
-            row_dict = df.iloc[i].to_dict()
-            row_dict.update(delta)
-            rows.append(row_dict)
-
-        cursor.executemany(
-            '''
-            UPDATE inventory
-            SET
-                item_name = :item_name,
-                price = :price,
-                units_sold = :units_sold,
-                units_left = :units_left,
-                cost_price = :cost_price,
-                reorder_point = :reorder_point,
-                description = :description
-            WHERE id = :id
-            ''',
-            rows,
-        )
-
-    if changes['added_rows']:
-        cursor.executemany(
-            '''
-            INSERT INTO inventory
-                (id, item_name, price, units_sold, units_left, cost_price, reorder_point, description)
-            VALUES
-                (:id, :item_name, :price, :units_sold, :units_left, :cost_price, :reorder_point, :description)
-            ''',
-            (defaultdict(lambda: None, row) for row in changes['added_rows']),
-        )
-
-    if changes['deleted_rows']:
-        cursor.executemany(
-            'DELETE FROM inventory WHERE id = :id',
-            ({'id': int(df.loc[i, 'id'])} for i in changes['deleted_rows'])
-        )
-
-    conn.commit()
+# VRRP Master/Worker 명령어 데이터
+vrrp_data = {"명령어": ["interface vlan 10", "ip address 10.1.10.252 255.255.255.0", "vrrp10 ip 10.1.10.254", "vrrp 10 priority 110", "show vrrp brief", "show vrrp"], 
+             "설명": ["VLAN 10 인터페이스 설정 시작", "VLAN 10에 IP 주소를 설정", "VRRP 그룹 10의 가상 IP 주소를 설정", "VRRP 그룹 10에서 우선순위를 110으로 설정(높은 값이 Active)", "간략한 VRRP 정보 표시", "상세한 VRRP 정보 표시"]
+}
 
 
-# -----------------------------------------------------------------------------
-# Draw the actual page, starting with the inventory table.
-
-# Set the title that appears at the top of the page.
-'''
-# :shopping_bags: Inventory tracker
-
-**Welcome to Alice's Corner Store's intentory tracker!**
-This page reads and writes directly from/to our inventory database.
-'''
-
-st.info('''
-    Use the table below to add, remove, and edit items.
-    And don't forget to commit your changes when you're done.
-    ''')
-
-# Connect to database and create table if needed
-conn, db_was_just_created = connect_db()
-
-# Initialize data.
-if db_was_just_created:
-    initialize_data(conn)
-    st.toast('Database initialized with some sample data.')
-
-# Load data from database
-df = load_data(conn)
-
-# Display data with editable table
-edited_df = st.data_editor(
-    df,
-    disabled=['id'], # Don't allow editing the 'id' column.
-    num_rows='dynamic', # Allow appending/deleting rows.
-    column_config={
-        # Show dollar sign before price columns.
-        "price": st.column_config.NumberColumn(format="$%.2f"),
-        "cost_price": st.column_config.NumberColumn(format="$%.2f"),
-    },
-    key='inventory_table')
-
-has_uncommitted_changes = any(len(v) for v in st.session_state.inventory_table.values())
-
-st.button(
-    'Commit changes',
-    type='primary',
-    disabled=not has_uncommitted_changes,
-    # Update data in database
-    on_click=update_data,
-    args=(conn, df, st.session_state.inventory_table))
 
 
-# -----------------------------------------------------------------------------
-# Now some cool charts
 
-# Add some space
-''
-''
-''
 
-st.subheader('Units left', divider='red')
 
-need_to_reorder = df[df['units_left'] < df['reorder_point']].loc[:, 'item_name']
 
-if len(need_to_reorder) > 0:
-    items = '\n'.join(f'* {name}' for name in need_to_reorder)
 
-    st.error(f"We're running dangerously low on the items below:\n {items}")
 
-''
-''
 
-st.altair_chart(
-    # Layer 1: Bar chart.
-    alt.Chart(df)
-        .mark_bar(
-            orient='horizontal',
-        )
-        .encode(
-            x='units_left',
-            y='item_name',
-        )
-    # Layer 2: Chart showing the reorder point.
-    + alt.Chart(df)
-        .mark_point(
-            shape='diamond',
-            filled=True,
-            size=50,
-            color='salmon',
-            opacity=1,
-        )
-        .encode(
-            x='reorder_point',
-            y='item_name',
-        )
-    ,
-    use_container_width=True)
+# 기본설정 명령어
+basic_df = pd.DataFrame(basic_data)
 
-st.caption('NOTE: The :diamonds: location shows the reorder point.')
+# vlan 설정 명령어
+vlan_df = pd.DataFrame(vlan_data)
 
-''
-''
-''
+# 원격 접근 보안 설정 명령어
+remote_access_df = pd.DataFrame(remote_access_data)
 
-# -----------------------------------------------------------------------------
+# 트렁크 프로토콜 설정 명령어
+trunk_protocol_df = pd.DataFrame(trunk_protocol_data)
 
-st.subheader('Best sellers', divider='orange')
+# 부트 이미지 변경 명령어
+boot_image_change_df = pd.DataFrame(boot_image_change)
 
-''
-''
+# 로그 저장 서버 명령어
+bserver_logs_df = pd.DataFrame(server_logs)
 
-st.altair_chart(alt.Chart(df)
-    .mark_bar(orient='horizontal')
-    .encode(
-        x='units_sold',
-        y=alt.Y('item_name').sort('-x'),
-    ),
-    use_container_width=True)
+# 원격 접속을 위한 스위치 IP 할당 명령어
+remote_access_switch_df = pd.DataFrame(remote_access_switch)
+
+# 트래킹 설정 명령어
+tracking_commands_df = pd.DataFrame(tracking_commands)
+
+# 트렁크 설정 명령어
+trunk_protocol_commands_df = pd.DataFrame(trunk_protocol_commands)
+
+# 네이티브 vlan 명령어
+native_vlan_commands_df = pd.DataFrame(native_vlan_commands)
+
+# STP 설정 명령어
+stp_settings_df = pd.DataFrame(stp_settings)
+
+# 루트 브릿지 보안 설정 명령어
+root_bridge_security_df = pd.DataFrame(root_bridge_security)
+
+# 트래킹 설정 명령어
+tracking_data_df = pd.DataFrame(tracking_data)
+
+# 트러블 슈팅 명령어
+trouble_shooting_data_df = pd.DataFrame(trouble_shooting_data)
+
+# 이더채널 설정 명령어
+etherchannel_data_df = pd.DataFrame(etherchannel_data)
+
+# 라우티드 포트 설정 명령어
+routed_port_data_df = pd.DataFrame(routed_port_data)
+
+# SVI 설정 명령어 데이터
+svi_data_df = pd.DataFrame(svi_data)
+
+# hsrp 설정 명령어 데이터
+hsrp_data_df = pd.DataFrame(hsrp_data)
+
+# VRRP Master/Worker 명령어 데이터
+vrrp_data_df = pd.DataFrame(vrrp_data)
+
+
+
+
+
+
+# 테이블 데이터 정의
+tables = {
+    "기본설정 명령어": basic_df,
+    "vlan 설정 명령어": vlan_df,
+    "원격 접근 보안 설정 명령어": remote_access_df,
+    "트렁크 프로토콜 설정 명령어": trunk_protocol_df,
+    "부트 이미지 변경 명령어": boot_image_change_df,
+    "로그 저장 서버 명령어": bserver_logs_df,
+    "원격 접속을 위한 스위치 IP 할당 명령어": remote_access_switch_df,
+    "트래킹 설정 명령어": tracking_commands_df,
+    "트렁크 설정 명령어": trunk_protocol_commands_df,
+    "네이티브 vlan 명령어": native_vlan_commands_df,
+    "STP 설정 명령어": stp_settings_df,
+    "루트 브릿지 보안 설정 명령어": root_bridge_security_df,
+    "트래킹 설정 명령어": tracking_data_df,
+    "트러블 슈팅 명령어": trouble_shooting_data_df,
+    "이더채널 설정 명령어": etherchannel_data_df,
+    "라우티드 포트 설정 명령어": routed_port_data_df,
+    "SVI 설정 명령어 데이터": svi_data_df,
+    "hsrp 설정 명령어 데이터": hsrp_data_df,
+    "VRRP Master/Worker 명령어 데이터": vrrp_data_df
+}
+
+# 테이블 목록 표시
+st.write('')
+st.write('')
+st.write('')
+st.write('')
+st.write('')
+st.write('')
+st.write('')
+st.write('')
+
+table_names = list(tables.keys())
+selected_table = st.selectbox("Switch 명령어 리스트", table_names)
+
+st.write('')
+st.write('')
+
+
+
+# 선택한 테이블의 데이터 표시
+selected_df = tables[selected_table]
+st.dataframe(selected_df, width=800)
+
+
+
+
+
+# # 테이블 표시 - 기본설정 명령어
+# st.subheader('기본설정 명령어')
+# st.table(basic_df)
+
+# # 테이블 표시 - 원격 접근 보안 설정 명령어
+# st.subheader('원격 접근 보안 설정 명령어')
+# st.table(remote_access_df)
+
+# # VLAN 설정 명령어
+# st.subheader('VLAN 설정 명령어')
+# st.table(vlan_df)
+
+# # 트렁크 프로토콜 설정 명령어
+# st.subheader('트렁크 프로토콜 설정 명령어')
+# st.table(trunk_protocol_df)
+
+# # 트렁크 프로토콜 설정 명령어
+# st.subheader('부트 이미지 설정 명령어')
+# st.table(boot_image_change_df)
+
+# # 로그 저장 서버 명령어
+# st.subheader('로그 저장 서버 명령어')
+# st.table(bserver_logs_df)
+
+# # 로그 저장 서버 명령어
+# st.subheader('원격 접속을 위한 스위치 IP 할당 명령어')
+# st.table(remote_access_switch_df)
+
+# # 트래킹 설정 명령어
+# st.subheader('트래킹 설정 명령어')
+# st.table(tracking_commands_df)
+
+# # 트렁크 설정 명령어
+# st.subheader('트렁크 설정 명령어')
+# st.table(trunk_protocol_commands_df)
+
+# # 네이티브 vlan 명령어
+# st.subheader('네이티브 vlan 설정 명령어')
+# st.table(native_vlan_commands_df)
+
+# # STP 설정
+# st.subheader('STP 설정 명령어')
+# st.table(stp_settings_df)
+
+# # 루트 브릿지 설정
+# st.subheader('루트 브릿지 설정 명령어')
+# st.table(root_bridge_security_df)
+
+# # 트래킹 설정
+# st.subheader('트래킹 설정 명령어')
+# st.table(tracking_data_df)
+
+# # 트러블 슈팅 명령어
+# st.subheader('트러블 슈팅 명령어')
+# st.table(trouble_shooting_data_df)
+
+# # 이더채널 설정 명령어
+# st.subheader('이더채널 설정 명령어')
+# st.table(etherchannel_data_df)
+
+# # 라우티드 포트 설정 명령어
+# st.subheader('라우티드 포트 설정 명령어')
+# st.table(routed_port_data_df)
+
+# # SVI 설정 명령어 데이터
+# st.subheader('SVI 설정 명령어')
+# st.table(svi_data_df)
+
+# # HSRP 설정 명령어 데이터
+# st.subheader('HSRP 설정 명령어')
+# st.table(hsrp_data_df)
+
+# # VRRP 설정 명령어 데이터
+# st.subheader('VRRP 설정 명령어')
+# st.table(vrrp_data_df)
