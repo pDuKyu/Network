@@ -246,7 +246,6 @@ st.dataframe(selected_df, width=800)
 
 
 def main():
-    st.title('Show Commands DataFrame 예제')
 
     # 'show 명령어 보기' 버튼 생성
     if st.button('show 명령어 보기'):
