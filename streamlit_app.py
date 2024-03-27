@@ -245,21 +245,16 @@ selected_df = tables[selected_table]
 st.dataframe(selected_df, width=800)
 
 
-# 버튼 클릭 이벤트 핸들러
-def show_commands_df_handler():
-    for desc in show_commands_df:
-        st.write(desc)
-
-# 버튼 추가
-if st.button("Show 명령어"):
-    show_commands_df_handler()
-
 def main():
-    st.title('버튼 예제')
+    st.title('Show Commands DataFrame 예제')
 
-    # 버튼 생성
-    if st.button('클릭하세요'):
-        st.write('버튼이 클릭되었습니다!')
+    # 'show 명령어 보기' 버튼 생성
+    if st.button('show 명령어 보기'):
+        # 데이터프레임 출력
+        st.write(show_commands_df)
+
+if __name__ == '__main__':
+    main()
 
 
 # # 테이블 표시 - 기본설정 명령어
