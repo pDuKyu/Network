@@ -14,7 +14,6 @@ def show_info_message(message):
     st.info(message)
 
 def main():
-    st.title('안내 메시지 예제')
 
     # 사용자에게 보여줄 메시지
     message = "환영합니다! 이 페이지는 네트워크 기기의 명령어를 안내하는 페이지입니다."
