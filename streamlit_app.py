@@ -245,6 +245,7 @@ selected_df = tables[selected_table]
 st.dataframe(selected_df, width=800)
 
 
+
 def main():
     # 표를 보여줄지 여부를 결정하는 변수
     show_table = st.button('show 명령어 보기')
@@ -253,12 +254,13 @@ def main():
     if show_table:
         st.dataframe(show_commands_df, width=0)
 
-        # 'show 명령어 보기' 버튼을 한 번 더 누를 때 표를 숨기기 위한 두 번째 버튼 생성
+        # 'show 명령어 보기' 버튼을 두 번 더 누를 때 표를 숨기기 위한 두 번째 버튼 생성
         if st.button('show 명령어 보기'):
-            pass  # 아무 작업도 수행하지 않음
+            st.write("")  # 아무 내용도 표시되지 않는 빈 문자열을 출력하여 표를 숨김
 
 if __name__ == '__main__':
     main()
+
 
 
 # # 테이블 표시 - 기본설정 명령어
