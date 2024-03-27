@@ -118,6 +118,12 @@ vrrp_data = {"명령어": ["interface vlan 10", "ip address 10.1.10.252 255.255.
              "설명": ["VLAN 10 인터페이스 설정 시작", "VLAN 10에 IP 주소를 설정", "VRRP 그룹 10의 가상 IP 주소를 설정", "VRRP 그룹 10에서 우선순위를 110으로 설정(높은 값이 Active)", "간략한 VRRP 정보 표시", "상세한 VRRP 정보 표시"]
 }
 
+# 추가 show 명령어
+# Show 명령어
+show_commands = {
+    "명령어": ["show vlan", "show vtp", "show spanning-tree", "show ip route", "show running-config", "show interface", "show arp", "show history", "show vrrp", "show standby", "show ip", "show access-lists", "show adjacency", "show authentication", "show auto secure", "show bgp", "show cdp", "show cef", "show clock", "show cns", "show configuration", "show connection", "show crypto", "show controllers", "show dot11", "show dsl", "show eigrp", "show environment", "show event-history", "show firewall", "show flash", "show ftp", "show hardware", "show hosts", "show idprom", "show ip access-lists", "show ip accounting", "show ip arp", "show ip dhcp", "show ip eigrp", "show ip igmp", "show ip interface", "show ip nat", "show ip nbar", "show ip ospf", "show ip rsvp", "show ip wccp", "show ipx", "show isdn", "show key chain", "show ipv6", "show license", "show line", "show logging", "show mac-address-table", "show map-class", "show mls", "show multicast", "show network", "show nhrp", "show policy-map", "show ppp", "show process", "show protocol", "show queueing", "show redundancy", "show region", "show router", "show sccp", "show scheduler", "show sdm", "show session", "show snmp", "show ssh", "show stacks", "show startup-config", "show switch", "show tacacs+", "show tcp", "show tech-support", "show terminal", "show time", "show tftp", "show track", "show transceiver", "show version", "show voice", "show vpdn", "show vpn-sessiondb", "show wavelength"],
+    "설명": ["VLAN 정보 표시", "VTP 설정 정보 표시", "스패닝 트리 프로토콜 정보 표시", "IP 라우팅 정보 표시", "현재 실행 중인 설정 표시", "인터페이스 상태 및 설정 표시", "ARP 테이블 정보 표시", "명령어 이력 표시", "VRRP 정보 표시", "Standby 프로토콜 정보 표시", "IP 프로토콜 정보 표시", "액세스 리스트 정보 표시", "인접 관계 정보 표시", "인증 상태 정보 표시", "자동 보안 설정 정보 표시", "BGP 정보 표시", "CDP 정보 표시", "CEF 정보 표시", "시계 설정 정보 표시", "CNS 정보 표시", "현재 설정 표시", "접속 정보 표시", "암호화 설정 정보 표시", "컨트롤러 설정 정보 표시", "Dot11 설정 정보 표시", "DSL 정보 표시", "EIGRP 정보 표시", "환경 설정 정보 표시", "이벤트 히스토리 정보 표시", "방화벽 설정 정보 표시", "플래시 메모리 정보 표시", "FTP 설정 정보 표시", "하드웨어 정보 표시", "호스트 정보 표시", "ID PROM 정보 표시", "IP 액세스 리스트 정보 표시", "IP 계정 정보 표시", "IP ARP 정보 표시", "IP DHCP 정보 표시", "IP EIGRP 정보 표시", "IP IGMP 정보 표시", "IP 인터페이스 정보 표시", "IP NAT 정보 표시", "IP NBAR 정보 표시", "IP OSPF 정보 표시", "IP RSVP 정보 표시", "IP WCCP 정보 표시", "IPX 정보 표시", "ISDN 정보 표시", "키 체인 정보 표시", "IPv6 정보 표시", "라이센스 정보 표시", "라인 설정 정보 표시", "로그 정보 표시", "MAC 주소 테이블 정보 표시", "맵 클래스 설정 정보 표시", "MLS 정보 표시", "멀티캐스트 정보 표시", "네트워크 정보 표시", "NHRP 정보 표시", "정책 맵 정보 표시", "PPP 정보 표시", "프로세스 정보 표시", "프로토콜 정보 표시", "큐잉 정보 표시", "중복 정보 표시", "리전 정보 표시", "라우터 정보 표시", "SCCP 정보 표시", "스케줄러 정보 표시", "SDM 정보 표시", "세션 정보 표시", "SNMP 정보 표시", "SSH 정보 표시", "스택 정보 표시", "시작 설정 정보 표시", "스위치 상태 정보 표시", "TACACS+ 정보 표시", "TCP 정보 표시", "기술 지원 정보 표시", "터미널 설정 정보 표시", "시간 정보 표시", "TFTP 정보 표시", "트랙 정보 표시", "트랜시버 정보 표시", "버전 정보 표시", "음성 정보 표시", "VPDN 정보 표시", "VPN 세션 데이터베이스 정보 표시", "파장 정보 표시"]
+}
 
 
 
@@ -196,7 +202,7 @@ vrrp_data_df = pd.DataFrame(vrrp_data)
 # 테이블 데이터 정의
 tables = {
     "기본설정 명령어": basic_df,
-    "vlan 설정 명령어": vlan_df,
+    "VLAN 설정 명령어": vlan_df,
     "VTP 설정 명령어": vtp_commands_df,
     "원격 접근 보안 설정 명령어": remote_access_df,
     "트렁크 프로토콜 설정 명령어": trunk_protocol_df,
@@ -205,16 +211,16 @@ tables = {
     "원격 접속을 위한 스위치 IP 할당 명령어": remote_access_switch_df,
     "트래킹 설정 명령어": tracking_commands_df,
     "트렁크 설정 명령어": trunk_protocol_commands_df,
-    "네이티브 vlan 명령어": native_vlan_commands_df,
+    "네이티브 VLAN 명령어": native_vlan_commands_df,
     "STP 설정 명령어": stp_settings_df,
     "루트 브릿지 보안 설정 명령어": root_bridge_security_df,
     "트래킹 설정 명령어": tracking_data_df,
     "트러블 슈팅 명령어": trouble_shooting_data_df,
     "이더채널 설정 명령어": etherchannel_data_df,
     "라우티드 포트 설정 명령어": routed_port_data_df,
-    "SVI 설정 명령어 데이터": svi_data_df,
-    "hsrp 설정 명령어 데이터": hsrp_data_df,
-    "VRRP Master/Worker 명령어 데이터": vrrp_data_df
+    "SVI 설정 명령어": svi_data_df,
+    "HSRP 설정 명령어": hsrp_data_df,
+    "VRRP Master/Worker 명령어": vrrp_data_df
 }
 
 # 테이블 목록 표시
