@@ -251,8 +251,6 @@ st.write('')
 table_names = list(tables.keys())
 selected_table = st.selectbox("Switch 명령어 리스트", table_names)
 
-st.write('')
-st.write('')
 
 
 
