@@ -220,8 +220,7 @@ tables = {
     "라우티드 포트 설정 명령어": routed_port_data_df,
     "SVI 설정 명령어": svi_data_df,
     "HSRP 설정 명령어": hsrp_data_df,
-    "VRRP Master/Worker 명령어": vrrp_data_df,
-    "show 명령어": show_commands_df}
+    "VRRP Master/Worker 명령어": vrrp_data_df}
 
 # 테이블 목록 표시
 st.write('')
@@ -246,7 +245,14 @@ selected_df = tables[selected_table]
 st.dataframe(selected_df, width=800)
 
 
+# 버튼 클릭 이벤트 핸들러
+def show_commands_df_handler():
+    for desc in show_commands_df:
+        st.write(desc)
 
+# 버튼 추가
+if st.button("Show 명령어"):
+    show_commands_df_handler()
 
 
 # # 테이블 표시 - 기본설정 명령어
