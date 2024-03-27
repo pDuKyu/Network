@@ -248,16 +248,14 @@ st.dataframe(selected_df, width=800)
 
 
 def main():
-    # 표를 보여줄지 여부를 결정하는 변수
-    show_table = st.button('show 명령어 보기')
+    show_table = st.button('show 명령어 보기')  # 표를 보여줄지 여부를 결정하는 변수
 
-    # 'show 명령어 보기' 버튼을 눌렀을 때 데이터프레임을 표시하도록 함
+    # 'show 명령어 보기' 버튼을 눌렀을 때 데이터프레임을 표시하거나 숨김
     if show_table:
         st.dataframe(show_commands_df, width=0)
 
-    # 'show 명령어 보기' 버튼을 한 번 더 눌렀을 때 표를 숨김
-    if show_table and st.button('show 명령어 보기'):
-        show_table = False
+        # 'show 명령어 보기' 버튼을 다시 한 번 더 눌렀을 때 표를 숨김
+        show_table = False if st.button('show 명령어 보기') else show_table
 
 if __name__ == '__main__':
     main()
