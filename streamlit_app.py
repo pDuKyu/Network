@@ -220,7 +220,8 @@ tables = {
     "라우티드 포트 설정 명령어": routed_port_data_df,
     "SVI 설정 명령어": svi_data_df,
     "HSRP 설정 명령어": hsrp_data_df,
-    "VRRP Master/Worker 명령어": vrrp_data_df}
+    "VRRP Master/Worker 명령어": vrrp_data_df,
+    "show 명령어":show_commands_df }
 
 # 테이블 목록 표시
 st.write('')
@@ -247,9 +248,9 @@ st.dataframe(selected_df, width=800)
 
 
 
-# 테이블 표시 - 기본설정 명령어
-st.subheader('show 명령어')
-st.table(show_commands_df)
+# # 테이블 표시 - 기본설정 명령어
+# st.subheader('show 명령어')
+# st.table(show_commands_df)
 
 # # 테이블 표시 - 기본설정 명령어
 # st.subheader('기본설정 명령어')
