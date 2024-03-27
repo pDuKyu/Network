@@ -254,6 +254,13 @@ def show_commands_df_handler():
 if st.button("Show 명령어"):
     show_commands_df_handler()
 
+def main():
+    st.title('버튼 예제')
+
+    # 버튼 생성
+    if st.button('클릭하세요'):
+        st.write('버튼이 클릭되었습니다!')
+
 
 # # 테이블 표시 - 기본설정 명령어
 # st.subheader('기본설정 명령어')
