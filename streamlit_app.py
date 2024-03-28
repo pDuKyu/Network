@@ -44,13 +44,13 @@ feedback = {}
 feedback['user_feedback'] = st.sidebar.text_area("사용자 피드백을 입력하세요", "")
 
 # "저장하기" 버튼을 클릭하면 아래 코드 블록이 실행됩니다.
-if st.button("저장하기"):
+if st.sidebar.button("저장하기"):
     # 피드백을 코드 형태로 저장합니다.
     with open("user_feedback.py", "w") as file:
-        file.write(f"feedback = {feedback}")
+        file.sidebar.write(f"feedback = {feedback}")
 
     # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
-    st.success("피드백이 코드 형태로 저장되었습니다.")
+    st.sidebar.success("피드백이 코드 형태로 저장되었습니다.")
 
 
 # 기본설정
