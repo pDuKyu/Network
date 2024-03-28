@@ -31,8 +31,12 @@ if __name__ == '__main__':
 
 
 
+# 사이드바 타이틀 설정
+st.sidebar.title('')
+
 # 이미지를 URL로 추가하는 코드
 image_url = "https://github.com/pDuKyu/switch/blob/main/20210112_163404.jpg?raw=true"
+caption = "이미지 캡션"
 use_column_width = True
 st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
 
