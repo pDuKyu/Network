@@ -264,7 +264,7 @@ if page == "Home":
 
 
 # 테이블 데이터 정의
-tables = {
+    tables = {
     "기본설정 명령어": basic_df,
     "VLAN 설정 명령어": vlan_df,
     "VTP 설정 명령어": vtp_commands_df,
