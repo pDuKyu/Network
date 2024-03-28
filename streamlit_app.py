@@ -1,10 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-#
-from googleapiclient.discovery import build
-from google.oauth2 import service_account
-#
 
 # 네트워크 설정 명령어로 대제목 설정
 st.title('네트워크 설정 명령어')
