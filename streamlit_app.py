@@ -57,30 +57,25 @@ if st.sidebar.button("저장하기"):
     # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
     st.sidebar.success("피드백이 파일로 저장되었습니다.")
 
-# JavaScript 코드를 생성합니다.
-js_code = """
-setInterval(function() {
-    var currentTime = new Date();
-    var hours = currentTime.getHours();
-    var minutes = currentTime.getMinutes();
-    var seconds = currentTime.getSeconds();
-    var formattedTime = hours + ":" + minutes + ":" + seconds;
-    document.getElementById('current_time').textContent = formattedTime;
-}, 1000);
-"""
+import streamlit as st
 
-# Streamlit에 JavaScript 코드를 추가합니다.
-st.write(
-    f"""
-    <script>
-        {js_code}
-    </script>
-    """
-)
+# JavaScript 코드를 추가합니다.
+st.write("""
+<script>
+    setInterval(function() {
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
+        var formattedTime = hours + ":" + minutes + ":" + seconds;
+        document.getElementById('current_time').textContent = formattedTime;
+    }, 1000);
+</script>
+""")
 
 # Streamlit의 사이드바에 현재 시각을 표시합니다.
 st.sidebar.subheader("현재 시각")
-st.sidebar.write(f'<span id="current_time"></span>', unsafe_allow_html=True)
+st.sidebar.write('<span id="current_time"></span>', unsafe_allow_html=True)
 
 
 
