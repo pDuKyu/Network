@@ -33,34 +33,7 @@ if __name__ == '__main__':
 
 
 
-# 사이드바 타이틀 설정
-st.sidebar.title('')
 
-# 이미지를 URL로 추가하는 코드
-image_url = "https://github.com/pDuKyu/switch/blob/main/20210112_163404.jpg?raw=true"
-caption = "귀엽죠?"
-use_column_width = True
-st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
-
-# feedback 딕셔너리 초기화
-feedback = {}
-
-# 사용자로부터 피드백을 입력 받습니다.
-feedback['user_feedback'] = st.sidebar.text_area("사용자 피드백을 입력하세요", "")
-
-
-# "저장하기" 버튼을 클릭하면 아래 코드 블록이 실행됩니다.
-if st.sidebar.button("저장하기"):
-    # 파일 경로 설정
-    file_path = r"C:\Users\admin\Desktop\feedback.txt"  # 파일 경로 수정
-
-    # 피드백을 파일에 저장합니다.
-    with open(file_path, "a", encoding="utf-8") as file:
-        file.write(feedback['user_feedback'] + "\n")
-
-
-    # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
-    st.sidebar.success("피드백이 저장되었습니다.")
 
 
 
@@ -408,3 +381,33 @@ if page == "Switch":
     
     st.write('')
     st.write('')
+
+
+# 사이드바 타이틀 설정
+st.sidebar.title('')
+
+# 이미지를 URL로 추가하는 코드
+image_url = "https://github.com/pDuKyu/switch/blob/main/20210112_163404.jpg?raw=true"
+caption = "귀엽죠?"
+use_column_width = True
+st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
+
+# feedback 딕셔너리 초기화
+feedback = {}
+
+# 사용자로부터 피드백을 입력 받습니다.
+feedback['user_feedback'] = st.sidebar.text_area("사용자 피드백을 입력하세요", "")
+
+
+# "저장하기" 버튼을 클릭하면 아래 코드 블록이 실행됩니다.
+if st.sidebar.button("저장하기"):
+    # 파일 경로 설정
+    file_path = r"C:\Users\admin\Desktop\feedback.txt"  # 파일 경로 수정
+
+    # 피드백을 파일에 저장합니다.
+    with open(file_path, "a", encoding="utf-8") as file:
+        file.write(feedback['user_feedback'] + "\n")
+
+
+    # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
+    st.sidebar.success("피드백이 저장되었습니다.")
