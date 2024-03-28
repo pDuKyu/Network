@@ -27,6 +27,9 @@ if __name__ == '__main__':
     main()
 
 
+# 사이드바에 버튼 추가
+page = st.sidebar.selectbox("Go to", ["Switch", "Router"])
+
 
 
 
@@ -280,23 +283,26 @@ tables = {
     "VRRP Master/Worker 명령어": vrrp_data_df,
     "show 명령어":show_commands_df }
 
-# 테이블 목록 표시
-st.write('')
-st.write('')
-
-
-table_names = list(tables.keys())
-selected_table = st.selectbox("Switch 명령어 리스트", table_names)
-
-
-
-
-# 선택한 테이블의 데이터 표시
-selected_df = tables[selected_table]
-st.dataframe(selected_df, width=800)
-
-st.write('')
-st.write('')
+# Home 페이지
+if page == "Home":
+    
+    # 테이블 목록 표시
+    st.write('')
+    st.write('')
+    
+    
+    table_names = list(tables.keys())
+    selected_table = st.selectbox("Switch 명령어 리스트", table_names)
+    
+    
+    
+    
+    # 선택한 테이블의 데이터 표시
+    selected_df = tables[selected_table]
+    st.dataframe(selected_df, width=800)
+    
+    st.write('')
+    st.write('')
 # # 이미지를 URL로 추가합니다.
 # st.image("https://github.com/pDuKyu/switch/blob/main/20210112_163404.jpg?raw=true", caption="이미지 캡션", use_column_width=True)
 
