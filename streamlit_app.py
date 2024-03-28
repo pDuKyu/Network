@@ -64,6 +64,13 @@ if st.sidebar.button("저장하기"):
     st.sidebar.success("피드백이 저장되었습니다.")
 
 
+
+
+
+
+# Home 페이지
+if page == "Home":
+
     # 기본설정
     basic_data = {
         "명령어": ["enable", "configure terminal", "hostname *", "enable secret ~", "line con 0", "service password-encryption", "banner motd #HI#", "no ip domain-lookup", "service timestamps log datatime msec", "show version"],
@@ -286,16 +293,10 @@ if st.sidebar.button("저장하기"):
     st.write('')
     st.write('')
 
-
-
-# Home 페이지
-if page == "Home":
-    
-
     
     
     table_names = list(tables.keys())
-    selected_table = st.selectbox("Switch 명령어 리스트", table_names)
+    selected_table = st.selectbox("Switch 명령어 리스트", tables)
     
     
     
