@@ -50,7 +50,7 @@ if st.sidebar.button("저장하기"):
         file.write(f"feedback = {feedback}")
 
     # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
-    st.sidebar.success("피드백이 코드 형태로 저장되었습니다.")
+    st.sidebar.success("피드백이 저장되었습니다!")
 
 
 # 기본설정
