@@ -399,16 +399,6 @@ feedback = {}
 # 사용자로부터 피드백을 입력 받습니다.
 feedback['user_feedback'] = st.sidebar.text_area("사용자 피드백을 입력하세요", "")
 
+# 오늘 날짜 가져오기
+today_date = datetime.today().strftime('%Y-%m-%d')
 
-# "저장하기" 버튼을 클릭하면 아래 코드 블록이 실행됩니다.
-if st.sidebar.button("저장하기"):
-    # 파일 경로 설정
-    file_path = r"C:\Users\admin\Desktop\feedback.txt"  # 파일 경로 수정
-
-    # 피드백을 파일에 저장합니다.
-    with open(file_path, "a", encoding="utf-8") as file:
-        file.write(feedback['user_feedback'] + "\n")
-
-
-    # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
-    st.sidebar.success("피드백이 저장되었습니다.")
