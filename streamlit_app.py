@@ -274,94 +274,16 @@ st.write('')
 
 #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+#라우터
+
+static_route_df = {
+    "명령어": ["ip route [목적지 네트워크] [다음 홉 인터페이스] [다음 홉 라우터 IP] [AD 값]", "show ip route", "show ip route [목적지 IP]", "show ip route connected", "show ip route static", "no shutdown"],
+    "설명": ["처리하고 싶은 네트워크에 대한 정적 라우팅 설정", "라우터의 IP 라우팅 테이블 정보 확인", "특정 IP 주소로 가는 라우팅 경로 확인", "라우터에 연결된 네트워크 정보 확인", "직접 지정한 정적 라우트 정보 확인", "연결을 활성화하고 라우터 인터페이스를 활성 상태로 설정"]
+}
 
 
-# # 이미지를 URL로 추가합니다.
-# st.image("https://github.com/pDuKyu/switch/blob/main/20210112_163404.jpg?raw=true", caption="이미지 캡션", use_column_width=True)
-
-# # 테이블 표시 - 기본설정 명령어
-# st.subheader('show 명령어')
-# st.table(show_commands_df)
-
-# # 테이블 표시 - 기본설정 명령어
-# st.subheader('기본설정 명령어')
-# st.table(basic_df)
-
-# # 테이블 표시 - 원격 접근 보안 설정 명령어
-# st.subheader('원격 접근 보안 설정 명령어')
-# st.table(remote_access_df)
-
-# # VLAN 설정 명령어
-# st.subheader('VLAN 설정 명령어')
-# st.table(vlan_df)
-
-# # 트렁크 프로토콜 설정 명령어
-# st.subheader('트렁크 프로토콜 설정 명령어')
-# st.table(trunk_protocol_df)
-
-# # 트렁크 프로토콜 설정 명령어
-# st.subheader('부트 이미지 설정 명령어')
-# st.table(boot_image_change_df)
-
-# # 로그 저장 서버 명령어
-# st.subheader('로그 저장 서버 명령어')
-# st.table(bserver_logs_df)
-
-# # 로그 저장 서버 명령어
-# st.subheader('원격 접속을 위한 스위치 IP 할당 명령어')
-# st.table(remote_access_switch_df)
-
-# # 트래킹 설정 명령어
-# st.subheader('트래킹 설정 명령어')
-# st.table(tracking_commands_df)
-
-# # 트렁크 설정 명령어
-# st.subheader('트렁크 설정 명령어')
-# st.table(trunk_protocol_commands_df)
-
-# # 네이티브 vlan 명령어
-# st.subheader('네이티브 vlan 설정 명령어')
-# st.table(native_vlan_commands_df)
-
-# # STP 설정
-# st.subheader('STP 설정 명령어')
-# st.table(stp_settings_df)
-
-# # 루트 브릿지 설정
-# st.subheader('루트 브릿지 설정 명령어')
-# st.table(root_bridge_security_df)
-
-# # 트래킹 설정
-# st.subheader('트래킹 설정 명령어')
-# st.table(tracking_data_df)
-
-# # 트러블 슈팅 명령어
-# st.subheader('트러블 슈팅 명령어')
-# st.table(trouble_shooting_data_df)
-    
-# # 이더채널 설정 명령어
-# st.subheader('이더채널 설정 명령어')
-# st.table(etherchannel_data_df)
-
-# # 라우티드 포트 설정 명령어
-# st.subheader('라우티드 포트 설정 명령어')
-# st.table(routed_port_data_df)
-
-# # SVI 설정 명령어 데이터
-# st.subheader('SVI 설정 명령어')
-# st.table(svi_data_df)
-    
-    # # HSRP 설정 명령어 데이터
-# st.subheader('HSRP 설정 명령어')
-# st.table(hsrp_data_df)
-    
-# # VRRP 설정 명령어 데이터
-# st.subheader('VRRP 설정 명령어')
-# st.table(vrrp_data_df)
-
-
-
-
+# 테이블 데이터 정의
+r_tables = {"스태틱 라우팅 명령어": static_route_df}
 
 
 
@@ -403,6 +325,11 @@ if page == "Switch":
 elif page == "Router":
     st.write("라우터 페이지")
 
+
+
+#리스트 기능
+    table_names2 = list(r_tables.keys())
+    selected_table = st.selectbox("Switch 명령어 리스트", table_names2 )  
 
 
 
