@@ -373,6 +373,9 @@ st.write('')
 # 사이드바에 버튼 추가
 page = st.sidebar.selectbox("Go to", ["Switch", "Router"])
 
+
+
+# 스위치 페이지
 if page == "Switch":
     # 선택한 테이블의 데이터 표시
 
@@ -390,6 +393,18 @@ if page == "Switch":
     st.write('')
     st.write('')
     st.write('')
+
+
+
+
+
+
+# 라우터 페이지
+elif page == "About":
+    st.title("About Page")
+
+
+
 
 # 사이드바 타이틀 설정
 st.sidebar.title('')
