@@ -37,10 +37,11 @@ use_column_width = True
 st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
 
 # 사용자 피드백 입력 기능 추가
-feedback = st.sidebar.text_area("사용자 피드백을 입력하세요", "")
+feedback = st.sidebar.text_area("사용자 피드백을 입력하세요", "", key="feedback")
 
-# 사용자 피드백 출력
-st.sidebar.write("사용자 피드백: ", feedback)
+# Enter 키 입력 감지하여 피드백 출력
+if st.sidebar.button("확인"):
+    st.sidebar.write("사용자 피드백: ", feedback)
 
 
 # 기본설정
