@@ -401,7 +401,7 @@ if page == "Switch":
 
 # 라우터 페이지
 elif page == "Router":
-    st.title("라우터 페이지")
+    st.write("라우터 페이지")
 
 
 
