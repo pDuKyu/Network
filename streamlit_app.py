@@ -258,7 +258,8 @@ selected_table = st.selectbox("Switch 명령어 리스트", table_names)
 selected_df = tables[selected_table]
 st.dataframe(selected_df, width=800)
 
-
+st.write('')
+st.write('')
 # 이미지를 URL로 추가합니다.
 st.image("https://github.com/pDuKyu/switch/blob/main/20210112_163404.jpg?raw=true", caption="이미지 캡션", use_column_width=True)
 
