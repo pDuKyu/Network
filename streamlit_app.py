@@ -63,12 +63,6 @@ if st.sidebar.button("저장하기"):
     # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
     st.sidebar.success("피드백이 저장되었습니다.")
 
-
-
-
-# Home 페이지
-if page == "Home":
-    # 기본설정
 basic_data = {
     "명령어": ["enable", "configure terminal", "hostname *", "enable secret ~", "line con 0", "service password-encryption", "banner motd #HI#", "no ip domain-lookup", "service timestamps log datatime msec", "show version"],
     "설명": ["관리자 모드 (enable 모드)로 전환", "글로벌 설정(config) 모드로 전환", "장비 이름을 '*'로 변경 (장소나 특징을 구별할 수 있는 이름)", "관리자 모드 비밀번호를 '~'로 설정 (입력 후 암호화 됨)", "콘솔 접속 가능 설정", "설정된 모든 패스워드 암호화", "접속 시 #HI#라는 배너 띄우기 (경고 문구 등에 사용)", "DNS 찾지 말고 명령어 종료", "입력된 로그에 시간을 함께 추가", "장비 세부 정보 확인 (uptime, image file(경로: 파일명),  model number, system serial number 등)"]
@@ -259,6 +253,12 @@ vrrp_data_df = pd.DataFrame(vrrp_data)
 
 # show 명령어
 show_commands_df = pd.DataFrame(show_commands)
+
+
+# Home 페이지
+if page == "Home":
+    # 기본설정
+
 
 
 
