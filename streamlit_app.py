@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from datetime import datetime
 
 
 # 네트워크 설정 명령어로 대제목 설정
@@ -55,6 +56,15 @@ if st.sidebar.button("저장하기"):
 
     # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
     st.sidebar.success("피드백이 파일로 저장되었습니다.")
+
+
+# 현재 시각을 가져옵니다.
+current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+# 사이드바에 현재 시각을 표시합니다.
+st.sidebar.subheader("현재 시각")
+st.sidebar.write(current_time)
+
 
 # 기본설정
 basic_data = {
