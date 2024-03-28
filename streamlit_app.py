@@ -51,7 +51,11 @@ if st.sidebar.button("저장하기"):
 
     # 피드백을 코드 형태로 저장합니다.
     with open(file_path, "a") as file:  # 기존 파일에 추가하기 위해 "a" 모드로 열기
-        file.write(f"\n# 피드백 저장\nfeedback = {repr(user_feedback)}\n")
+        # 피드백에 포함된 따옴표나 특수 문자를 문자열 리터럴로 처리하여 추가합니다.
+        file.write("\n# 피드백 저장\n")
+        file.write("feedback = ")
+        file.write(repr(user_feedback))
+        file.write("\n")
 
     # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
     st.sidebar.success("피드백이 코드 형태로 저장되었습니다.")
