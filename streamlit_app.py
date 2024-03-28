@@ -1,6 +1,11 @@
 import streamlit as st
 import pandas as pd
 
+#
+from googleapiclient.discovery import build
+from google.oauth2 import service_account
+#
+
 # 네트워크 설정 명령어로 대제목 설정
 st.title('네트워크 설정 명령어')
 
@@ -36,12 +41,24 @@ caption = "이미지 캡션"
 use_column_width = True
 st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
 
-# 사용자 피드백 입력 기능 추가
-feedback = st.sidebar.text_area("사용자 피드백을 입력하세요", "", key="feedback")
+# Google Drive API 정보
+SCOPES = ['https://www.googleapis.com/auth/drive']
+SERVICE_ACCOUNT_FILE = 'credentials.json'  # 구글 서비스 계정 키 파일
 
-# Enter 키 입력 감지하여 피드백 출력
-if st.sidebar.button("확인"):
-    st.sidebar.write("사용자 피드백: ", feedback)
+# feedback 딕셔너리 초기화
+feedback = {}
+
+# 사용자로부터 피드백을 입력 받습니다.
+feedback['user_feedback'] = st.text_area("사용자 피드백을 입력하세요", "")
+
+# "저장하기" 버튼을 클릭하면 아래 코드 블록이 실행됩니다.
+if st.button("저장하기"):
+    # 피드백을 코드 형태로 저장합니다.
+    with open("user_feedback.py", "w") as file:
+        file.write(f"feedback = {feedback}")
+
+    # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
+    st.success("피드백이 코드 형태로 저장되었습니다.")
 
 
 # 기본설정
