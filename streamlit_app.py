@@ -375,12 +375,16 @@ page = st.sidebar.selectbox("Go to", ["Switch", "Router"])
 
 if page == "Switch":
     # 선택한 테이블의 데이터 표시
+
+    table_names = list(tables.keys())
+    selected_table = st.selectbox("Switch 명령어 리스트", table_names )  
+
+    
     selected_df = tables[selected_table]
     st.dataframe(selected_df, width=800)
 
 
-    table_names = list(tables.keys())
-    selected_table = st.selectbox("Switch 명령어 리스트", table_names )  
+
   
     st.write('')
     st.write('')
