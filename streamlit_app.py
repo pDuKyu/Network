@@ -37,15 +37,11 @@ caption = "이미지 캡션"
 use_column_width = True
 st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
 
-# Google Drive API 정보
-SCOPES = ['https://www.googleapis.com/auth/drive']
-SERVICE_ACCOUNT_FILE = 'credentials.json'  # 구글 서비스 계정 키 파일
-
 # feedback 딕셔너리 초기화
 feedback = {}
 
 # 사용자로부터 피드백을 입력 받습니다.
-feedback['user_feedback'] = st.text_area("사용자 피드백을 입력하세요", "")
+feedback['user_feedback'] = st.sidebar.text_area("사용자 피드백을 입력하세요", "")
 
 # "저장하기" 버튼을 클릭하면 아래 코드 블록이 실행됩니다.
 if st.button("저장하기"):
