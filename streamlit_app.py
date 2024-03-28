@@ -332,7 +332,7 @@ elif page == "Router":
     selected_table2 = st.selectbox("Switch 명령어 리스트", table_names2 )  
 
 #테이블 시각화
-    selected_df2 = tables[selected_table2]
+    selected_df2 = r_tables[selected_table2]
     st.dataframe(selected_df2, width=800)
 
 
