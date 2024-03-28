@@ -52,7 +52,8 @@ if st.sidebar.button("저장하기"):
 
     # 피드백을 파일에 저장합니다.
     with open(file_path, "a", encoding="utf-8") as file:
-        file.write(user_feedback + "\n")
+        file.write(feedback['user_feedback'] + "\n")
+
 
     # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
     st.sidebar.success("피드백이 저장되었습니다.")
