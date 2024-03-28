@@ -381,7 +381,8 @@ if page == "Switch":
     
     st.write('')
     st.write('')
-
+    st.write('')
+    st.write('')
 
 # 사이드바 타이틀 설정
 st.sidebar.title('')
