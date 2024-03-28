@@ -302,7 +302,7 @@ if page == "Switch":
     # 선택한 테이블의 데이터 표시
 
     table_names = list(tables.keys())
-    selected_table = st.selectbox("Switch 명령어 리스트", table_names )  
+    selected_table = st.selectbox("Switch 명령어 리스트 (잘리는 내용은 더블 클릭)", table_names )  
 
     
     selected_df = tables[selected_table]
@@ -328,7 +328,7 @@ elif page == "Router":
 
 #리스트 기능
     table_names2 = list(r_tables.keys())
-    selected_table2 = st.selectbox("Router 명령어 리스트   (내용이 잘린다면 더블 클릭을 통해 확인하세요)", table_names2 )  
+    selected_table2 = st.selectbox("Router 명령어 리스트   (잘리는 내용은 더블 클릭)", table_names2 )  
 
 #테이블 시각화
     selected_df2 = r_tables[selected_table2]
