@@ -400,8 +400,8 @@ if page == "Switch":
 
 
 # 라우터 페이지
-elif page == "About":
-    st.title("About Page")
+elif page == "Router":
+    st.title("라우터 페이지")
 
 
 
