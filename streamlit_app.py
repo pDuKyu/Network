@@ -396,4 +396,4 @@ st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
 
 # 오늘 날짜 가져오기
 today_date = datetime.today().strftime('%Y-%m-%d')
-st.write(f"Today's Date: {오늘 날짜}")
+st.write(f"Today's Date: {today_date}")
