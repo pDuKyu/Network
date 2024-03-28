@@ -393,12 +393,7 @@ caption = "귀엽죠?"
 use_column_width = True
 st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
 
-# feedback 딕셔너리 초기화
-feedback = {}
-
-# 사용자로부터 피드백을 입력 받습니다.
-feedback['user_feedback'] = st.sidebar.text_area("사용자 피드백을 입력하세요", "")
 
 # 오늘 날짜 가져오기
 today_date = datetime.today().strftime('%Y-%m-%d')
-
+st.write(f"Today's Date: {오늘 날짜}")
