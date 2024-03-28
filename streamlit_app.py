@@ -57,14 +57,6 @@ if st.sidebar.button("저장하기"):
     # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
     st.sidebar.success("피드백이 저장되었습니다.")
 
-# 사이드바에 버튼 추가
-selection = st.sidebar.radio("장비 선택", ("스위치", "라우터"))
-
-# 스위치를 선택한 경우
-if selection == "스위치":
-    st.write("스위치 페이지로 이동합니다.")
-    # 페이지 1에 대한 내용을 여기에 작성하세요.
-    # 예를 들어, st.write("스위치 페이지 내용")
 
 # 기본설정
 basic_data = {
