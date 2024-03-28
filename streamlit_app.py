@@ -23,7 +23,21 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
+
+
+
+# 사이드바
+st.sidebar.title('사이드바')
+
+# 사이드바에 옵션 추가
+option = st.sidebar.selectbox(
+    '당신의 최애 숫자는?',
+    ('1', '2', '3', '4', '5')
+)
+
+st.sidebar.write('당신의 최애 숫자는 ', option, ' 입니다.')
+
+
 # 기본설정
 basic_data = {
     "명령어": ["enable", "configure terminal", "hostname *", "enable secret ~", "line con 0", "service password-encryption", "banner motd #HI#", "no ip domain-lookup", "service timestamps log datatime msec", "show version"],
