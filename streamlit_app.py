@@ -18,7 +18,8 @@ def show_info_message(message):
 def main():
 
     # 사용자에게 보여줄 메시지
-    message = "환영합니다! 이 페이지는 네트워크 기기의 명령어를 안내하는 페이지입니다."
+    message = "환영합니다! 이 페이지는 네트워크 기기의 명령어를 안내하는 페이지입니다. \n
+    부가적인 설명으로 인해 잘리는 내용이 있으니 더블 클릭을 하여 전체 내용을 확인하세요!"
 
     # 안내 메시지를 보여주는 함수 호출
     show_info_message(message)
@@ -302,7 +303,7 @@ if page == "Switch":
     # 선택한 테이블의 데이터 표시
 
     table_names = list(tables.keys())
-    selected_table = st.selectbox("Switch 명령어 리스트 (잘리는 내용은 더블 클릭)", table_names )  
+    selected_table = st.selectbox("Switch 명령어 리스트", table_names )  
 
     
     selected_df = tables[selected_table]
@@ -328,7 +329,7 @@ elif page == "Router":
 
 #리스트 기능
     table_names2 = list(r_tables.keys())
-    selected_table2 = st.selectbox("Router 명령어 리스트   (잘리는 내용은 더블 클릭)", table_names2 )  
+    selected_table2 = st.selectbox("Router 명령어 리스트", table_names2 )  
 
 #테이블 시각화
     selected_df2 = r_tables[selected_table2]
