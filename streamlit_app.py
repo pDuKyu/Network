@@ -45,20 +45,16 @@ feedback['user_feedback'] = st.sidebar.text_area("사용자 피드백을 입력�
 
 
 # "저장하기" 버튼을 클릭하면 아래 코드 블록이 실행됩니다.
-if st.sidebar.button("저장하기"):
+if st.sider.button("저장하기"):
     # 파일 경로 설정
-    file_path = r"C:\Users\admin\Desktop\untitled.py"  # 파일 경로 수정
+    file_path = r"C:\Users\admin\Desktop\feedback.txt"  # 파일 경로 수정
 
-    # 피드백을 코드 형태로 저장합니다.
-    with open(file_path, "a") as file:  # 기존 파일에 추가하기 위해 "a" 모드로 열기
-        # 피드백에 포함된 따옴표나 특수 문자를 문자열 리터럴로 처리하여 추가합니다.
-        file.write("\n# 피드백 저장\n")
-        file.write("feedback = ")
-        file.write(repr(user_feedback))
-        file.write("\n")
+    # 피드백을 파일에 저장합니다.
+    with open(file_path, "a", encoding="utf-8") as file:
+        file.write(user_feedback + "\n")
 
     # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
-    st.sidebar.success("피드백이 코드 형태로 저장되었습니다.")
+    st.sider.success("피드백이 파일로 저장되었습니다.")
 
 # 기본설정
 basic_data = {
