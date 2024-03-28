@@ -329,8 +329,11 @@ elif page == "Router":
 
 #리스트 기능
     table_names2 = list(r_tables.keys())
-    selected_table = st.selectbox("Switch 명령어 리스트", table_names2 )  
+    selected_table2 = st.selectbox("Switch 명령어 리스트", table_names2 )  
 
+#테이블 시각화
+    selected_df2 = tables[selected_table2]
+    st.dataframe(selected_df2, width=800)
 
 
 # 사이드바 타이틀 설정
