@@ -64,11 +64,6 @@ if st.sidebar.button("저장하기"):
     st.sidebar.success("피드백이 저장되었습니다.")
 
 
-
-
-# Home 페이지
-if page == "Home":
-    
     # 기본설정
     basic_data = {
         "명령어": ["enable", "configure terminal", "hostname *", "enable secret ~", "line con 0", "service password-encryption", "banner motd #HI#", "no ip domain-lookup", "service timestamps log datatime msec", "show version"],
@@ -290,6 +285,13 @@ if page == "Home":
     # 테이블 목록 표시
     st.write('')
     st.write('')
+
+
+
+# Home 페이지
+if page == "Home":
+    
+
     
     
     table_names = list(tables.keys())
