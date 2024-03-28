@@ -36,13 +36,11 @@ caption = "이미지 캡션"
 use_column_width = True
 st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
 
-# 사이드바에 옵션 추가
-option = st.sidebar.selectbox(
-    '당신의 최애 숫자는?',
-    ('1', '2', '3', '4', '5')
-)
+# 사용자 피드백 입력 기능 추가
+feedback = st.sidebar.text_area("사용자 피드백을 입력하세요", "")
 
-st.sidebar.write('당신의 최애 숫자는 ', option, ' 입니다.')
+# 사용자 피드백 출력
+st.sidebar.write("사용자 피드백: ", feedback)
 
 
 # 기본설정
