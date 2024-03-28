@@ -29,8 +29,7 @@ if __name__ == '__main__':
 
 
 
-# 사이드바
-st.sidebar.title()
+
 
 # 이미지를 URL로 추가하는 코드
 image_url = "https://github.com/pDuKyu/switch/blob/main/20210112_163404.jpg?raw=true"
