@@ -45,7 +45,7 @@ feedback['user_feedback'] = st.sidebar.text_area("사용자 피드백을 입력�
 
 
 # "저장하기" 버튼을 클릭하면 아래 코드 블록이 실행됩니다.
-if st.sider.button("저장하기"):
+if st.sidebar.button("저장하기"):
     # 파일 경로 설정
     file_path = r"C:\Users\admin\Desktop\feedback.txt"  # 파일 경로 수정
 
@@ -54,7 +54,7 @@ if st.sider.button("저장하기"):
         file.write(user_feedback + "\n")
 
     # 사용자에게 저장이 성공적으로 완료되었음을 알립니다.
-    st.sider.success("피드백이 파일로 저장되었습니다.")
+    st.sidebar.success("피드백이 파일로 저장되었습니다.")
 
 # 기본설정
 basic_data = {
