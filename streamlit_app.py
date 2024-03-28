@@ -29,6 +29,15 @@ if __name__ == '__main__':
 # 사이드바
 st.sidebar.title('사이드바')
 
+# 사이드바
+st.sidebar.title('사이드바')
+
+# 이미지를 URL로 추가하는 코드
+image_url = "https://github.com/pDuKyu/switch/blob/main/20210112_163404.jpg?raw=true"
+caption = "이미지 캡션"
+use_column_width = True
+st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
+
 # 사이드바에 옵션 추가
 option = st.sidebar.selectbox(
     '당신의 최애 숫자는?',
