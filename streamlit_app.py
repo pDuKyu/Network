@@ -299,7 +299,7 @@ selected_table = st.selectbox("Switch 명령어 리스트", table_names )
 # 사이드바에 버튼 추가
 page = st.sidebar.selectbox("Go to", ["Switch", "Router"])
 
-if page == "Home":
+if page == "Switch":
     # 선택한 테이블의 데이터 표시
     selected_df = tables[selected_table]
     st.dataframe(selected_df, width=800)
