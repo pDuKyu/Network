@@ -260,11 +260,11 @@ if page == "Home":
     
     # show 명령어
     show_commands_df = pd.DataFrame(show_commands)
-
-
-
-
-# 테이블 데이터 정의
+    
+    
+    
+    
+    # 테이블 데이터 정의
     tables = {
     "기본설정 명령어": basic_df,
     "VLAN 설정 명령어": vlan_df,
