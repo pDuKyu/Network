@@ -368,6 +368,10 @@ use_column_width = True
 st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
 
 
+# 오늘 날짜 가져오기
+today_date = datetime.today().strftime('%Y-%m-%d')
+st.sidebar.write(f"오늘은 {today_date}일 입니다!")
+
 
 
 # 사이드바에 버튼 추가
@@ -426,9 +430,7 @@ elif page == "Router":
 
 
 
-# 오늘 날짜 가져오기
-today_date = datetime.today().strftime('%Y-%m-%d')
-st.sidebar.write(f"오늘은 {today_date}일 입니다!")
+
 st.sidebar.write('')
 st.sidebar.write('')
 st.sidebar.write('')
