@@ -394,15 +394,6 @@ if page == "Switch":
     st.dataframe(selected_df, width=800)
 
 
-  
-    st.write('')
-    st.write('')
-    st.write('')
-    st.write('')
-
-
-
-
     st.success(text)
 
 
@@ -412,20 +403,16 @@ elif page == "Router":
 
 
 #리스트 기능
+    st.write('')
+    st.write('')
+    st.write('')
+    st.write('')
     table_names2 = list(r_tables.keys())
     selected_table2 = st.selectbox("Router 명령어 리스트", table_names2 )  
 
 #테이블 시각화
     selected_df2 = r_tables[selected_table2]
     st.dataframe(selected_df2, width=800)
-
-    st.write('')
-    st.write('')
-    st.write('')
-    st.write('')
-
-
-
 
     st.success(text2)
 
