@@ -399,4 +399,4 @@ st.sidebar.write('')
 st.sidebar.write('')
 st.sidebar.write('')
 
-st.sidebar.markdown(f"[서브넷 계산 사이트] (https://www.site24x7.com/tools/ipv4-subnetcalculator.html)")
+st.markdown(f"[서브넷 계산 사이트] (https://www.site24x7.com/tools/ipv4-subnetcalculator.html)")
