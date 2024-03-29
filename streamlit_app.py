@@ -310,7 +310,7 @@ ip_df = {
 
 
 # 테이블 데이터 정의
-r_tables = {"스태틱 라우팅 명령어": static_route_df
+r_tables = {"스태틱 라우팅 명령어": static_route_df,
            "ip 연결 확인 명령어": ip_df}
 
 
@@ -349,7 +349,7 @@ if page == "Switch":
     # 선택한 테이블의 데이터 표시
 
     table_names = list(tables.keys())
-    selected_table = st.selectbox("Switch 명령어 리스트", table_names , list(options.keys()))  
+    selected_table = st.selectbox("Switch 명령어 리스트", table_names)  
 
     
     selected_df = tables[selected_table]
