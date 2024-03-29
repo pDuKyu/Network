@@ -340,7 +340,7 @@ r_tables = {"스태틱 라우팅 명령어": static_route_df,
 
 
 # 사이드바에 버튼 추가
-page = st.sidebar.selectbox("Go to", ["Switch", "Router"])
+page = st.sidebar.selectbox("기기를 선택해주세요.", ["Switch", "Router"])
 
 
 
