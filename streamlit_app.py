@@ -387,7 +387,7 @@ if page == "Switch":
     st.write('')
     st.write('')
     table_names = list(tables.keys())
-    selected_table = st.selectbox("Switch 명령어 리스트", table_names)  
+    selected_table = st.selectbox("**Switch 명령어 리스트**", table_names)  
 
     
     selected_df = tables[selected_table]
@@ -408,7 +408,7 @@ elif page == "Router":
     st.write('')
     st.write('')
     table_names2 = list(r_tables.keys())
-    selected_table2 = st.selectbox("Router 명령어 리스트", table_names2 )  
+    selected_table2 = st.selectbox("**Router 명령어 리스트**", table_names2 )  
 
 #테이블 시각화
     selected_df2 = r_tables[selected_table2]
