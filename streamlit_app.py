@@ -317,7 +317,7 @@ ip_df = {
 
 #OSPF 명령어
 ospf_commands = {
-    "명령어": ["router ospf <아이디>", "network x.x.x.x <wildcard_mask> area <구역번호>", "show ip ospf neighbor", "show ip ospf protocols"],
+    "명령어": ["router ospf <아이디>", "network x.x.x.x <wildcard_mask> area <구역번호>", "show ip ospf neighbor", "show ip protocols"],
     "설명": ["ospf를 실행 후 아이디 번호를 지정(본인만 인지함)", "x.x.x.x = 내 hello 메세지 보낼 인터페이스 IP | 서브넷 마스크의 반댓말 | 연결할 구역번호", "라우터의 네이버 관계 확인", "라우터의 프로토콜 아이디 확인"]
 }
 
