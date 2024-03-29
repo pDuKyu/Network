@@ -400,4 +400,4 @@ st.sidebar.write('')
 st.sidebar.write('')
 
 
-st.sidebar.markdown("[서브넷 계산 사이트 링크](https://www.site24x7.com/tools/ipv4-subnetcalculator.html/) ")
+st.sidebar.markdown("[서브넷 계산 사이트 링크](https://www.site24x7.com/tools/ipv4-subnetcalculator.html) ")
