@@ -330,7 +330,8 @@ show = {
 # 테이블 데이터 정의
 r_tables = {"스태틱 라우팅 명령어": static_route_df,
            "ip 연결 확인 명령어": ip_df,
-           "OSPF 명령어": ospf_commands}
+           "OSPF 명령어": ospf_commands,
+           "show 명령어": show}
 
 
 
