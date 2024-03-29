@@ -403,7 +403,7 @@ elif page == "Router":
 
 
 
-    st.success(text2)
+    # st.success(text2)
 
 # 사이드바 타이틀 설정
 st.sidebar.title('')
