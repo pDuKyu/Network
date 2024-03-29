@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-
+import random
 
 # 네트워크 설정 명령어로 대제목 설정
 st.title('네트워크 설정 명령어')
