@@ -321,6 +321,11 @@ ospf_commands = {
     "설명": ["ospf를 실행 후 아이디 번호를 지정(본인만 인지함)", "x.x.x.x = 내 hello 메세지 보낼 인터페이스 IP | 서브넷 마스크의 반댓말 | 연결할 구역번호", "라우터의 네이버 관계 확인", "라우터의 프로토콜 아이디 확인"]
 }
 
+#show 명령어
+show = {
+    "명령어": ["show ip route", "show ip route [목적지 IP]", "show ip route connected", "show ip route static", "show ip ospf neighbor", "show ip protocols"],
+    "설명": ["라우터의 IP 라우팅 테이블 정보 확인", "특정 IP 주소로 가는 라우팅 경로 확인", "라우터에 연결된 네트워크 정보 확인", "직접 지정한 정적 라우트 정보 확인", "라우터의 네이버 관계 확인", "라우터의 프로토콜 아이디 확인"]
+}
 
 # 테이블 데이터 정의
 r_tables = {"스태틱 라우팅 명령어": static_route_df,
