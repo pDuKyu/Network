@@ -375,8 +375,11 @@ st.sidebar.write(f"오늘은 {today_date}일 입니다!")
 
 
 # 사이드바에 버튼 추가
-page = st.sidebar.selectbox("기기를 선택해주세요.", ["Switch", "Router"])
-
+page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router"])
+st.sidebar.write('')
+st.sidebar.write('')
+st.sidebar.write('')
+st.sidebar.write('')
 
 
 # 스위치 페이지
