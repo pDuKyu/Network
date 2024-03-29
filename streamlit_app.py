@@ -324,7 +324,7 @@ ospf_commands = {
 #show 명령어
 show = {
     "명령어": ["show ip route", "show ip route [목적지 IP]", "show ip route connected", "show ip route static", "show ip ospf neighbor", "show ip protocols"],
-    "설명": ["라우터의 IP 라우팅 테이블 정보 확인", "특정 IP 주소로 가는 라우팅 경로 확인", "라우터에 연결된 네트워크 정보 확인", "직접 지정한 정적 라우트 정보 확인", "라우터의 네이버 관계 확인", "라우터의 프로토콜 아이디 확인"]
+    "설명": ["라우터의 IP 테이블 정보 확인", "특정 IP 주소로 가는 경로 확인", "라우터에 연결된 네트워크 정보 확인", "스태틱 라우트 정보 확인", "라우터의 네이버 관계 확인", "라우터의 프로토콜 아이디 확인"]
 }
 
 # 테이블 데이터 정의
