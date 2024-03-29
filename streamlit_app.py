@@ -354,7 +354,6 @@ if page == "Switch":
     
     selected_df = tables[selected_table]
     st.dataframe(selected_df, width=800)
-    st.write(options[selected_option])
 
 
   
