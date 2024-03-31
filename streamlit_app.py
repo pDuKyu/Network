@@ -358,6 +358,9 @@ text2 = """
 
 
 
+# 커스텀 워닝 문구
+def custom_warning(message):
+    st.markdown(f'<div style="color: orange; font-size: large;">{message}</div>', unsafe_allow_html=True)
 
 
 
@@ -398,11 +401,8 @@ if page == "Switch":
     st.write('')
     st.write('')
     st.write('')
-    custom_warning("알아야 하는 스위치 용어<br> OSI 7 계층, TCP/IP, 인/디캡슐레이션, IP 헤더, 이더넷 헤더, ARP프로토콜, 스위치, 라우터, LAN, WAN, VLAN, 트렁크, VTP, Native VLAN, Allowed VLAN, Spanning-Tree, BTDU, PVST, RPVST, Etherchannel, SVI, Routedport, portchannel, HSRP, VRRP")
+    custom_warning("알아야 하는 스위치 용어 <br> OSI 7 계층, TCP/IP, 인/디캡슐레이션, IP 헤더, 이더넷 헤더, ARP프로토콜, 스위치, 라우터, LAN, WAN, VLAN, 트렁크, VTP, Native VLAN, Allowed VLAN, Spanning-Tree, BTDU, PVST, RPVST, Etherchannel, SVI, Routedport, portchannel, HSRP, VRRP")
 
-
-def custom_warning(message):
-    st.markdown(f'<div style="color: orange; font-size: large;">{message}</div>', unsafe_allow_html=True)
 
 
 # 라우터 페이지
