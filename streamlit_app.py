@@ -397,7 +397,7 @@ if page == "Switch":
     st.success(text)
     
     
-    st.warnning("!")
+    st.warning("!")
 
 # 라우터 페이지
 elif page == "Router":
