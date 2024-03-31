@@ -395,9 +395,11 @@ if page == "Switch":
 
 
     st.success(text)
-    
-    
-    st.warning("!")
+    st.write('')
+    st.write('')
+    st.write('')
+    st.warning("알아야 하는 스위치 용어
+    OSI 7 계층, TCP/IP, 인/디캡슐레이션, IP 헤더, 이더넷 헤더, ARP프로토콜, 스위치, 라우터, LAN, WAN, VLAN, 트렁크, VTP, Native VLAN, Allowed VLAN, Spanning-Tree, BTDU, PVST, RPVST, Etherchannel, SVI, Routedport, portchannel, HSRP, VRRP")
 
 # 라우터 페이지
 elif page == "Router":
