@@ -438,3 +438,4 @@ st.sidebar.write('')
 
 st.sidebar.markdown("[서브넷 계산 사이트](https://www.site24x7.com/tools/ipv4-subnetcalculator.html) ")
 st.sidebar.markdown("[서브넷 비트 계산 사이트](https://www.calcip.com/) ")
+st.sidebar.markdown("[서브넷 비트 계산 사이트](https://www.netacad.com/portal/learning) ")
