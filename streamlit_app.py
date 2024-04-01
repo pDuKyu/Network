@@ -317,8 +317,8 @@ ip_df = {
 
 #OSPF 명령어
 ospf_commands = {
-    "명령어": ["router ospf <아이디>", "network x.x.x.x <wildcard_mask> area <구역번호>","ospf의 서브넷 마스크 변경", "show ip ospf neighbor", "show ip protocols", "show ip route ospf", "show run | section ospf", "show ip ospf interface brief", "show ip ospf database", "clear ip ospf"],
-    "설명": ["ospf를 실행 후 아이디 번호를 지정(본인만 인지함)", "x.x.x.x = 내 hello 메세지 보낼 인터페이스 IP | 서브넷 마스크의 반댓말 | 연결할 구역번호", "ip ospf network point-to-point","OSPF 이웃 목록 표시", "라우팅 프로토콜 설정과 관련된 정보 표시", "OSPF로 학습한 라우팅 테이블 표시", "현재 라우터의 구성에서 OSPF 구성 섹션 표시", "OSPF 인터페이스의 간략한 상태 표시", "OSPF 데이터베이스 정보 표시", "OSPF 프로세스를 재설정하여 인터페이스 및 이웃 관계 삭제"]
+    "명령어": ["router ospf <아이디>", "network x.x.x.x <wildcard_mask> area <구역번호>","ip ospf network point-to-point", "show ip ospf neighbor", "show ip protocols", "show ip route ospf", "show run | section ospf", "show ip ospf interface brief", "show ip ospf database", "clear ip ospf"],
+    "설명": ["ospf를 실행 후 아이디 번호를 지정(본인만 인지함)", "x.x.x.x = 내 hello 메세지 보낼 인터페이스 IP | 서브넷 마스크의 반댓말 | 연결할 구역번호", "OSPF의 서브넷 마스크 변경","OSPF 이웃 목록 표시", "라우팅 프로토콜 설정과 관련된 정보 표시", "OSPF로 학습한 라우팅 테이블 표시", "현재 라우터의 구성에서 OSPF 구성 섹션 표시", "OSPF 인터페이스의 간략한 상태 표시", "OSPF 데이터베이스 정보 표시", "OSPF 프로세스를 재설정하여 인터페이스 및 이웃 관계 삭제"]
 }
 
 #show 명령어
