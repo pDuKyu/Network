@@ -403,7 +403,7 @@ if page == "Switch":
     st.write('')
     st.write('')
     st.write('')
-    custom_warning("알아야 하는 스위치 용어 <br><br> 이더넷 헤더, ARP프로토콜, LAN, WAN, VLAN, 트렁크, VTP, Native VLAN, Allowed VLAN, Spanning-Tree, BPDU, PVST, RPVST, Etherchannel, SVI, Routedport, portchannel, HSRP, VRRP")
+    custom_warning("알아야 하는 스위치 용어 <br><br> 이더넷 헤더, ARP프로토콜, LAN, VLAN, 트렁크, VTP, Native VLAN, Allowed VLAN, Spanning-Tree, BPDU, PVST, RPVST, Etherchannel, SVI, Routedport, portchannel, HSRP, VRRP")
 
 
 
