@@ -86,7 +86,7 @@ server_logs = {
 # 원격 접속을 위한 스위치 IP 할당 명령어
 remote_access_switch = {
     "명령어": ["conf t", "interface vlan 1", "ip address [IP 주소] [서브넷 마스크]", "no shutdown", "end", "ip default-gateway x.x.x.x", "", "show ip interface brief"],
-    "설명": ["구성 모드 진입", "VLAN 1 인터페이스 선택", "IP 주소와 서브넷 마스크 할당", "인터페이스 활성화", "설정 모드 종료", "인터페이스 상태 확인", "게이트웨이 설정", "", "설정 저장"]
+    "설명": ["구성 모드 진입", "VLAN 1 인터페이스 선택", "IP 주소와 서브넷 마스크 할당", "인터페이스 활성화", "설정 모드 종료", "게이트웨이 설정", "", "인터페이스 상태 확인"]
 }
 
 # 트래킹 설정 명령어
