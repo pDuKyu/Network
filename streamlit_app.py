@@ -317,7 +317,7 @@ ip_df = {
 
 #OSPF 명령어
 ospf_commands = {
-    "명령어": ["router ospf <아이디>", "network x.x.x.x <wildcard_mask> area <구역번호>","router-id x.x.x.x", "clear ip ospf process", "ip ospf cost", "auto-cost reference-bandwidth <value>", "ip ospf network point-to-point", "", "default-information originate", "default-information originate always", "", "redistribute [재분배 할 프로토콜 명] [PID] metric [값]", "", "show ip ospf neighbor", "show ip protocols", "show ip route ospf", "show run | section ospf", "show ip ospf interface brief", "show ip ospf database"],
+    "명령어": ["router ospf <아이디>", "network x.x.x.x <wildcard_mask> area <구역번호>","router-id x.x.x.x", "clear ip ospf process", "ip ospf cost", "auto-cost reference-bandwidth <value>", "ip ospf network point-to-point", "", "default-information originate", "default-information originate always", "", "redistribute [재분배 할 프로토콜 명] [프로토콜ID] metric [값]", "", "show ip ospf neighbor", "show ip protocols", "show ip route ospf", "show run | section ospf", "show ip ospf interface brief", "show ip ospf database"],
     "설명": ["ospf를 실행 후 아이디 번호를 지정(본인만 인지함)", "x.x.x.x = 내 hello 메세지 보낼 인터페이스 IP | 와일드카드 마스크 | 연결할 구역번호", "라우터ID 변경 명령어 (IP 형식의 ID지만 통신과는 상관 없음)", "라우터ID 변경을 리셋으로 적용","OSPF cost 변경 명령어", "OSPF에서 자동 비용 계산에 사용되는 참조 대역폭 설정", "인터페이스를 P2P상태로 변경 (DR/BDR선정x)", "", "라우팅 테이블에 Default Route가 있는 경우 광고", "라우팅 테이블에 Default Route가 없어도 광고", "", "재분배 할 프로토콜을 명시하고 어떤 값으로 변경할 것인지 입력", "", "OSPF 이웃 목록 표시", "라우팅 프로토콜 설정과 관련된 정보 표시", "OSPF로 학습한 라우팅 테이블 표시", "현재 라우터의 구성에서 OSPF 구성 섹션 표시", "OSPF 인터페이스의 간략한 상태 표시", "OSPF 데이터베이스 정보 표시"]
 }
 
