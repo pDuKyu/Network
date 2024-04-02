@@ -305,8 +305,8 @@ text = """
 #라우터
 
 static_route_df = {
-    "명령어": ["ip route [목적지 네트워크] [다음 홉 인터페이스] [다음 홉 라우터 IP] [AD 값]", "show ip route", "show ip route [목적지 IP]", "show ip route connected", "show ip route static", "no shutdown"],
-    "설명": ["처리하고 싶은 네트워크에 대한 정적 라우팅 설정", "라우터의 IP 라우팅 테이블 정보 확인", "특정 IP 주소로 가는 라우팅 경로 확인", "라우터에 연결된 네트워크 정보 확인", "직접 지정한 정적 라우트 정보 확인", "연결을 활성화하고 라우터 인터페이스를 활성 상태로 설정"]
+    "명령어": ["ip route [목적지 네트워크] [다음 홉 인터페이스] [다음 홉 라우터 IP] [AD 값]", "", "show ip route", "show ip route [목적지 IP]", "show ip route connected", "show ip route static"],
+    "설명": ["처리하고 싶은 네트워크에 대한 정적 라우팅 설정", "", "라우터의 IP 라우팅 테이블 정보 확인", "특정 IP 주소로 가는 라우팅 경로 확인", "라우터에 연결된 네트워크 정보 확인", "직접 지정한 정적 라우트 정보 확인"]
 }
 
 # ip 연결 확인 명령어
