@@ -55,14 +55,14 @@ remote_access_data = {
 
 # VLAN 설정 명령어 데이터
 vlan_data = {
-    "명령어": ["show vlan", "vlan 2", "name computers", "interface ~", "switchport mode access", "switchport access vlan 2", "show interfaces '포트번호' switchport"],
-    "설명": ["현재 VLAN 설정을 표시", "VLAN 번호가 2인 VLAN을 생성", "VLAN의 이름을 'computers'로 설정", "~ 인터페이스에 접근", "해당 스위치포트를 Access 모드로 설정", "해당 스위치포트 Access를 VLAN 2로 지정", "지정된 포트의 스위치포트 설정 정보를 표시"]
+    "명령어": ["show vlan", "vlan 2", "name computers", "interface ~", "switchport mode access", "switchport access vlan 2", "", "show interfaces '포트번호' switchport"],
+    "설명": ["현재 VLAN 설정을 표시", "VLAN 번호가 2인 VLAN을 생성", "VLAN의 이름을 'computers'로 설정", "~ 인터페이스에 접근", "해당 스위치포트를 Access 모드로 설정", "해당 스위치포트 Access를 VLAN 2로 지정", "", "지정된 포트의 스위치포트 설정 정보를 표시"]
 }
 
 # VTP 명령어
 vtp_commands = {
-    "명령어": ["vtp mode {server/client/transparent}", "vtp domain domain-name", "vtp password password", "vtp pruning", "vtp version {1/2/3}", "vtp file {filename}", "show vtp status", "show vtp counters", "clear vtp counters", "clear vtp counters {interface}"],
-    "설명": ["VTP 모드 설정", "VTP 도메인 이름 설정", "VTP 도메인 옵션 비밀번호 설정(server의 설정을 client가 적용시에도 사용)", "VTP Pruning 활성화", "VTP 버전 설정", "VTP 설정 파일 저장 또는 불러오기", "현재 VTP 설정 상태 표시", "VTP 정보 교환에 대한 통계 표시", "VTP 통계 재설정", "특정 인터페이스의 VTP 통계 재설정"]
+    "명령어": ["vtp mode {server/client/transparent}", "vtp domain domain-name", "vtp password password", "vtp pruning", "vtp version {1/2/3}", "vtp file {filename}", "", "show vtp status", "show vtp counters", "clear vtp counters", "clear vtp counters {interface}"],
+    "설명": ["VTP 모드 설정", "VTP 도메인 이름 설정", "VTP 도메인 옵션 비밀번호 설정(server의 설정을 client가 적용시에도 사용)", "VTP Pruning 활성화", "VTP 버전 설정", "VTP 설정 파일 저장 또는 불러오기", "", "현재 VTP 설정 상태 표시", "VTP 정보 교환에 대한 통계 표시", "VTP 통계 재설정", "특정 인터페이스의 VTP 통계 재설정"]
 }
 
 # 트렁크 프로토콜 명령어
@@ -73,20 +73,20 @@ trunk_protocol_data = {
 
 # 부트 이미지 변경 명령어
 boot_image_change = {
-    "명령어": ["dir", "copy tftp: flash", "dir", "conf t", "boot system flash:파일명", "show boot", "wr", "reload"],
-    "설명": ["파일 경로 확인", "TFTP 서버에서 이미지 파일을 복사하여 라우터의 플래시 메모리에 저장", "파일 재확인", "설정 터미널 열기", "라우터가 부팅할 때 사용할 이미지를 지정", "부팅 이미지 지정 확인", "startup-running에 덮어쓰기", "재시작"]
+    "명령어": ["dir", "copy tftp: flash", "dir", "conf t", "boot system flash:파일명", "", "show boot"],
+    "설명": ["파일 경로 확인", "TFTP 서버에서 이미지 파일을 복사하여 라우터의 플래시 메모리에 저장", "파일 재확인", "설정 터미널 열기", "라우터가 부팅할 때 사용할 이미지를 지정", "", "부팅 이미지 지정 확인"]
 }
 
 # 로그 저장 서버 명령어
 server_logs = {
-    "명령어": ["configure terminal", "logging host 000.000.000.000", "logging trap debugging", "wr"],
-    "설명": ["관리자 모드 진입", "로그를 저장할 서버의 IP 설정", "디버깅 로그 저장 설정", "설정 저장"]
+    "명령어": ["configure terminal", "logging host 000.000.000.000", "logging trap debugging"],
+    "설명": ["관리자 모드 진입", "로그를 저장할 서버의 IP 설정", "디버깅 로그 저장 설정"]
 }
 
 # 원격 접속을 위한 스위치 IP 할당 명령어
 remote_access_switch = {
-    "명령어": ["conf t", "interface vlan 1", "ip address [IP 주소] [서브넷 마스크]", "no shutdown", "end", "show ip interface brief", "wr", "ip default-gateway x.x.x.x"],
-    "설명": ["구성 모드 진입", "VLAN 1 인터페이스 선택", "IP 주소와 서브넷 마스크 할당", "인터페이스 활성화", "설정 모드 종료", "인터페이스 상태 확인", "설정 저장", "게이트웨이 설정"]
+    "명령어": ["conf t", "interface vlan 1", "ip address [IP 주소] [서브넷 마스크]", "no shutdown", "end", "ip default-gateway x.x.x.x", "", "show ip interface brief"],
+    "설명": ["구성 모드 진입", "VLAN 1 인터페이스 선택", "IP 주소와 서브넷 마스크 할당", "인터페이스 활성화", "설정 모드 종료", "인터페이스 상태 확인", "게이트웨이 설정", "", "설정 저장"]
 }
 
 # 트래킹 설정 명령어
@@ -146,13 +146,13 @@ svi_data = {"명령어": ["interface vlan [vlan 번호]", "ip address [IP 주소
 }
 
 # HSRP(핫 스탠바이 라우팅 프로토콜) 설정 명령어 데이터
-hsrp_data = {"명령어": ["interface vlan 10", "ip address 10.1.10.252 255.255.255.0", "standby 10 ip 10.1.10.254", "standby 10 preempt", "standby 10 priority 110", "standby [그룹명] timers ? ?", "show standby brief", "show standby"], 
-             "설명": ["VLAN 10에 대한 인터페이스 설정을 시작", "VLAN 10에 IP 주소 10.1.10.252를 할당하고 서브넷 마스크를 255.255.255.0으로 설정", "가상 게이트웨이의 IP 주소를 10.1.10.254로 설정", "게이트웨이 장비가 다시 활성화될 때 자동으로 우선순위를 갖게 함", "가상 게이트웨이에 우선순위를 110으로 설정. 높은 우선순위를 갖는 장비가 active, 낮으면 standby", "이중화된 기기들 끼리 정상 가동하는지 확인 (첫 숫자는 hello 타임, 둘째 숫자는 대기 시간)", "간략한 가상 게이트웨이 정보 확인", "상세한 가상 게이트웨이 정보 확인"]
+hsrp_data = {"명령어": ["interface vlan 10", "ip address 10.1.10.252 255.255.255.0", "standby 10 ip 10.1.10.254", "standby 10 preempt", "standby 10 priority 110", "standby [그룹명] timers ? ?", "", "show standby brief", "show standby"], 
+             "설명": ["VLAN 10에 대한 인터페이스 설정을 시작", "VLAN 10에 IP 주소 10.1.10.252를 할당하고 서브넷 마스크를 255.255.255.0으로 설정", "가상 게이트웨이의 IP 주소를 10.1.10.254로 설정", "게이트웨이 장비가 다시 활성화될 때 자동으로 우선순위를 갖게 함", "가상 게이트웨이에 우선순위를 110으로 설정. 높은 우선순위를 갖는 장비가 active, 낮으면 standby", "", "이중화된 기기들 끼리 정상 가동하는지 확인 (첫 숫자는 hello 타임, 둘째 숫자는 대기 시간)", "간략한 가상 게이트웨이 정보 확인", "상세한 가상 게이트웨이 정보 확인"]
 }
 
 # VRRP Master/Worker 명령어 데이터
-vrrp_data = {"명령어": ["interface vlan 10", "ip address 10.1.10.252 255.255.255.0", "vrrp10 ip 10.1.10.254", "vrrp 10 priority 110", "show vrrp brief", "show vrrp"], 
-             "설명": ["VLAN 10 인터페이스 설정 시작", "VLAN 10에 IP 주소를 설정", "VRRP 그룹 10의 가상 IP 주소를 설정", "VRRP 그룹 10에서 우선순위를 110으로 설정(높은 값이 Active)", "간략한 VRRP 정보 표시", "상세한 VRRP 정보 표시"]
+vrrp_data = {"명령어": ["interface vlan 10", "ip address 10.1.10.252 255.255.255.0", "vrrp10 ip 10.1.10.254", "vrrp 10 priority 110", "", "show vrrp brief", "show vrrp"], 
+             "설명": ["VLAN 10 인터페이스 설정 시작", "VLAN 10에 IP 주소를 설정", "VRRP 그룹 10의 가상 IP 주소를 설정", "VRRP 그룹 10에서 우선순위를 110으로 설정(높은 값이 Active)", "", "간략한 VRRP 정보 표시", "상세한 VRRP 정보 표시"]
 }
 
 # Show 명령어
