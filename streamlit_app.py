@@ -4,7 +4,7 @@ from datetime import datetime
 import random
 
 # 네트워크 설정 명령어로 대제목 설정
-st.title(f'{page} 설정 명령어')
+st.title('{page} 설정 명령어')
 
 def show_info_message(message):
     """
