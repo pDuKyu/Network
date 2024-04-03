@@ -336,7 +336,7 @@ standard_ACL = {
 
 # Extended_ACL
 Extended_ACL = {
-    "명령어": ["access-list <확장 ACL> <permit/deny> <port num> <source IP> <Wildcard> <Dest IP> equal <port num> , "", "access-list <Extended ACL> <permit/deny> <source IP x.x.x.x> <Wildcard mask x.x.x.x> equal <Port Num>", "", "access-list <ACL번호> <permit/deny> any any log", "ip access-list extended <이름>"],
+    "명령어": ["access-list <확장 ACL> <permit/deny> <port num> <source IP> <Wildcard> <Dest IP> equal <port num> , "", "access-list <Extended ACL> <permit/deny> <source IP x.x.x.x> <Wildcard mask x.x.x.x> equal <Port Num>", "access-list <ACL번호> <permit/deny> any any log",  "", "ip access-list extended <이름>"],
     "설명":["확장 access-list생성 후 출발 & 목적지 IP와 포트를 정하여 허용/거부 설정", "", "확장 ACL 리스트 작성", "ACL 리스트의 허용/거부 로그를 저장", "", "이름을 가진 ACL 생성. (생성 후 NACL로 들어가지며 리스트 작성 시 ACL명을 입력 안 해도 됨"]
 }
 
