@@ -446,6 +446,11 @@ elif page == "Router":
     selected_df2 = r_tables[selected_table2]
     st.dataframe(selected_df2, width=800)
 
+    st.write('')
+    st.write('')
+    st.write('')
+    st.write('')
+    st.write('')
     st.success(text2)
 
 
