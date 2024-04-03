@@ -327,11 +327,42 @@ show = {
     "설명": ["라우터의 IP 테이블 정보 확인", "특정 IP 주소로 가는 경로 확인", "라우터에 연결된 네트워크 정보 확인", "스태틱 라우트 정보 확인", "라우터의 네이버 관계 확인", "라우터의 프로토콜 아이디 확인"]
 }
 
+
+#standard_ACL
+standard_ACL = {
+    "명령어": ["access-list <Standard ACL> <permit/deny> <source IP> <와일드카드 마스크>", "ip access-group <Standard ACL> <in/out>", "access-class <Standard ACL> <in/out>", "distribute-list <Standard ACL> <in/out>", "access-list <Standard ACL> <permit/deny> host <host IP>", "", "show access-lists"],
+    "설명": ["특정 소스 IP 주소를 허용/거부하는 ACL을 생성.", "생성한 ACL을 인터페이스에 적용하여 in/out바운드로 활성화.", "원격 접속 허용 여부 리스트 활성화.", "OSPF에 ACL 적용.", "ACL의 특정 호스트만 트래픽 <허용/거부>(Classification).", "", "현재 적용된 ACL 목록 및 규칙을 확인."]
+}
+
+# Extended_ACL
+Extended_ACL = {
+    "명령어": ["access-list <Extended ACL> <permit/deny> <source IP x.x.x.x> <Wildcard mask x.x.x.x> equal <Port Num>"],
+    "설명":["확장 ACL 리스트 작성"]
+}
+
+
+
+
+
+
+
 # 테이블 데이터 정의
 r_tables = {"스태틱 라우팅 명령어": static_route_df,
            "ip 연결 확인 명령어": ip_df,
            "OSPF 명령어": ospf_commands,
-           "show 명령어": show}
+           "show 명령어": show,
+           "standard_ACL 명령어": standard_ACL,
+           "Extended_ACL 명령어":Extended_ACL}
+
+
+
+
+
+
+
+
+
+
 
 
 
