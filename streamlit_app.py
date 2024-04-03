@@ -416,10 +416,6 @@ page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요
 # 스위치 페이지
 if page == "Switch":
     # 선택한 테이블의 데이터 표시
-    st.write('')
-    st.write('')
-    st.write('')
-    st.write('')
     table_names = list(tables.keys())
     selected_table = st.selectbox("", table_names)  
 
@@ -443,10 +439,6 @@ elif page == "Router":
 
 
 #리스트 기능
-    st.write('')
-    st.write('')
-    st.write('')
-    st.write('')
     table_names2 = list(r_tables.keys())
     selected_table2 = st.selectbox("", table_names2)  
 
