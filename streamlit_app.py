@@ -330,8 +330,8 @@ show = {
 
 #standard_ACL
 standard_ACL = {
-    "명령어": ["access-list <Standard ACL> <permit/deny> <source IP> <와일드카드 마스크>", "access-list <Standard ACL> <permit/deny> host <host IP>", "", , "ip access-group <Standard ACL> <in/out>", "access-class <Standard ACL> <in/out>", "distribute-list <Standard ACL> <in/out>", "", "show access-lists"],
-    "설명": ["특정 소스 IP 주소를 허용/거부하는 ACL을 생성.", "ACL의 특정 호스트만 트래픽 <허용/거부>(Classification).", "", , "생성한 ACL을 인터페이스에 적용하여 in/out바운드로 활성화.", "원격 접속 허용 여부 리스트 활성화.", "OSPF에 ACL 적용.", "", "현재 적용된 ACL 목록 및 규칙을 확인."]
+    "명령어": ["access-list <Standard ACL> <permit/deny> <source IP> <와일드카드 마스크>", "access-list <Standard ACL> <permit/deny> host <host IP>", "" , "ip access-group <Standard ACL> <in/out>", "access-class <Standard ACL> <in/out>", "distribute-list <Standard ACL> <in/out>", "", "show access-lists"],
+    "설명": ["특정 소스 IP 주소를 허용/거부하는 ACL을 생성.", "ACL의 특정 호스트만 트래픽 <허용/거부>(Classification).", "", "생성한 ACL을 인터페이스에 적용하여 in/out바운드로 활성화.", "원격 접속 허용 여부 리스트 활성화.", "OSPF에 ACL 적용.", "", "현재 적용된 ACL 목록 및 규칙을 확인."]
 }
 
 # Extended_ACL
