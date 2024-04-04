@@ -3,8 +3,7 @@ import pandas as pd
 from datetime import datetime
 import random
 
-# 네트워크 설정 명령어로 대제목 설정
-st.title('네트워크 기기 설정 명령어')
+
 
 def show_info_message(message):
     """
@@ -436,6 +435,8 @@ if page == "Switch":
 
 # 라우터 페이지
 elif page == "Router":
+    # 네트워크 설정 명령어로 대제목 설정
+    st.title('라우터 기기 설정 명령어')
 
 
 #리스트 기능
