@@ -396,7 +396,7 @@ page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요
 # 스위치 페이지
 if page == "Switch":
     # 네트워크 설정 명령어로 대제목 설정
-    st.title('스위치 기기 설정 명령어')
+    st.title('스위치 설정 명령어')
 
     # 선택한 테이블의 데이터 표시
     table_names = list(tables.keys())
@@ -420,7 +420,7 @@ if page == "Switch":
 # 라우터 페이지
 elif page == "Router":
     # 네트워크 설정 명령어로 대제목 설정
-    st.title('라우터 기기 설정 명령어')
+    st.title('라우터 설정 명령어')
 
 
 #리스트 기능
