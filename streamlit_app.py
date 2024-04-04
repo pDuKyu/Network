@@ -433,10 +433,28 @@ elif page == "Router":
 
     st.success(text2)
 
+#########
+# 리스트박스에 표시될 항목들
+options = ['Option 1', 'Option 2', 'Option 3']
 
+# 최대 길이 계산
+max_len = max(len(option) for option in options)
 
+# 각 항목의 너비를 길이에 따라 설정하는 함수
+def format_option(option):
+    padding = ' ' * (max_len - len(option))
+    return f'{option}{padding}'
 
+# Streamlit 앱 제목
+st.title('리스트박스 만들기 예제')
 
+# 리스트박스 생성
+selected_option = st.selectbox('옵션을 선택하세요', options, format_func=format_option)
+
+# 선택된 옵션을 출력
+st.write('선택된 옵션:', selected_option)
+
+########
 
 st.sidebar.write('')
 st.sidebar.write('')
