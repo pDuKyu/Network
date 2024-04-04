@@ -330,9 +330,9 @@ Extended_ACL = {
 r_tables = {"스태틱 라우팅 명령어": static_route_df,
            "ip 연결 확인 명령어": ip_df,
            "OSPF 명령어": ospf_commands,
-           "show 명령어": show,
            "standard_ACL 명령어": standard_ACL,
-           "Extended_ACL 명령어":Extended_ACL}
+           "Extended_ACL 명령어":Extended_ACL,
+           "show 명령어": show}
 
 
 
