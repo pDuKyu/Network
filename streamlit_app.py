@@ -320,10 +320,17 @@ Extended_ACL = {
     "설명":["확장 access-list생성 후 출발 & 목적지 IP와 포트를 정하여 허용/거부 설정", "", "확장 ACL 리스트 작성", "모든 트래픽 거부 설정 후 드랍된 트래픽 로그를 저장하도록 함", "리스트에 들어가 삭제할 정책의 번호 기입(삭제기능)", "", "이름을 가진 ACL 생성. (생성 후 NACL로 들어가지며 리스트 작성 시 ACL명을 입력 안 해도 됨"]
 }
 
+# eBGP
+eBGP = {
+    "명령어":["router bgp <Local AS-num>","neighbor <상대IP> remote-as <상대 as-num>","neighbor <IP주소> password <비밀번호>","network <광고할 IP> mask <서브넷 마스크>","", "show ip bgp summary", "show ip bgp", "show ip bgp <도착지 IP>"],
+    "설명"["Local AS 번호를 입력하여 BGP를 작동", "Neighbor를 맺고 싶은 상대의 IP와 AS를 입력하여 Neighbor 관계 요청", "Neighbor를 맺을 때 설정할 비밀번호", "광고하고 싶은 IP를 테이블에 등록", "", "BGP 이웃 관계 상세 정보 확인", "BGP 테이블 정보 확인", "BGP 테이블에서 도착지로 가는 경로 확인"]:
+}
 
-
-
-
+#iBGP
+iBGP = {
+    "명령어":["neighbor <상대 Loopback IP> remote-as <상대 as-num>", "neighbor <상대 Loopback IP> update-source <내 Loopback 인터페이스>", "", "show ip bgp summary", "show ip bgp", "show ip bgp <도착지 IP>"],
+    "설명":["Neighbor를 맺고 싶은 상대의 Loopback IP와 AS를 입력하여 Neighbor 관계 요청", "내 소스 IP를 Loopback으로 수정하고 상대의Loopback IP를 통해 iBGP 이웃 관계를 맺는 설정.", "", "BGP 이웃 관계 상세 정보 확인", "BGP 테이블 정보 확인", "BGP 테이블에서 도착지로 가는 경로 확인"]
+}
 
 
 # 테이블 데이터 정의
@@ -331,6 +338,8 @@ r_tables = {"스태틱 라우팅 명령어": static_route_df,
            "OSPF 명령어": ospf_commands,
            "standard_ACL 명령어": standard_ACL,
            "Extended_ACL 명령어":Extended_ACL,
+            "eBGP 명령어" : eBGP,
+            "iBGP 명령어": iBGP,
             "ip 연결 확인 명령어": ip_df,
            "show 명령어": show}
 
