@@ -5,25 +5,6 @@ import random
 
 
 
-def show_info_message(message):
-    """
-    사용자에게 안내 메시지를 보여주는 함수.
-
-    Parameters:
-    message (str): 사용자에게 보여줄 메시지.
-    """
-    st.info(message)
-
-def main():
-
-    # 사용자에게 보여줄 메시지
-    message = """환영합니다! 이 페이지는 네트워크 기기의 명령어를 안내하는 페이지입니다."""
-
-    # 안내 메시지를 보여주는 함수 호출
-    show_info_message(message)
-
-if __name__ == '__main__':
-    main()
 
 
 
