@@ -323,7 +323,7 @@ Extended_ACL = {
 # eBGP
 eBGP = {
     "명령어":["router bgp <Local AS-num>","neighbor <상대IP> remote-as <상대 as-num>","neighbor <IP주소> password <비밀번호>","network <광고할 IP> mask <서브넷 마스크>","", "show ip bgp summary", "show ip bgp", "show ip bgp <도착지 IP>"],
-    "설명":["Local AS 번호를 입력하여 BGP를 작동", "Neighbor를 맺고 싶은 상대의 IP와 AS를 입력하여 Neighbor 관계 요청", "Neighbor를 맺을 때 설정할 비밀번호", "광고하고 싶은 IP를 테이블에 등록", "", "BGP 이웃 관계 상세 정보 확인", "BGP 테이블 정보 확인", "BGP 테이블에서 도착지로 가는 경로 확인"]:
+    "설명":["Local AS 번호를 입력하여 BGP를 작동", "Neighbor를 맺고 싶은 상대의 IP와 AS를 입력하여 Neighbor 관계 요청", "Neighbor를 맺을 때 설정할 비밀번호", "광고하고 싶은 IP를 테이블에 등록", "", "BGP 이웃 관계 상세 정보 확인", "BGP 테이블 정보 확인", "BGP 테이블에서 도착지로 가는 경로 확인"]
 }
 
 #iBGP
