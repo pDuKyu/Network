@@ -333,23 +333,23 @@ iBGP = {
 }
 
 in_NAT_commands = {
-    "명령어": ["ip nat inside", "ip nat outside", "ip nat inside source static <사설IP> <공인IP>", "show ip nat translations"],
-    "설명": ["해당 인터페이스를 내부 네트워크로 지정", "해당 인터페이스를 외부 네트워크로 지정", "내부에서 외부로 나가는 패킷의 출발지 IP 주소를 사설 IP에서 공인 IP로 변경", "NAT 테이블에서 IP 변환을 보여줌"]
+    "명령어": ["ip nat inside", "ip nat outside", "ip nat inside source static <사설IP> <공인IP>", "", "show ip nat translations"],
+    "설명": ["해당 인터페이스를 내부 네트워크로 지정", "해당 인터페이스를 외부 네트워크로 지정", "내부에서 외부로 나가는 패킷의 출발지 IP 주소를 사설 IP에서 공인 IP로 변경", "", "NAT 테이블에서 IP 변환을 보여줌"]
 }
 
 out_NAT_commands = {
-    "명령어": ["ip nat inside", "ip nat outside", "ip nat outside source static <공인IP> <사설IP>", "show ip nat translations"],
-    "설명": ["해당 인터페이스를 내부 네트워크로 지정", "해당 인터페이스를 외부 네트워크로 지정", "외부에서 내부로 들어오는 패킷의 출발지 IP 주소를 공인 IP에서 사설 IP로 변경", "NAT 테이블에서 IP 변환을 보여줌"]
+    "명령어": ["ip nat inside", "ip nat outside", "ip nat outside source static <공인IP> <사설IP>", "", "show ip nat translations"],
+    "설명": ["해당 인터페이스를 내부 네트워크로 지정", "해당 인터페이스를 외부 네트워크로 지정", "외부에서 내부로 들어오는 패킷의 출발지 IP 주소를 공인 IP에서 사설 IP로 변경", "", "NAT 테이블에서 IP 변환을 보여줌"]
 }
 
 D_NAT_commands = {
-    "명령어": ["ip nat pool <Pool이름> <공인IP시작> <공인IP끝> prefix-length 24", "access-list 1 permit <IP주소> <wildcard>", "ip nat inside source list 1 pool <Pool이름>", "show ip nat translations"],
-    "설명": ["NAT Pool에 지정된 범위 내의 공인 IP 주소를 여러 개 저장.", "ACL1을 사용하여 NAT를 적용할 네트워크를 정의.", "ACL1에 일치하는 주소를 가지는 패킷들은 NAT inside에서 지정된 Pool을 공유하도록 설정.", "NAT 테이블에서 IP 변환을 보여줌."]
+    "명령어": ["ip nat pool <Pool이름> <공인IP시작> <공인IP끝> prefix-length 24", "access-list 1 permit <IP주소> <wildcard>", "ip nat inside source list 1 pool <Pool이름>", "", "show ip nat translations"],
+    "설명": ["NAT Pool에 지정된 범위 내의 공인 IP 주소를 여러 개 저장.", "ACL1을 사용하여 NAT를 적용할 네트워크를 정의.", "ACL1에 일치하는 주소를 가지는 패킷들은 NAT inside에서 지정된 Pool을 공유하도록 설정.", "", "NAT 테이블에서 IP 변환을 보여줌."]
 }
 
 PAT_commands = {
-    "명령어": ["ip nat inside", "ip nat outside", "access-list 1 permit <IP주소> <wildcard>", "ip nat inside source list 1 interface fastEthernet 1/0 overload", "show ip nat translations"],
-    "설명": ["해당 인터페이스를 내부 네트워크로 지정", "해당 인터페이스를 외부 네트워크로 지정", "ACL1을 사용하여 NAT를 적용할 네트워크를 정의.", "inside에서 올라오는 IP가 ACL1과 일치하면 fastEthernet 1/0의 IP로 덮어 씌움(overload)", "NAT 테이블에서 IP 변환을 보여줌."]
+    "명령어": ["ip nat inside", "ip nat outside", "access-list 1 permit <IP주소> <wildcard>", "ip nat inside source list 1 interface fastEthernet 1/0 overload", "", "show ip nat translations"],
+    "설명": ["해당 인터페이스를 내부 네트워크로 지정", "해당 인터페이스를 외부 네트워크로 지정", "ACL1을 사용하여 NAT를 적용할 네트워크를 정의.", "inside에서 올라오는 IP가 ACL1과 일치하면 fastEthernet 1/0의 IP로 덮어 씌움(overload)", "", "NAT 테이블에서 IP 변환을 보여줌."]
 }
 
 
