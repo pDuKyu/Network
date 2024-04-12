@@ -332,6 +332,27 @@ iBGP = {
     "설명":["Local AS 번호를 입력하여 BGP를 작동", "Neighbor를 맺고 싶은 상대의 Loopback IP와 AS를 입력하여 Neighbor 관계 요청", "내 소스 IP를 Loopback으로 수정하고 상대의Loopback IP를 통해 iBGP 이웃 관계를 맺는 설정.", "광고하려는 라우터에서 빈 공간에 축약 라우팅 정보 등록(null 0 자료 참고)", "eBGP 역할을 하는 라우터의 iBGP 설정 (Next-Hop Self 자료 참고)", "RR 기기에서 RRC 지정(RRC는 RR과 네이버만 맺으면 됨)", "", "BGP 이웃 관계 상세 정보 확인", "BGP 테이블 정보 확인", "BGP 테이블에서 도착지로 가는 경로 확인"]
 }
 
+in_NAT_commands = {
+    "명령어": ["ip nat inside", "ip nat outside", "ip nat inside source static <사설IP> <공인IP>", "show ip nat translations"],
+    "설명": ["해당 인터페이스를 내부 네트워크로 지정", "해당 인터페이스를 외부 네트워크로 지정", "내부에서 외부로 나가는 패킷의 출발지 IP 주소를 사설 IP에서 공인 IP로 변경", "NAT 테이블에서 IP 변환을 보여줌"]
+}
+
+out_NAT_commands = {
+    "명령어": ["ip nat inside", "ip nat outside", "ip nat outside source static <공인IP> <사설IP>", "show ip nat translations"],
+    "설명": ["해당 인터페이스를 내부 네트워크로 지정", "해당 인터페이스를 외부 네트워크로 지정", "외부에서 내부로 들어오는 패킷의 출발지 IP 주소를 공인 IP에서 사설 IP로 변경", "NAT 테이블에서 IP 변환을 보여줌"]
+}
+
+D_NAT_commands = {
+    "명령어": ["ip nat pool <Pool이름> <공인IP시작> <공인IP끝> prefix-length 24", "access-list 1 permit <IP주소> <wildcard>", "ip nat inside source list 1 pool <Pool이름>", "show ip nat translations"],
+    "설명": ["NAT Pool에 지정된 범위 내의 공인 IP 주소를 여러 개 저장.", "ACL1을 사용하여 NAT를 적용할 네트워크를 정의.", "ACL1에 일치하는 주소를 가지는 패킷들은 NAT inside에서 지정된 Pool을 공유하도록 설정.", "NAT 테이블에서 IP 변환을 보여줌."]
+}
+
+PAT_commands = {
+    "명령어": ["ip nat inside", "ip nat outside", "access-list 1 permit <IP주소> <wildcard>", "ip nat inside source list 1 interface fastEthernet 1/0 overload", "show ip nat translations"],
+    "설명": ["해당 인터페이스를 내부 네트워크로 지정", "해당 인터페이스를 외부 네트워크로 지정", "ACL1을 사용하여 NAT를 적용할 네트워크를 정의.", "inside에서 올라오는 IP가 ACL1과 일치하면 fastEthernet 1/0의 IP로 덮어 씌움(overload)", "NAT 테이블에서 IP 변환을 보여줌."]
+}
+
+
 
 # 테이블 데이터 정의
 r_tables = {"스태틱 라우팅 명령어": static_route_df,
@@ -340,6 +361,10 @@ r_tables = {"스태틱 라우팅 명령어": static_route_df,
            "Extended_ACL 명령어":Extended_ACL,
             "eBGP 명령어" : eBGP,
             "iBGP 명령어": iBGP,
+            "Inside Static NAT 명령어": in_NAT_commands,
+            "Outside Static NAT 명령어": out_NAT_commands,
+            "Dynamic NAT 명령어": D_NAT_commands,
+            "PAT 명령어": PAT_commands,
             "ip 연결 확인 명령어": ip_df,
            "show 명령어": show}
 
