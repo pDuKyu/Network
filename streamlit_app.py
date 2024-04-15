@@ -522,6 +522,32 @@ elif page == "FireWall":
     # 네트워크 설정 명령어로 대제목 설정
     st.title('방화벽 설정 명령어')
 
+#리스트 기능
+    table_names3 = list(F_tables.keys())
+    selected_table3 = st.selectbox("", table_names3)  
+
+#테이블 시각화
+    selected_df2 = r_tables[selected_table2]
+    st.dataframe(selected_df2, width=800)
+
+    st.success(text2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 st.sidebar.write('')
