@@ -421,7 +421,7 @@ st.sidebar.write(f"오늘은 {today_date}일 입니다!")
 
 
 # 사이드바에 버튼 추가
-page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router"])
+page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router", "FireWall"])
 
 
 
@@ -466,6 +466,13 @@ elif page == "Router":
     st.success(text2)
 
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 라우터 페이지
+elif page == "FireWall":
+    # 네트워크 설정 명령어로 대제목 설정
+    st.title('방화벽 설정 명령어')
+
+
 
 st.sidebar.write('')
 st.sidebar.write('')
@@ -476,3 +483,5 @@ st.sidebar.write('')
 st.sidebar.markdown("[서브넷 계산 사이트](https://www.site24x7.com/tools/ipv4-subnetcalculator.html) ")
 st.sidebar.markdown("[서브넷 비트 계산 사이트](https://www.calcip.com/) ")
 st.sidebar.markdown("[Cisco 교육 사이트](https://www.netacad.com/portal/learning) ")
+
+
