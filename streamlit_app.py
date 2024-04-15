@@ -402,6 +402,38 @@ text2 = """
 #방화벽
 
 
+text3 = """
+💡 **방화벽 (Firewall)**
+
+
+내부와 외부 네트워크 사이에 존재하는 보안 장벽.
+상태 정보 필터링을 사용해 모든 IN/OUT 연결을 추적 함.
+
+Deep Packet Inspection으로 L2~L7 데이터까지 모두 확인 가능.
+
+Zone Base로 작동. (Inside[High Level] = LAN | outside[Low Level] = WAN) 
+시큐리티 레벨이 높은 곳에서 아래로는 데이터를 허용하지만 그 반대로는 불가.
+패킷이 High Level에서 나갈 때 패킷 정보가 기록되어 되돌아올 때의 설정이 필요 X.
+"""
+
+text4 = """
+💡 **ASA의 ACL**
+
+L3모드에서만 사용 가능.
+Classification 용도로만 사용 가능. (filtering 용도 사용 불가)
+Named-ACL만 사용 가능.
+
+ACL은 방화벽보다 상위 프로토콜.
+
+</aside>ASA의 ACL
+
+L3모드에서만 사용 가능.
+Classification 용도로만 사용 가능. (filtering 용도 사용 불가)
+Named-ACL만 사용 가능.
+
+ACL은 방화벽보다 상위 프로토콜.
+"""
+
 
 # ip 연결 확인 명령어
 f_command = {
@@ -540,7 +572,6 @@ F_ACL_command = {
 # 테이블 데이터 정의
 F_tables = {"방화벽 기본 명령어": f_command,
            "L3 명령어": L3_command,
-            "L3 명령어": L3_command,
             "OSPF 명령어": OSPF_command,
             "SSH 명령어": SSH_command,
             "NameIF 명령어": NameIF_command,
@@ -550,8 +581,15 @@ F_tables = {"방화벽 기본 명령어": f_command,
            }
 
 
-
-
+#설명 문구
+hi = {
+    "정보": [
+        "기본 정보",
+        "ACL 정보"
+    ],
+    "설명": [text3,
+           text4]
+}
 
 
 
@@ -642,7 +680,11 @@ elif page == "FireWall":
     st.dataframe(selected_df3, width=800)
 
     
-
+#설명 출력
+    if selected_table3 in ["f_command", "L3_command", "OSPF_command", "SSH_command", "NameIF_command", "ASDM_command", "C_Table_command"]:
+        print(text3)
+    elif selected_table3 == "F_ACL_command":
+        print(text4)
 
 
 
