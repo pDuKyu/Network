@@ -427,15 +427,127 @@ f_command = {
     ]
 }
 
+L3_command = {
+    "명령어": [
+        "route <nameif> <dest IP> <Wmask> <Next hop>",
+        "",
+        "show route",
+        "show run route"
+    ],
+    "설명": [
+        "스태틱 라우팅 (interface name을 넣어줘야 함)",
+        "",
+        "라우팅 테이블 확인",
+        "동작 중인 라우트 정보 확인"
+    ]
+}
 
 
+OSPF_command = {
+    "명령어": [
+        "network <IP> <netmask> <area>",
+        "default-information originate [always]",
+        "",
+        "show run router ospf"
+    ],
+    "설명": [
+        "OSPF에 네트워크 광고",
+        "기본 게이트웨이 지정",
+        "",
+        "OSPF에서 실행 중인 라우팅 정보 확인"
+    ]
+}
 
 
+SSH_command = {
+    "명령어": [
+        "(config)# username <name> password <password>",
+        "(config)# aaa authentication ssh console LOCAL",
+        "(config)# crypto key generate rsa modules 1024",
+        "(config)# ssh <IP> <netmask> <nameif>",
+        "R1# ssh -l <username> <IP>"
+    ],
+    "설명": [
+        "ID와 Password 설정",
+        "SSH와 콘솔 접근 시 이 장비에서 설정한 ID/Password로 인증하는 선언",
+        "키를 생성하고 정보를 암호화",
+        "IP와 nameif가 일치하는 사용자는 접속을 허용",
+        "SSH 접근 명령어"
+    ]
+}
+
+
+NameIF_command = {
+    "명령어": [
+        "(config-if)# nameif <name>",
+        "(config-if)# ip address <IP> <netmask>",
+        "(config-if)# security-level <1~100>",
+        "(config-if)# no shutdown"
+    ],
+    "설명": [
+        "NameIF 설정 (<INSIDE 사용 시 Level 100 사용>) (NameIF는 고유해야 함)",
+        "인터페이스 IP 지정",
+        "Security Level 수동 지정",
+        "인터페이스 활성화"
+    ]
+}
+
+ASDM_command = {
+    "명령어": [
+        "asdm image disk0:/asdm-731.bin",
+        "http server enable",
+        "http <IP> <netmask> <nameif>",
+        "username <username> password <password> privilege 15"
+    ],
+    "설명": [
+        "ASDM 이미지 지정",
+        "HTTP 서버 활성화",
+        "HTTP 접근 인터페이스 IP 지정",
+        "사용자 계정 생성 (권한 레벨 15)"
+    ]
+}
+
+C_Table_command = {
+    "명령어": [
+        "policy-map global_policy",
+        "class inspection_default",
+        "inspect icmp",
+        "",
+        "show conn"
+    ],
+    "설명": [
+        "전역 정책 맵을 설정",
+        "기본 검사 클래스를 설정",
+        "ICMP 패킷을 검사하고 필터링",
+        "",
+        "현재 활성화된 연결 테이블을 확인"
+    ]
+}
+
+F_ACL_command = {
+    "명령어": [
+        "(config)# access-list INSIDE_INBOUND deny tcp any host 192.168.2.2 eq 80",
+        "(config)# access-group INSIDE_INBOUND in interface INSIDE"
+    ],
+    "설명": [
+        "TCP 통신하는 모든 Src IP가 192.168.2.2로 향하면서 포트가 80과 같다면 차단",
+        "“INSIDE_INBOUND” ACL을 “INSIDE” NameIF를 가진 인터페이스에서 올라올 때 적용"
+    ]
+}
 
 
 
 # 테이블 데이터 정의
-F_tables = {"방화벽 기본 명령어": f_command}
+F_tables = {"방화벽 기본 명령어": f_command,
+           "L3 명령어": L3_command,
+            "L3 명령어": L3_command,
+            "OSPF 명령어": OSPF_command,
+            "SSH 명령어": SSH_command,
+            "NameIF 명령어": NameIF_command,
+            "ASDM 이미지 다운로드 명령어": ASDM_command,
+            "Connect Table 명령어": C_Table_command,
+            "ACL 명령어": F_ACL_command
+           }
 
 
 
@@ -443,6 +555,7 @@ F_tables = {"방화벽 기본 명령어": f_command}
 
 
 
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -529,6 +642,7 @@ elif page == "FireWall":
     st.dataframe(selected_df3, width=800)
 
     
+
 
 
 
