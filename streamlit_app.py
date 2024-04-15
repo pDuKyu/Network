@@ -406,26 +406,24 @@ text2 = """
 # ip 연결 확인 명령어
 f_command = {
     "명령어": [
+        "firewall transparent",
+        "",
         "show ip address",
         "show run interface",
         "show interface ip brief",
         "show nameif",
         "show firewall",
-        "firewall transparent",
-        "policy-map global_policy",
-        "class inspection_default",
-        "inspect icmp"
+
     ],
     "설명": [
+        "인터페이스를 L3에서 L2모드로 전환",
+        "",
         "인터페이스의 IP 정보 확인",
         "인터페이스의 부팅 명령어 확인",
         "인터페이스들의 상태 확인",
         "방화벽 Zone의 이름과 Security Level 확인",
         "인터페이스가 L2 또는 L3로 동작하는지 확인",
-        "인터페이스를 L3에서 L2모드로 전환",
-        "전역 정책 설정",
-        "기본 검사 클래스 설정",
-        "ICMP를 테이블에 기록하도록 활성화"
+
     ]
 }
 
