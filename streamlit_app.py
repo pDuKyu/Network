@@ -511,11 +511,11 @@ SSH_command = {
 
 NameIF_command = {
     "명령어": [
-        "(config-if)# nameif <name>",
-        "(config-if)# ip address <IP> <netmask>",
-        "(config-if)# security-level <1~100>",
-        "same-security-traffic permit inter-interface",
-        "(config-if)# no shutdown"
+        "(config-if)#nameif <name>",
+        "(config-if)#ip address <IP> <netmask>",
+        "(config-if)#security-level <1~100>",
+        "(config-if)#same-security-traffic permit inter-interface",
+        "(config-if)#no shutdown"
     ],
     "설명": [
         "NameIF 설정 (<INSIDE 사용 시 Level 100 사용>) (NameIF는 고유해야 함)",
