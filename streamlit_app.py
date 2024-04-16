@@ -514,12 +514,14 @@ NameIF_command = {
         "(config-if)# nameif <name>",
         "(config-if)# ip address <IP> <netmask>",
         "(config-if)# security-level <1~100>",
+        "same-security-traffic permit inter-interface",
         "(config-if)# no shutdown"
     ],
     "설명": [
         "NameIF 설정 (<INSIDE 사용 시 Level 100 사용>) (NameIF는 고유해야 함)",
         "인터페이스 IP 지정",
         "Security Level 수동 지정",
+        "같은 Security Level을 가진 Zone끼리의 통신을 허용",
         "인터페이스 활성화"
     ]
 }
