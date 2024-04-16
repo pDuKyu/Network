@@ -545,14 +545,18 @@ C_Table_command = {
         "class inspection_default",
         "inspect icmp",
         "",
-        "show conn"
+        "show conn",
+        "show conn all",
+        "show conn all detail"
     ],
     "설명": [
         "전역 정책 맵을 설정",
         "기본 검사 클래스를 설정",
         "ICMP 패킷을 검사하고 필터링",
         "",
-        "현재 활성화된 연결 테이블을 확인"
+        "현재 활성화된 연결 테이블을 확인",
+        "모든 연결 테이블 확인",
+        "모든 연결 테이블 상세 정보 확인"
     ]
 }
 
