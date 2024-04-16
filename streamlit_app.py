@@ -587,15 +587,6 @@ F_tables = {"방화벽 기본 명령어": f_command,
            }
 
 
-#설명 문구
-hi = {
-    "정보": [
-        "기본 정보",
-        "ACL 정보"
-    ],
-    "설명": [text3,
-           text4]
-}
 
 
 
@@ -686,15 +677,9 @@ elif page == "FireWall":
     st.dataframe(selected_df3, width=800)
 
     
-#설명 출력
-    def print_info(selected_table3, text3, text4):
-        if selected_table3 in ["f_command", "L3_command", "OSPF_command", "SSH_command", "NameIF_command", "ASDM_command", "C_Table_command"]:
-            print(text3)
-        elif selected_table3 == "F_ACL_command":
-            print(text4)
+
     
-# 함수 호출 예시
-    print_info(selected_table3, text3, text4)
+
 
 
 
