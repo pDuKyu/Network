@@ -749,8 +749,8 @@ if page == "Switch":
     st.write('')
     st.write('')
     st.write('')
-    text2 = st.markdown("[이더넷 헤더], [ARP프로토콜], [LAN], [VLAN], [트렁크], [VTP], [Native VLAN], [Allowed VLAN], [Spanning-Tree], [BPDU], [PVST], [RPVST], [Etherchannel], [SVI], [Routedport], [portchannel], [HSRP], [VRRP]")
-    custom_warning(text2)
+    st.markdown("[이더넷 헤더], [ARP프로토콜], [LAN], [VLAN], [트렁크], [VTP], [Native VLAN], [Allowed VLAN], [Spanning-Tree], [BPDU], [PVST], [RPVST], [Etherchannel], [SVI], [Routedport], [portchannel], [HSRP], [VRRP]")
+
 
 
 
