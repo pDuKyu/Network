@@ -381,13 +381,7 @@ r_tables = {"스태틱 라우팅 명령어": static_route_df,
 
 
 
-text2 = """
-**라우터**는 패킷을 읽고 목적지 IP 주소를 기반으로 최적의 경로를 결정합니다. 
 
-그리고 그 경로에 따라 다음 라우터로 패킷을 전송합니다.
-
-이러한 과정을 통해 데이터가 출발지에서 목적지로 안전하고 효율적으로 전달됩니다.
-"""
 
 
 
@@ -755,7 +749,8 @@ if page == "Switch":
     st.write('')
     st.write('')
     st.write('')
-    custom_warning("알아야 하는 스위치 용어 <br><br> 이더넷 헤더, ARP프로토콜, LAN, VLAN, 트렁크, VTP, Native VLAN, Allowed VLAN, Spanning-Tree, BPDU, PVST, RPVST, Etherchannel, SVI, Routedport, portchannel, HSRP, VRRP")
+    text2 = st.markdown("[이더넷 헤더], [ARP프로토콜], [LAN], [VLAN], [트렁크], [VTP], [Native VLAN], [Allowed VLAN], [Spanning-Tree], [BPDU], [PVST], [RPVST], [Etherchannel], [SVI], [Routedport], [portchannel], [HSRP], [VRRP]")
+    custom_warning(text2)
 
 
 
