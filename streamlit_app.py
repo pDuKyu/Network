@@ -573,7 +573,108 @@ F_ACL_command = {
     ]
 }
 
+object_command = {
+    "명령어": [
+        "object <Type> <Name>",
+        "show run object"
+    ],
+    "설명": [
+        "오브젝트 타입과 이름 생성(단일 개체만 지정 가능)",
+        "생성한 오브젝트 확인"
+    ]
+}
 
+object_group_command = {
+    "명령어": [
+        "object-group <Type> <Name>",
+        "access-list <ACL Name> <P/D> <L4> <sIP> object-group <OG Name> eq <Port Num>",
+        "show run object-group"
+    ],
+    "설명": [
+        "오브젝트 그룹을 생성하는 명령어",
+        "오브젝트 그룹을 이용하여 ACL 적용",
+        "생성한 오브젝트 그룹 확인"
+    ]
+}
+dynamic_object_nat_command = {
+    "명령어": [
+        "object network PUBLIC_POOL",
+        "range 192.168.2.100 192.168.2.200",
+        "object network INTERNAL",
+        "subnet 192.168.1.0 255.255.255.0",
+        "nat (<inside>, <outside>) dynamic PUBLIC_POOL interface"
+    ],
+    "설명": [
+        "외부 IP 주소 범위를 정의하는 객체를 생성하거나 설정하는 명령어.",
+        "퍼블릭 IP 풀 오브젝트화.",
+        "내부 네트워크를 정의하는 객체를 생성하거나 설정하는 명령어.",
+        "내부 네트워크 오브젝트화.",
+        "<inside>에서<outside>로 향하는 트래픽을 PUBLIC_POOL로 NAT 하고, 풀을 모두 사용하면 내 인터페이스를 PAT로 사용하여 통신하게 한다."
+    ],
+    "추가명령어": [
+        "show nat",
+        "show xlate"
+    ],
+    "추가설명": [
+        "NAT 정책 및 동작 확인.",
+        "NAT 변환 세부 현황 확인."
+    ]
+}
+
+static_object_nat_pat_command = {
+    "명령어": [
+        "object network WEB_SERVER",
+        "host 192.168.1.1",
+        "nat (DMZ,OUTSIDE) static 192.168.2.200"
+    ],
+    "설명": [
+        "웹 서버를 정의하는 객체를 생성하거나 설정하는 명령어.",
+        "웹 서버의 내부 IP 주소를 설정하는 명령어.",
+        "DMZ 영역과 외부 네트워크 간의 통신에서 웹 서버의 내부 IP 주소를 192.168.2.200으로 정적으로 변환하는 명령어."
+    ]
+}
+manual_dynamic_nat_command = {
+    "명령어": [
+        "nat (inside,outside) source dynamic inside_real inside_mapped destination static outside_real outside_real"
+    ],
+    "설명": [
+        "<inside>에서 <outside>로 나갈 때, src인 inside_real>을 <inside_mapped>로 dynamic하게 NAT하는데 dest가 <outside_real> <outside_real>일때 NAT 하겠다."
+    ]
+}
+manual_dynamic_pat_command = {
+    "명령어": [
+        "nat (inside,outside) source dynamic inside_real interface destination static outside_real outside_real"
+    ],
+    "설명": [
+        "<inside>에서 <outside>로 나갈 때 src인 <inside_real>을 Interface로 dynamic하게 PAT하는데 dest가 <outside_real> <outside_real>일때 PAT 하겠다."
+    ]
+}
+failover_commands = {
+    "명령어": [
+        "failover lan unit <primary/secondary>",
+        "failover lan interface <FAILOVER> Ethernet 0/3",
+        "failover link <FAILOVER> Ethernet 0/3",
+        "failover interface ip FAILOVER 192.168.12.1 255.255.255.0 standby 192.168.12.2",
+        "failover",
+        "ip address 192.168.1.254 255.255.255.0 standby 192.168.1.253",
+        "prompt hostname priority state",
+        "no failover active",
+        "show failover history",
+        "show failover"
+    ],
+    "설명": [
+        "Primary/Secondary 장비 선정",
+        "상태체크 링크에 이름 부여",
+        "상태 및 동기화 링크에 이름 부여",
+        "Active/Standby 인터페이스에 게이트웨이 IP 부여(두 장비 동일하게)",
+        "Failover(이중화) 활성화",
+        "인터페이스에 NameIF와 IP를 설정할 때 Standby IP도 함께 입력",
+        "프롬프트에 Failover 역할 표시",
+        "active를 비활성화 하여 이중화 테스트",
+        "failover 동작 히스토리 확인",
+        "failover 정보 확인"
+    ]
+}
 
 # 테이블 데이터 정의
 F_tables = {"방화벽 기본 명령어": f_command,
@@ -583,7 +684,14 @@ F_tables = {"방화벽 기본 명령어": f_command,
             "NameIF 명령어": NameIF_command,
             "ASDM 이미지 다운로드 명령어": ASDM_command,
             "Connect Table 명령어": C_Table_command,
-            "ACL 명령어": F_ACL_command
+            "ACL 명령어": F_ACL_command,
+            "오브젝트 명령어": object_command,
+            "오브젝트 그룹 명령어": object_group_command,
+            "다이나믹 오브젝트 NAT 명령어": dynamic_object_nat_command,
+            "스태틱 오브젝트 NAT/PAT 명령어": static_object_nat_pat_command,
+            "매뉴얼 다이나믹 NAT 명령어": manual_dynamic_nat_command,
+            "매뉴얼 다이나믹 PAT 명령어": manual_dynamic_pat_command,
+            "failover(이중화)명령어": failover_commands
            }
 
 
