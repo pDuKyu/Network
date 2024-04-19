@@ -749,7 +749,7 @@ if page == "Switch":
     st.write('')
     st.write('')
     st.write('')
-    st.markdown("[이더넷 헤더], [ARP프로토콜], [LAN], [VLAN], [트렁크], [VTP], [Native VLAN], [Allowed VLAN], [Spanning-Tree], [BPDU], [PVST], [RPVST], [Etherchannel], [SVI], [Routedport], [portchannel], [HSRP], [VRRP]")
+    st.markdown("[이더넷 헤더], [ARP프로토콜], [LAN], [VLAN], [트렁크](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#526de6ef5bb84ff19d52a84b566874b5), [VTP], [Native VLAN], [Allowed VLAN], [Spanning-Tree], [BPDU], [PVST], [RPVST], [Etherchannel], [SVI], [Routedport], [portchannel], [HSRP], [VRRP]")
 
 
 
