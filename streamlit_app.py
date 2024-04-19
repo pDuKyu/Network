@@ -750,27 +750,7 @@ if page == "Switch":
     st.write('')
     st.write('')
     st.markdown("이더넷 헤더  |  [ARP프로토콜](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#1e953e927cbe458aa42951d2d9f658ea)  |  [LAN]  |  [VLAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#66916382c2cf4fd19cf6adba72d58959)  |  [트렁크](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#526de6ef5bb84ff19d52a84b566874b5)  |  [VTP](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#fce97913a59848acb4a5278b5e5b3087)  |  [Native VLAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#86d55c1d27ee474ca347af8256c86884)  |  [Allowed VLAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#9373ea0a750841a79ca58ef0ca04a3aa)  |  [Spanning-Tree](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#a68460c49db24bd4b1f7d3a4366e08fc)  |  [BPDU](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#1f379c70abb74050a09b73db36a6c637)  |  [PVST](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#3c834b70666d412d9f923729c9f76a80)  |  [RPVST](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#1266000c9e5e4ddf8a5131b1f07b586c)  |  [Etherchannel](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#907033e4a07f4a6a9a9c9362348b68ee)  |  [SVI](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#d2d0e2925f044cc4ba888e64409c5fcc)  |  [Routedport](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#db1a0bd441024c4e8b9464677a82827e)  |  [HSRP](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#8ecacfb272d547a4b91495a791142b0f)  |  [VRRP](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#9307d07092d548b0a933428db3afcc09)")
-    # 링크와 함께 데이터를 포함한 딕셔너리
-    data222 = {
-        "이더넷 헤더": "[ARP 프로토콜](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#1e953e927cbe458aa42951d2d9f658ea)",
-        "LAN": "",
-        "VLAN": "[VLAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#66916382c2cf4fd19cf6adba72d58959)",
-        "트렁크": "[트렁크](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#526de6ef5bb84ff19d52a84b566874b5)",
-        "VTP": "[VTP](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#fce97913a59848acb4a5278b5e5b3087)",
-        "Native VLAN": "[Native VLAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#86d55c1d27ee474ca347af8256c86884)",
-        "Allowed VLAN": "[Allowed VLAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#9373ea0a750841a79ca58ef0ca04a3aa)",
-        "Spanning-Tree": "[Spanning-Tree](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#a68460c49db24bd4b1f7d3a4366e08fc)",
-        "BPDU": "[BPDU](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#1f379c70abb74050a09b73db36a6c637)",
-        "PVST": "[PVST](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#3c834b70666d412d9f923729c9f76a80)",
-        "RPVST": "[RPVST](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#1266000c9e5e4ddf8a5131b1f07b586c)",
-        "Etherchannel": "[Etherchannel](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#907033e4a07f4a6a9a9c9362348b68ee)",
-        "SVI": "[SVI](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#d2d0e2925f044cc4ba888e64409c5fcc)",
-        "Routedport": "[Routedport](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#db1a0bd441024c4e8b9464677a82827e)",
-        "HSRP": "[HSRP](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#8ecacfb272d547a4b91495a791142b0f)",
-        "VRRP": "[VRRP](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#9307d07092d548b0a933428db3afcc09)"
-    }
-    
-    st.dataframe(data222)
+
 
 
 
