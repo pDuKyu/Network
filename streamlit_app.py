@@ -656,6 +656,7 @@ failover_commands = {
         "",
         "prompt hostname priority state",
         "no failover active",
+        "no monitor-interface outside",
         "",
         "show failover history",
         "show failover"
@@ -670,6 +671,7 @@ failover_commands = {
         "",
         "프롬프트에 Failover 역할 표시",
         "active를 비활성화 하여 이중화 테스트",
+        "outside 인터페이스를 모니터링하지 않는다는 명령어",
         "",
         "failover 동작 히스토리 확인",
         "failover 정보 확인"
