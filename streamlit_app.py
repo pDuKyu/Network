@@ -576,10 +576,12 @@ F_ACL_command = {
 object_command = {
     "명령어": [
         "object <Type> <Name>",
+        "",
         "show run object"
     ],
     "설명": [
         "오브젝트 타입과 이름 생성(단일 개체만 지정 가능)",
+        "",
         "생성한 오브젝트 확인"
     ]
 }
@@ -588,11 +590,13 @@ object_group_command = {
     "명령어": [
         "object-group <Type> <Name>",
         "access-list <ACL Name> <P/D> <L4> <sIP> object-group <OG Name> eq <Port Num>",
+        "",
         "show run object-group"
     ],
     "설명": [
         "오브젝트 그룹을 생성하는 명령어",
         "오브젝트 그룹을 이용하여 ACL 적용",
+        "",
         "생성한 오브젝트 그룹 확인"
     ]
 }
@@ -602,20 +606,18 @@ dynamic_object_nat_command = {
         "range 192.168.2.100 192.168.2.200",
         "object network INTERNAL",
         "subnet 192.168.1.0 255.255.255.0",
-        "nat (<inside>, <outside>) dynamic PUBLIC_POOL interface"
+        "nat (<inside>, <outside>) dynamic PUBLIC_POOL interface",
+        "",
+        "show nat",
+        "show xlate"
     ],
     "설명": [
         "외부 IP 주소 범위를 정의하는 객체를 생성하거나 설정하는 명령어.",
         "퍼블릭 IP 풀 오브젝트화.",
         "내부 네트워크를 정의하는 객체를 생성하거나 설정하는 명령어.",
         "내부 네트워크 오브젝트화.",
-        "<inside>에서<outside>로 향하는 트래픽을 PUBLIC_POOL로 NAT 하고, 풀을 모두 사용하면 내 인터페이스를 PAT로 사용하여 통신하게 한다."
-    ],
-    "추가명령어": [
-        "show nat",
-        "show xlate"
-    ],
-    "추가설명": [
+        "<inside>에서<outside>로 향하는 트래픽을 PUBLIC_POOL로 NAT 하고, 풀을 모두 사용하면 내 인터페이스를 PAT로 사용하여 통신하게 한다.",
+        "",
         "NAT 정책 및 동작 확인.",
         "NAT 변환 세부 현황 확인."
     ]
@@ -659,6 +661,7 @@ failover_commands = {
         "ip address 192.168.1.254 255.255.255.0 standby 192.168.1.253",
         "prompt hostname priority state",
         "no failover active",
+        "",
         "show failover history",
         "show failover"
     ],
@@ -671,6 +674,7 @@ failover_commands = {
         "인터페이스에 NameIF와 IP를 설정할 때 Standby IP도 함께 입력",
         "프롬프트에 Failover 역할 표시",
         "active를 비활성화 하여 이중화 테스트",
+        "",
         "failover 동작 히스토리 확인",
         "failover 정보 확인"
     ]
