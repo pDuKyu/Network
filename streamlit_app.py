@@ -802,9 +802,7 @@ if page == "Switch":
     # 각 주제에 대한 버튼을 생성하고 클릭 시 해당 링크를 새 탭으로 엽니다.
     for topic, link in topics.items():
         if st.button(topic):
-            js = f"window.open('{link}')"  # JavaScript를 사용하여 새 탭으로 링크를 엽니다.
-            html = f'<img src onerror="{js}">'
-            st.markdown(html, unsafe_allow_html=True)
+            webbrowser.open_new_tab(link)
 
 
 
