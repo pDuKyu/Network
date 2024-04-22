@@ -358,7 +358,9 @@ VPN = {
         "(config-if)#tunnel source <SIP or IF>",
         "(config-if)#tunnel destination <DIP>",
         "(config-if)#ip address <IP> <Netmask>",
+        "",
         "show interfaces tunnel <Tunnel Num>",
+        "",
         "(config)#router ospf 1",
         "(config-router)#network <T SIP> <Net mask> area 0"
     ],
@@ -367,7 +369,9 @@ VPN = {
         "터널 Src IP로 사용할 IF 또는 IP 지정",
         "터널 Dest IP 입력",
         "터널의 논리적 IF의 IP 지정. 양쪽이 동일한 NET을 가져야 함",
+        "",
         "터널 정보 확인",
+        "",
         "OSPF 라우터 구성",
         "터널의 IP로 IGP를 통해 지사 간 Neighbor P2P 연결"
     ]
