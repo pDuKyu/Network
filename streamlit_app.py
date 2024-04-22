@@ -799,11 +799,10 @@ if page == "Switch":
         "VRRP": "https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#9307d07092d548b0a933428db3afcc09"
     }
     
-    # 각 주제에 대한 버튼을 생성합니다.
+    # 각 주제에 대한 버튼을 생성하고 클릭 시 해당 링크로 이동합니다.
     for topic, link in topics.items():
         if st.button(topic):
-            st.markdown(f"**{topic}** 페이지로 이동합니다...")
-            st.markdown(f'<a href="{link}" target="_blank">{topic} 페이지로 이동하기</a>', unsafe_allow_html=True)
+            webbrowser.open_new_tab(link)
 
 
 
