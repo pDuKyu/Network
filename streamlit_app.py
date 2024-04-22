@@ -777,6 +777,31 @@ if page == "Switch":
     st.write('')
     st.markdown("**알아야 할 Switch 용어**")
     st.markdown("이더넷 헤더  |  [ARP프로토콜](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#5adbab7beab0475fa1312af106c4b027)  |  [LAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#e90619ac89694afbbc76d2afb58b4c9e)  |  [VLAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#66916382c2cf4fd19cf6adba72d58959)  |  [트렁크](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#526de6ef5bb84ff19d52a84b566874b5)  |  [VTP](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#fce97913a59848acb4a5278b5e5b3087)  |  [Native VLAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#86d55c1d27ee474ca347af8256c86884)  |  [Allowed VLAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#9373ea0a750841a79ca58ef0ca04a3aa)  |  [Spanning-Tree](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#a68460c49db24bd4b1f7d3a4366e08fc)  |  [BPDU](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#1f379c70abb74050a09b73db36a6c637)  |  [PVST](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#3c834b70666d412d9f923729c9f76a80)  |  [RPVST](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#1266000c9e5e4ddf8a5131b1f07b586c)  |  [Etherchannel](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#907033e4a07f4a6a9a9c9362348b68ee)  |  [SVI](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#d2d0e2925f044cc4ba888e64409c5fcc)  |  [Routedport](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#db1a0bd441024c4e8b9464677a82827e)  |  [HSRP](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#8ecacfb272d547a4b91495a791142b0f)  |  [VRRP](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#9307d07092d548b0a933428db3afcc09)")
+    import streamlit as st
+
+    st.markdown("**알아야 할 Switch 용어**")
+    
+    def link_button(url, text):
+        return f"[{text}]({url})"
+    
+    arp_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#5adbab7beab0475fa1312af106c4b027", "ARP프로토콜")
+    lan_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#e90619ac89694afbbc76d2afb58b4c9e", "LAN")
+    vlan_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#66916382c2cf4fd19cf6adba72d58959", "VLAN")
+    trunk_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#526de6ef5bb84ff19d52a84b566874b5", "트렁크")
+    vtp_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#fce97913a59848acb4a5278b5e5b3087", "VTP")
+    native_vlan_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#86d55c1d27ee474ca347af8256c86884", "Native VLAN")
+    allowed_vlan_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#9373ea0a750841a79ca58ef0ca04a3aa", "Allowed VLAN")
+    spanning_tree_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#a68460c49db24bd4b1f7d3a4366e08fc", "Spanning-Tree")
+    bpdu_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#1f379c70abb74050a09b73db36a6c637", "BPDU")
+    pvst_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#3c834b70666d412d9f923729c9f76a80", "PVST")
+    rpvst_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#1266000c9e5e4ddf8a5131b1f07b586c", "RPVST")
+    etherchannel_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#907033e4a07f4a6a9a9c9362348b68ee", "Etherchannel")
+    svi_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#d2d0e2925f044cc4ba888e64409c5fcc", "SVI")
+    routedport_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#db1a0bd441024c4e8b9464677a82827e", "Routedport")
+    hsrp_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#8ecacfb272d547a4b91495a791142b0f", "HSRP")
+    vrrp_link = link_button("https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#9307d07092d548b0a933428db3afcc09", "VRRP")
+    
+    st.markdown(f"이더넷 헤더  |  {arp_link}  |  {lan_link}  |  {vlan_link}  |  {trunk_link}  |  {vtp_link}  |  {native_vlan_link}  |  {allowed_vlan_link}  |  {spanning_tree_link}  |  {bpdu_link}  |  {pvst_link}  |  {rpvst_link}  |  {etherchannel_link}  |  {svi_link}  |  {routedport_link}  |  {hsrp_link}  |  {vrrp_link}  |  ...")
 
 
 
