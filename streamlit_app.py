@@ -352,7 +352,26 @@ PAT_commands = {
     "설명": ["해당 인터페이스를 내부 네트워크로 지정", "해당 인터페이스를 외부 네트워크로 지정", "ACL1을 사용하여 NAT를 적용할 네트워크를 정의.", "inside에서 올라오는 IP가 ACL1과 일치하면 fastEthernet 1/0의 IP로 덮어 씌움(overload)", "", "NAT 테이블에서 IP 변환을 보여줌."]
 }
 
-
+VPN = {
+    "명령어": [
+        "(config)#interface tunnel <Tunnel Num>",
+        "(config-if)#tunnel source <SIP or IF>",
+        "(config-if)#tunnel destination <DIP>",
+        "(config-if)#ip address <IP> <Netmask>",
+        "show interfaces tunnel <Tunnel Num>",
+        "(config)#router ospf 1",
+        "(config-router)#network <T SIP> <Net mask> area 0"
+    ],
+    "설명": [
+        "터널 인터페이스 생성",
+        "터널 Src IP로 사용할 IF 또는 IP 지정",
+        "터널 Dest IP 입력",
+        "터널의 논리적 IF의 IP 지정. 양쪽이 동일한 NET을 가져야 함",
+        "터널 정보 확인",
+        "OSPF 라우터 구성",
+        "터널의 IP로 IGP를 통해 지사 간 Neighbor P2P 연결"
+    ]
+}
 
 # 테이블 데이터 정의
 r_tables = {"스태틱 라우팅 명령어": static_route_df,
@@ -365,6 +384,7 @@ r_tables = {"스태틱 라우팅 명령어": static_route_df,
             "Outside Static NAT 명령어": out_NAT_commands,
             "Dynamic NAT 명령어": D_NAT_commands,
             "PAT 명령어": PAT_commands,
+            "VPN명령어": VPN,
             "ip 연결 확인 명령어": ip_df,
            "show 명령어": show}
 
