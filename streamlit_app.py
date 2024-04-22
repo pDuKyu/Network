@@ -802,8 +802,8 @@ if page == "Switch":
     # 각 주제에 대한 버튼을 생성합니다.
     for topic, link in topics.items():
         if st.button(topic):
-            st.markdown(f"You clicked the button for {topic}!")
-            st.markdown(f"[Link to {topic}]({link})")
+            st.markdown(f"**{topic}** 페이지로 이동합니다...")
+            st.markdown(f'<a href="{link}" target="_blank">{topic} 페이지로 이동하기</a>', unsafe_allow_html=True)
 
 
 
