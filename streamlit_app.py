@@ -388,7 +388,7 @@ r_tables = {"스태틱 라우팅 명령어": static_route_df,
             "Outside Static NAT 명령어": out_NAT_commands,
             "Dynamic NAT 명령어": D_NAT_commands,
             "PAT 명령어": PAT_commands,
-            "GRE명령어": VPN,
+            "GRE명령어": GRE,
             "ip 연결 확인 명령어": ip_df,
            "show 명령어": show}
 
