@@ -352,7 +352,7 @@ PAT_commands = {
     "설명": ["해당 인터페이스를 내부 네트워크로 지정", "해당 인터페이스를 외부 네트워크로 지정", "ACL1을 사용하여 NAT를 적용할 네트워크를 정의.", "inside에서 올라오는 IP가 ACL1과 일치하면 fastEthernet 1/0의 IP로 덮어 씌움(overload)", "", "NAT 테이블에서 IP 변환을 보여줌."]
 }
 
-VPN = {
+GRE = {
     "명령어": [
         "(config)#interface tunnel <Tunnel Num>",
         "(config-if)#tunnel source <SIP or IF>",
@@ -388,7 +388,7 @@ r_tables = {"스태틱 라우팅 명령어": static_route_df,
             "Outside Static NAT 명령어": out_NAT_commands,
             "Dynamic NAT 명령어": D_NAT_commands,
             "PAT 명령어": PAT_commands,
-            "VPN명령어": VPN,
+            "GRE명령어": VPN,
             "ip 연결 확인 명령어": ip_df,
            "show 명령어": show}
 
