@@ -1274,6 +1274,12 @@ elif page == "VPN":
 
 
 
+    # 선택할 수 있는 명령어 유형 목록
+    command_types = list(network_commands.keys())
+    
+    # 사용자로부터 명령어 유형 선택
+    selected_command_type = st.selectbox("명령어 유형 선택", command_types)
+    
     # 선택한 명령어 유형에 따른 데이터 가져오기
     selected_data = network_commands[selected_command_type]
     
