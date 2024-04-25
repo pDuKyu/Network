@@ -1154,7 +1154,7 @@ elif page == "VPN":
     selected_table4 = st.selectbox("", table_names4)  
 
 #테이블 시각화
-    selected_df4 = F_tables[selected_table4]
+    selected_df4 = V_tables[selected_table4]
     st.dataframe(selected_df4, width=800)
 
 
