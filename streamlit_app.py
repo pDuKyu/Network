@@ -352,34 +352,7 @@ PAT_commands = {
     "설명": ["해당 인터페이스를 내부 네트워크로 지정", "해당 인터페이스를 외부 네트워크로 지정", "ACL1을 사용하여 NAT를 적용할 네트워크를 정의.", "inside에서 올라오는 IP가 ACL1과 일치하면 fastEthernet 1/0의 IP로 덮어 씌움(overload)", "", "NAT 테이블에서 IP 변환을 보여줌."]
 }
 
-GRE = {
-    "명령어": [
-        "(config)#interface tunnel <Tunnel Num>",
-        "(config-if)#tunnel source <SIP or IF>",
-        "(config-if)#tunnel destination <DIP>",
-        "(config-if)#ip address <IP> <Netmask>",
-        "(config-if)#tunnel key <Num>",
-        "(config-if)#keepalive <Num>",
-        "",
-        "show interfaces tunnel <Tunnel Num>",
-        "",
-        "(config)#router ospf 1",
-        "(config-router)#network <T SIP> <Net mask> area 0"
-    ],
-    "설명": [
-        "터널 인터페이스 생성",
-        "터널 Src IP로 사용할 IF 또는 IP 지정",
-        "터널 Dest IP 입력",
-        "터널의 논리적 IF의 IP 지정. 양쪽이 동일한 NET을 가져야 함",
-        "터널의 키 값 지정(양쪽이 동일해야 함)",
-        "Health Check 메세지 초 지정",
-        "",
-        "터널 정보 확인",
-        "",
-        "OSPF 라우터 구성",
-        "터널의 IP로 IGP를 통해 지사 간 Neighbor P2P 연결"
-    ]
-}
+
 
 # 테이블 데이터 정의
 r_tables = {"스태틱 라우팅 명령어": static_route_df,
@@ -392,7 +365,6 @@ r_tables = {"스태틱 라우팅 명령어": static_route_df,
             "Outside Static NAT 명령어": out_NAT_commands,
             "Dynamic NAT 명령어": D_NAT_commands,
             "PAT 명령어": PAT_commands,
-            "GRE명령어": GRE,
             "ip 연결 확인 명령어": ip_df,
            "show 명령어": show}
 
@@ -730,10 +702,351 @@ F_tables = {"방화벽 기본 명령어": f_command,
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+#GRE
+
+GRE = {
+    "명령어": [
+        "(config)#interface tunnel <Tunnel Num>",
+        "(config-if)#tunnel source <SIP or IF>",
+        "(config-if)#tunnel destination <DIP>",
+        "(config-if)#ip address <IP> <Netmask>",
+        "(config-if)#tunnel key <Num>",
+        "(config-if)#keepalive <Num>",
+        "",
+        "show interfaces tunnel <Tunnel Num>",
+        "",
+        "(config)#router ospf 1",
+        "(config-router)#network <T SIP> <Net mask> area 0"
+    ],
+    "설명": [
+        "터널 인터페이스 생성",
+        "터널 Src IP로 사용할 IF 또는 IP 지정",
+        "터널 Dest IP 입력",
+        "터널의 논리적 IF의 IP 지정. 양쪽이 동일한 NET을 가져야 함",
+        "터널의 키 값 지정(양쪽이 동일해야 함)",
+        "Health Check 메세지 초 지정",
+        "",
+        "터널 정보 확인",
+        "",
+        "OSPF 라우터 구성",
+        "터널의 IP로 IGP를 통해 지사 간 Neighbor P2P 연결"
+    ]
+}
+
+
+
+IPsec_Static_Cripto_MAP_ISAKMP_SA = {
+    "명령어": [
+        "(config)#crypto isakmp policy 1",
+        "(config-isakmp)#encryption aes",
+        "(config-isakmp)#hash sha",
+        "(config-isakmp)#authentication pre-share",
+        "(config-isakmp)#group 2",
+        "(config)#crypto isakmp key 0 <MYPASSWORD> address <상대 라우터 퍼블릭 인터페이스 IP>"
+    ],
+    "설명": [
+        "ISAKMP 정책을 설정 (번호 1 사용)",
+        "암호화 알고리즘으로 AES를 선택",
+        "해시 알고리즘으로 SHA를 선택",
+        "사전 공유된 키를 사용하여 인증을 설정",
+        "Diffie-Hellman 그룹 번호를 설정 (그룹 2는 비교적 보안 수준이 높고 효율적인 그룹)",
+        "특정 IP 주소에 대한 ISAKMP 사전 Pre-Shared Key(사전 공유 키)를 설정"
+    ]
+}
+
+IPsec_Static_Cripto_MAP_IPsec_SA = {
+    "명령어": [
+        "(config)#crypto ipsec transform-set <MYTRANSFORMSET> esp-aes esp-sha-hmac"
+    ],
+    "설명": [
+        "IPSec 변환 세트를 정의. 이 세트는 데이터를 암호화하는 데 사용되며 AES 암호화 및 SHA 해시를 사용"
+    ]
+}
+
+Static_Crypto_MAP = {
+    "명령어": [
+        "(config)#crypto map <CRYPTOMAP> 10 ipsec-isakmp",
+        "(config-crypto-map)#set peer <상대 라우터 퍼블릭 인터페이스 IP>",
+        "(config-crypto-map)#set transform-set <MYTRANSFORMSET>",
+        "(config-crypto-map)#match address 100",
+        "(config-crypto-map)#reverse-route",
+        "(config)#access-list 100 permit ip host <내 호스트IP> host <상대 호스트 IP>",
+        "(config)#interface <Interface>",
+        "(config-if)#crypto map <CRYPTOMAP>"
+    ],
+    "설명": [
+        "IPsec 및 ISAKMP를 위한 crypto 맵 설정. 맵 번호는 10. (crypto map은 하나의 이름만 사용)",
+        "VPN 터널의 대상 피어를 설정",
+        "전에 설정한 IPsec 변환 세트 적용",
+        "암호화 및 인증을 위해 적용할 ACL을 지정. 여기서는 ACL 100",
+        "대상에 대한 Static Route 자동 생성",
+        "ACL 100을 생성하여 IPSec 터널을 통해 통신 할 IP 선정. (Out Bound 방식)",
+        "VPN 설정을 적용할 네트워크 인터페이스 선택.",
+        "인터페이스에 VPN 설정을 적용."
+    ]
+}
+
+CMAP_FINAL = {
+    "명령어": [
+        "통신 시도",
+        "show crypto ipsec sa",
+        "show crypto isakmp sa",
+        "clear crypto isakmp",
+        "clear crypto sa"
+    ],
+    "설명": [
+        "통신 시도로 인해 터널 생성",
+        "IPSec 터널의 암호화 및 복호화 횟수 확인",
+        "ISAKMP 터널 테이블 확인",
+        "ISAKMP 터널 삭제",
+        "IPSec 터널 삭제"
+    ]
+}
 
 
 
 
+IPsec_Dynamic_Cripto_MAP_ISAKMP_SA = {
+    "명령어": [
+        "(config)# crypto isakmp policy 10",
+        "(config-isakmp)# encryption 3des",
+        "(config-isakmp)# authentication pre-share",
+        "(config-isakmp)# hash md5",
+        "(config-isakmp)# group 2",
+        "(config)# crypto isakmp key cisco address 0.0.0.0 0.0.0.0"
+    ],
+    "설명": [
+        "IKE 정책 설정 (정책 번호 10)",
+        "3DES 암호화 알고리즘 설정",
+        "사전 공유 키 방식의 인증 설정",
+        "MD5 해시 알고리즘 설정",
+        "Diffie-Hellman 그룹 번호 설정 (그룹 2)",
+        "사전 공유 키 지정 및 대상 주소 설정"
+    ]
+}
+
+IPsec_Dynamic_Cripto_MAP_IPsec_SA = {
+    "명령어": [
+        "(config)# ip access-list extended <ACL 이름>",
+        "(config-ext-nacl)# permit ip <sIP> <Wmask> <dIP> <Wmask>",
+        "(config)# crypto ipsec transform-set <PHASE2> esp-aes esp-sha-hmac"
+    ],
+    "설명": [
+        "확장된 IP 접근 목록을 설정",
+        "내부 특정 IP 주소 및 서브넷간의 통신을 허용하는 ACL 규칙을 추가",
+        "IPSec 변환 세트를 정의. AES 암호화 및 SHA 해시를 사용"
+    ]
+}
+
+IPsec_Dynamic_Cripto_MAP_IPsec_SA = {
+    "명령어": [
+        "(config)# crypto dynamic-map <DMAP> 10",
+        "(config-crypto-map)# match address <ACL 이름>",
+        "(config-crypto-map)# set transform-set <PHASE2>",
+        "(config)# crypto map <VPN> 10 ipsec-isakmp dynamic <DMAP>",
+        "(config)# interface <Interface>",
+        "(config-subif)# crypto map <VPN>"
+    ],
+    "설명": [
+        "동적 맵을 설정. <DMAP>은 사용자가 정의한 이름으로 대체되어야 함",
+        "ACL 이름을 사용하여 트래픽 일치 조건을 설정",
+        "변환 세트를 설정하여 IPSec 정책을 적용. <PHASE2>는 사용자가 정의한 이름으로 대체되어야 함",
+        "IPSec 터널을 설정하고 동적 맵을 사용하여 정책을 적용. <VPN>은 사용자가 정의한 이름으로 대체되어야 함",
+        "인터페이스 설정 모드로 이동. <Interface>는 설정할 인터페이스의 이름",
+        "인터페이스에 IPSec VPN을 적용하기 위해 VPN 맵을 적용. <VPN>은 이전에 정의한 VPN 맵의 이름"
+    ]
+}
+
+
+
+GRE_over_IPsec_GRE = {
+    "명령어": [
+        "(config)#interface tunnel <Tunnel Num>",
+        "(config-if)#tunnel source <SIP or IF>",
+        "(config-if)#tunnel destination <DIP>",
+        "(config-if)#ip address <IP> <Netmask>",
+        "(config-if)#tunnel key <Num>",
+        "(config-if)#keepalive <Num>",
+        "show interfaces tunnel <Tunnel Num>",
+        "(config)#router ospf 1",
+        "(config-router)#network <T SIP> <Net mask> area 0>"
+    ],
+    "설명": [
+        "터널 인터페이스 생성",
+        "터널 Src IP로 사용할 IF 또는 IP 지정",
+        "터널 Dest IP 입력",
+        "터널의 논리적 IF의 IP 지정. 양쪽이 동일한 NET을 가져야 함",
+        "터널의 키 값 지정 (양쪽이 동일해야 함)",
+        "Health Check 메세지 초 지정",
+        "터널 정보 확인",
+        "OSPF 생성",
+        "Tunnel의 IP로 IGP를 통해 지사 간 Neighbor P2P 연결"
+    ]
+}
+
+
+GRE_over_IPsec_ISAKMP_SA = {
+    "명령어": [
+        "(config)#crypto isakmp policy 1",
+        "(config-isakmp)#encryption aes",
+        "(config-isakmp)#hash sha",
+        "(config-isakmp)#authentication pre-share",
+        "(config-isakmp)#group 2",
+        "(config)#crypto isakmp key 0 <MYPASSWORD> address <상대 라우터 퍼블릭 인터페이스 IP>"
+    ],
+    "설명": [
+        "ISAKMP 정책을 설정 (번호 1 사용)",
+        "암호화 알고리즘으로 AES를 선택",
+        "해시 알고리즘으로 SHA를 선택",
+        "사전 공유된 키를 사용하여 인증을 설정",
+        "Diffie-Hellman 그룹 번호를 설정 (그룹 2는 비교적 보안 수준이 높고 효율적인 그룹)",
+        "특정 IP 주소에 대한 ISAKMP 사전 Pre-Shared Key(사전 공유 키)를 설정"
+    ]
+}
+
+GRE_over_IPsec_IPsec_SA = {
+    "명령어": [
+        "(config)#crypto ipsec transform-set <MYTRANSFORMSET> esp-aes esp-sha-hmac"
+    ],
+    "설명": [
+        "IPSec 변환 세트를 정의",
+        "이 세트는 데이터를 암호화하는 데 사용되며 AES 암호화 및 SHA 해시를 사용"
+    ]
+}
+
+GRE_over_IPsec_Crypto_MAP = {
+    "명령어": [
+        "(config)#crypto map <CRYPTOMAP> 10 ipsec-isakmp",
+        "(config-crypto-map)#set peer <상대 라우터 퍼블릭 인터페이스 IP>",
+        "(config-crypto-map)#set transform-set <MYTRANSFORMSET>",
+        "(config-crypto-map)#match address 100",
+        "(config-crypto-map)#reverse-route",
+        "(config)#access-list 100 permit ip host <내 호스트IP> host <상대 호스트 IP>",
+        "(config)#interface <Interface>",
+        "(config-if)#crypto map <CRYPTOMAP>"
+    ],
+    "설명": [
+        "IPsec 및 ISAKMP를 위한 crypto 맵을 설정. 맵 번호는 10. (crypto map은 하나의 이름만 사용)",
+        "VPN 터널의 대상 피어를 설정",
+        "전에 설정한 IPsec 변환 세트 적용",
+        "암호화 및 인증을 위해 적용할 ACL을 지정. 여기서는 ACL 100. (GRE가 먼저 적용되기 때문에 GRE의 IP를 지정해야 함)",
+        "대상에 대한 Static Route 자동 생성",
+        "ACL 100을 생성하여 IPSec 터널을 통해 통신 할 IP 선정. (Out Bound 방식)",
+        "VPN 설정을 적용할 네트워크 인터페이스 선택.",
+        "인터페이스에 VPN 설정을 적용."
+    ]
+}
+
+GRE_over_IPsec_FINAL = {
+    "명령어": [
+        "통신 시도",
+        "show crypto ipsec sa",
+        "show crypto isakmp sa",
+        "clear crypto isakmp",
+        "clear crypto sa"
+    ],
+    "설명": [
+        "통신 시도로 인해 터널 생성",
+        "IPSec 터널의 암호화 및 복호화 횟수 확인",
+        "ISAKMP 터널 테이블 확인",
+        "ISAKMP 터널 삭제",
+        "IPSec 터널 삭제"
+    ]
+}
+
+IPsec_VTI_ISAKMP_SA = {
+    "명령어": [
+        "crypto isakmp policy 10",
+        "encryption aes",
+        "authentication pre-share",
+        "hash md5",
+        "group 2",
+        "crypto isakmp key cisco address 0.0.0.0 0.0.0.0"
+    ],
+    "설명": [
+        "IKE 정책을 설정 (정책 번호 10)",
+        "AES 암호화 알고리즘을 사용",
+        "사전 공유 키 방식의 인증을 설정",
+        "MD5 해시 알고리즘을 사용",
+        "Diffie-Hellman 그룹 번호를 설정",
+        "동적 IP를 가진 라우터와 VPN 터널을 설정하기 위한 사전 공유 키를 지정. (고정 IP를 가졌다면 그 IP를 지정)"
+    ]
+}
+
+IPsec_VTI_IPsec_SA = {
+    "명령어": [
+        "crypto ipsec transform-set PHASE2 esp-aes esp-sha-hmac"
+    ],
+    "설명": [
+        "IPSec 변환 세트를 설정. 'PHASE2'는 사용자가 정의한 이름."
+    ]
+}
+
+IPsec_Profile = {
+    "명령어": [
+        "crypto ipsec profile VTI-PROFILE",
+        "set transform-set PHASE2"
+    ],
+    "설명": [
+        "IPSec 프로필을 설정. 'VTI-PROFILE'은 사용자가 정의한 프로필 이름.",
+        "프로필에 IPSec 변환 세트를 설정. 'PHASE2'는 이전에 정의한 변환 세트의 이름."
+    ]
+}
+
+VTI_Tunnel = {
+    "명령어": [
+        "interface tunnel <Num>",
+        "ip address <IP> <Netmask>",
+        "tunnel source <sIP>",
+        "tunnel destination <dIP>",
+        "tunnel mode ipsec ipv4",
+        "tunnel protection ipsec profile VTI-PROFILE",
+        "OSPF Neighbor"
+    ],
+    "설명": [
+        "터널 인터페이스를 설정",
+        "터널 인터페이스에 IP 주소를 할당",
+        "터널의 출발지 IP 주소를 설정",
+        "터널의 목적지 IP 주소를 설정. (상대가 동적 IP를 가지고 있다면 생략)",
+        "터널을 VTI로 동작하게 설정",
+        "터널에 IPSec 프로필을 적용하여 보안을 활성화. 'VTI-PROFILE'은 이전에 정의한 IPSec 프로필의 이름",
+        "OSPF 설정으로 경로 광고 및 학습"
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+# 테이블 데이터 정의
+V_tables = {"GRE 명령어": GRE,
+            "IPsec ISAKMP SA 생성": IPsec_Static_Crypto_MAP_ISAKMP_SA,
+            "IPsec IPsec SA 생성": IPsec_Static_Crypto_MAP_IPsec_SA,
+            "Crypto MAP 생성 및 적용": Static_Crypto_MAP,
+            "IPsec 기본 명령어": CMAP_FINAL,
+            "IPsec DMAP ISAKMP SA 생성": IPsec_Dynamic_Crypto_MAP_ISAKMP_SA,
+            "IPsec DMAP IPsec SA 생성": IPsec_Dynamic_Crypto_MAP_IPsec_SA,
+            "Dynamic MAP 생성 및 적용": IPsec_Dynamic_Crypto_MAP_IPsec_SA,
+            "GRE over IPsec GRE 생성": GRE_over_IPsec_GRE,
+            "GRE over IPsec ISAKMP SA 생성": GRE_over_IPsec_ISAKMP_SA,
+            "GRE over IPsec IPsec SA 생성": GRE_over_IPsec_IPsec_SA,
+            "GRE over IPsec Crypto MAP 생성 및 적용": GRE_over_IPsec_Crypto_MAP,
+            "IPsec 기본 명령어": GRE_over_IPsec_FINAL,
+            "IPsec VTI ISAKMP SA 생성": IPsec_VTI_ISAKMP_SA,
+            "IPsec VTI IPsec SA 생성": IPsec_VTI_IPsec_SA,
+            "IPsec_Profile 생성": IPsec_Profile,
+            "VTI Tunnel 동작": VTI_Tunnel
+           }
+
+
+
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 # 커스텀 워닝 문구
 def custom_warning(message):
