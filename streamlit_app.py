@@ -689,10 +689,10 @@ F_tables = {"방화벽 기본 명령어": f_command,
             "ACL 명령어": F_ACL_command,
             "오브젝트 명령어": object_command,
             "오브젝트 그룹 명령어": object_group_command,
-            "다이나믹 오브젝트 NAT 명령어": dynamic_object_nat_command,
-            "스태틱 오브젝트 NAT/PAT 명령어": static_object_nat_pat_command,
-            "매뉴얼 다이나믹 NAT 명령어": manual_dynamic_nat_command,
-            "매뉴얼 다이나믹 PAT 명령어": manual_dynamic_pat_command,
+            "다이나믹 오브젝트 NAT 명령어 (섹션2)": dynamic_object_nat_command,
+            "스태틱 오브젝트 NAT/PAT 명령어 (섹션2)": static_object_nat_pat_command,
+            "매뉴얼 다이나믹 NAT 명령어 (섹션1)": manual_dynamic_nat_command,
+            "매뉴얼 다이나믹 PAT 명령어 (섹션1)": manual_dynamic_pat_command,
             "failover(이중화)명령어": failover_commands
            }
 
