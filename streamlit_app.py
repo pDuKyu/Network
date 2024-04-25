@@ -1170,8 +1170,6 @@ elif page == "VPN":
 
 
 ID = """
-PNETLab
-
 
 ID: student02
 
