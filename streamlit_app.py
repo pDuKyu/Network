@@ -1183,9 +1183,10 @@ password: R@p@12#$
 
 st.sidebar.write('')
 st.sidebar.write('')
-st.sidebar.write('')
-st.sidebar.write('')
 st.sidebar.markdown(ID)
+st.sidebar.write('')
+st.sidebar.write('')
+
 
 
 
