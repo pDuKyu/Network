@@ -1169,7 +1169,13 @@ elif page == "VPN":
 
 
 
+ID = """
+PNETLab
 
+ID: student02
+password: R@p@12#$
+
+"""
 
 
 
