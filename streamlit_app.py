@@ -1179,9 +1179,8 @@ st.sidebar.write('')
 st.sidebar.write('')
 st.sidebar.write('')
 st.sidebar.write('')
-st.sidebar.markdown("PNETLab")
-st.sidebar.markdown("ID: student02")
-st.sidebar.markdown("password: R@p@12#$")
+st.sidebar.markdown(text)
+
 
 
 st.sidebar.markdown("[서브넷 계산 사이트](https://www.site24x7.com/tools/ipv4-subnetcalculator.html) ")
