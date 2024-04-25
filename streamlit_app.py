@@ -1180,6 +1180,48 @@ elif page == "VPN":
 
 
 
+    network_commands = {
+        "GRE": {
+            "명령어": GRE["명령어"],
+            "설명": GRE["설명"]
+        },
+        "IPsec": {
+            "ISAKMP SA 생성": IPsec_Static_Crypto_MAP_ISAKMP_SA,
+            "IPsec SA 생성": IPsec_Static_Crypto_MAP_IPsec_SA,
+            "Crypto MAP 생성 및 적용": Static_Crypto_MAP,
+            "기본 명령어": CMAP_FINAL
+        },
+        "IPsec Dynamic Crypto Map": {
+            "ISAKMP SA 생성": IPsec_Dynamic_Crypto_MAP_ISAKMP_SA,
+            "IPsec SA 생성": IPsec_Dynamic_Crypto_MAP_IPsec_SA,
+            "Dynamic MAP 생성 및 적용": IPsec_Dynamic_Crypto_MAP_IPsec_SA
+        },
+        "GRE over IPsec": {
+            "GRE 생성": GRE_over_IPsec_GRE,
+            "ISAKMP SA 생성": GRE_over_IPsec_ISAKMP_SA,
+            "IPsec SA 생성": GRE_over_IPsec_IPsec_SA,
+            "Crypto MAP 생성 및 적용": GRE_over_IPsec_Crypto_MAP,
+            "기본 명령어": GRE_over_IPsec_FINAL
+        },
+        "IPsec VTI": {
+            "ISAKMP SA 생성": IPsec_VTI_ISAKMP_SA,
+            "IPsec SA 생성": IPsec_VTI_IPsec_SA,
+            "IPsec_Profile 생성": IPsec_Profile,
+            "VTI Tunnel 동작": VTI_Tunnel
+        }
+    }
+    
+    # Streamlit 앱의 제목 설정
+    st.title("네트워크 명령어 탐색기")
+    
+    # 첫 번째 리스트 바(카테고리 선택)
+    selected_category = st.sidebar.selectbox("카테고리 선택", list(network_commands.keys()))
+    
+    # 선택한 카테고리에 해당하는 명령어 딕셔너리 가져오기
+    selected_commands = network_commands[selected_category]
+    
+    # 두 번째 리스트 바(명령어 선택)
+    selected_command = st.sidebar.selectbox("명령어 선택", list(selected_commands.keys()))
 
 
 
