@@ -735,7 +735,7 @@ GRE = {
 
 
 
-IPsec_Static_Cripto_MAP_ISAKMP_SA = {
+IPsec_Static_Crypto_MAP_ISAKMP_SA = {
     "명령어": [
         "(config)#crypto isakmp policy 1",
         "(config-isakmp)#encryption aes",
@@ -754,7 +754,7 @@ IPsec_Static_Cripto_MAP_ISAKMP_SA = {
     ]
 }
 
-IPsec_Static_Cripto_MAP_IPsec_SA = {
+IPsec_Static_Crypto_MAP_IPsec_SA = {
     "명령어": [
         "(config)#crypto ipsec transform-set <MYTRANSFORMSET> esp-aes esp-sha-hmac"
     ],
@@ -806,7 +806,7 @@ CMAP_FINAL = {
 
 
 
-IPsec_Dynamic_Cripto_MAP_ISAKMP_SA = {
+IPsec_Dynamic_Crypto_MAP_ISAKMP_SA = {
     "명령어": [
         "(config)# crypto isakmp policy 10",
         "(config-isakmp)# encryption 3des",
@@ -825,7 +825,7 @@ IPsec_Dynamic_Cripto_MAP_ISAKMP_SA = {
     ]
 }
 
-IPsec_Dynamic_Cripto_MAP_IPsec_SA = {
+IPsec_Dynamic_Crypto_MAP_IPsec_SA = {
     "명령어": [
         "(config)# ip access-list extended <ACL 이름>",
         "(config-ext-nacl)# permit ip <sIP> <Wmask> <dIP> <Wmask>",
@@ -838,7 +838,7 @@ IPsec_Dynamic_Cripto_MAP_IPsec_SA = {
     ]
 }
 
-IPsec_Dynamic_Cripto_MAP_IPsec_SA = {
+IPsec_Dynamic_Crypto_MAP_IPsec_SA = {
     "명령어": [
         "(config)# crypto dynamic-map <DMAP> 10",
         "(config-crypto-map)# match address <ACL 이름>",
