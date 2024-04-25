@@ -1068,7 +1068,7 @@ st.sidebar.write(f"오늘은 {today_date}일 입니다!")
 
 
 # 사이드바에 버튼 추가
-page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router", "FireWall"])
+page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router", "FireWall", "VPN"])
 
 
 
@@ -1145,7 +1145,17 @@ elif page == "FireWall":
     
 
     
+elif page == "VPN":
+    # 네트워크 설정 명령어로 대제목 설정
+    st.title('VPN 설정 명령어')
 
+#리스트 기능
+    table_names4 = list(V_tables.keys())
+    selected_table4 = st.selectbox("", table_names4)  
+
+#테이블 시각화
+    selected_df4 = F_tables[selected_table4]
+    st.dataframe(selected_df4, width=800)
 
 
 
