@@ -1158,7 +1158,25 @@ elif page == "VPN":
     st.dataframe(selected_df4, width=800)
 
 
-
+    # 데이터 준비
+    categories = ['Fruit', 'Vegetable', 'Meat']
+    fruits = ['Apple', 'Banana', 'Orange']
+    vegetables = ['Carrot', 'Lettuce', 'Tomato']
+    meats = ['Chicken', 'Beef', 'Pork']
+    data = {
+        'Fruit': fruits,
+        'Vegetable': vegetables,
+        'Meat': meats
+    }
+    
+    # Streamlit 앱의 제목 설정
+    st.title("두 개의 리스트 바 예시")
+    
+    # 첫 번째 리스트 바(카테고리 선택)
+    selected_category = st.selectbox("카테고리 선택", categories)
+    
+    # 선택한 카테고리에 따라 두 번째 리스트 바(항목 선택) 업데이트
+    selected_item = st.selectbox("항목 선택", data[selected_category])
 
 
 
