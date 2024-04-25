@@ -1272,9 +1272,6 @@ elif page == "VPN":
     st.dataframe(selected_df4, width=800)
 
 
-    categories = ["GRE IPsec 명령어", 'IPsec 명령어', 'IPsec Dynamic Crypto Map 명령어', " GRE over IPsec 명령어", "IPsec VTI 명령어"]
-    selected_category = st.selectbox("카테고리 선택", categories)
-    selected_item = st.selectbox("항목 선택", V_tables[selected_category])
 
 
     # 선택한 명령어 유형에 따른 데이터 가져오기
