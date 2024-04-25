@@ -1185,7 +1185,7 @@ st.sidebar.write('')
 st.sidebar.write('')
 st.sidebar.write('')
 st.sidebar.write('')
-st.sidebar.markdown(text)
+st.sidebar.markdown(ID)
 
 
 
