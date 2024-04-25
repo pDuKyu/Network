@@ -1277,9 +1277,6 @@ elif page == "VPN":
     selected_item = st.selectbox("항목 선택", V_tables[selected_category])
 
 
-    # 주요 명령어 유형 선택
-    selected_command_type = st.sidebar.selectbox("명령어 유형 선택", list(network_commands.keys()))
-    
     # 선택한 명령어 유형에 따른 데이터 가져오기
     selected_data = network_commands[selected_command_type]
     
