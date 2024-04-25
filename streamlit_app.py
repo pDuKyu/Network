@@ -1281,14 +1281,18 @@ elif page == "VPN":
     selected_command_type = st.selectbox("명령어 유형 선택", command_types)
     
     # 선택한 명령어 유형에 따른 데이터 가져오기
-    selected_data = network_commands[selected_command_type]
+    selected_data = network_commands.get(selected_command_type)
     
-    # 데이터프레임 생성
-    df = pd.DataFrame({"명령어": selected_data["명령어"], "설명": selected_data["설명"]})
+    # 선택한 명령어 유형이 유효한지 확인
+    if selected_data is not None:
+        # 데이터프레임 생성
+        df = pd.DataFrame({"명령어": selected_data["명령어"], "설명": selected_data["설명"]})
     
-    # 선택한 명령어 유형에 따른 명령어 목록 표시
-    st.subheader(f"{selected_command_type} 명령어")
-    st.dataframe(df)
+        # 선택한 명령어 유형에 따른 명령어 목록 표시
+        st.subheader(f"{selected_command_type} 명령어")
+        st.dataframe(df)
+    else:
+        st.error("선택한 명령어 유형에 해당하는 데이터를 찾을 수 없습니다.")
 
 
 
