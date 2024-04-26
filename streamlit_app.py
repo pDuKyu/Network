@@ -328,8 +328,8 @@ eBGP = {
 
 #iBGP
 iBGP = {
-    "명령어":["router bgp <Local AS-num>", "neighbor <상대 Loopback IP> remote-as <상대 as-num>", "neighbor <상대 Loopback IP> update-source <내 Loopback 인터페이스>", "ip route <summary> <mask> null 0", "nighbor <iBGP Neighbor IP> next-hop-self", "neighbor <Neighbor IP> route-reflector-client", "", "show ip bgp summary", "show ip bgp", "show ip bgp <도착지 IP>"],
-    "설명":["Local AS 번호를 입력하여 BGP를 작동", "Neighbor를 맺고 싶은 상대의 Loopback IP와 AS를 입력하여 Neighbor 관계 요청", "내 소스 IP를 Loopback으로 수정하고 상대의Loopback IP를 통해 iBGP 이웃 관계를 맺는 설정.", "광고하려는 라우터에서 빈 공간에 축약 라우팅 정보 등록(null 0 자료 참고)", "eBGP 역할을 하는 라우터의 iBGP 설정 (Next-Hop Self 자료 참고)", "RR 기기에서 RRC 지정(RRC는 RR과 네이버만 맺으면 됨)", "", "BGP 이웃 관계 상세 정보 확인", "BGP 테이블 정보 확인", "BGP 테이블에서 도착지로 가는 경로 확인"]
+    "명령어":["router bgp <Local AS-num>", "neighbor <상대 Loopback IP> remote-as <상대 as-num>", "neighbor <상대 Loopback IP> update-source <내 Loopback 인터페이스>", "ip route <summary> <mask> null 0", "nighbor <iBGP Neighbor IP> next-hop-self", "neighbor <Neighbor IP> route-reflector-client", "", "show ip bgp summary", "show ip bgp", "show ip bgp <도착지 IP>","", "OSPF Nighbor"],
+    "설명":["Local AS 번호를 입력하여 BGP를 작동", "Neighbor를 맺고 싶은 상대의 Loopback IP와 AS를 입력하여 Neighbor 관계 요청", "내 소스 IP를 Loopback으로 수정하고 상대의Loopback IP를 통해 iBGP 이웃 관계를 맺는 설정.", "광고하려는 라우터에서 빈 공간에 축약 라우팅 정보 등록(null 0 자료 참고)", "eBGP 역할을 하는 라우터의 iBGP 설정 (Next-Hop Self 자료 참고)", "RR 기기에서 RRC 지정(RRC는 RR과 네이버만 맺으면 됨)", "", "BGP 이웃 관계 상세 정보 확인", "BGP 테이블 정보 확인", "BGP 테이블에서 도착지로 가는 경로 확인","", "OSPF로 경로와 Loopback IP를 광고해야 함"]
 }
 
 in_NAT_commands = {
