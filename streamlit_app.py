@@ -1334,9 +1334,7 @@ elif page == "Router":
 
 #테이블 시각화
     selected_df2 = r_tables[selected_table2]
-    st.dataframe(selected_df2, width=1200, height=len(selected_df2) * 20)
-    num_rows = len(selected_df2)
-    st.write(num_rows)
+    st.dataframe(selected_df2)
     text2 = """
     **라우터**는 네트워크 간의 데이터를 안전하고 효율적으로 전달하는 역할을 하며, 이를 위해 
     
