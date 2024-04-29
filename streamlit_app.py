@@ -1271,6 +1271,62 @@ V_tables = {"GRE 명령어": GRE,
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+#VRF
+
+
+VRF = {
+    "명령어": [
+        "ip vrf [vrf_name]",
+        "rd [ASN:nn]",
+        "ip vrf forwarding [vrf_name]",
+        "interface FastEthernet 0/0",
+        "ip vrf forwarding <Blue>",
+        "ip address <192.168.1.254> <255.255.255.0>",
+        "ip route vrf <VRF Name> <IP> <NetMask>",
+        "show ip route vrf <VRF Name>",
+        "show ip vrf",
+        "ping vrf <Blue> <192.168.1.1>"
+    ],
+    "설명": [
+        "VRF 이름 지정 (대소문자 구분)",
+        "BGP 연동 시 VRF를 구분하기 위한 값 지정",
+        "특정 인터페이스에 VRF를 할당. 할당 시 이 인터페이스의 설정은 다 초기화 됨. (VLAN 인터페이스 지정과 같은 원리)",
+        "VRF를 적용할 인터페이스 접근",
+        "이 인터페이스에 VRF를 <Blue>로 실행",
+        "인터페이스 IP 주소 지정",
+        "VRF에 스태틱 라우트 설정",
+        "가상 라우팅 테이블 확인 (show ip route로는 VRF를 볼 수 없음)",
+        "VRF 인터페이스 확인",
+        "VRF의 인터페이스로 통신 확인"
+    ]
+}
+
+VRF_IGP_BGP = {
+    "명령어": [
+        "router ospf [pid] vrf [vrf_name]",
+        "router bgp [ASNum]",
+        "address-family ipv4 vrf [vrf_name]"
+    ],
+    "설명": [
+        "<이름>을 가진 VRF에 OSPF를 실행",
+        "BGP Num을 지정하여 BGP 생성",
+        "<이름>을 가진 VRF로 BGP를 실행"
+    ]
+}
+
+
+VRF_tables = {"VRF 설정 명령어":VRF,
+              "OSPF/BGP 연동 명령어": VRF_IGP_BGP
+           }
+
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
 # 커스텀 워닝 문구
 def custom_warning(message):
     st.markdown(f'<div style="color: orange; font-size: large;">{message}</div>', unsafe_allow_html=True)
@@ -1291,7 +1347,7 @@ st.sidebar.write(f"오늘은 {today_date}일 입니다!")
 
 
 # 사이드바에 버튼 추가
-page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router", "FireWall", "VPN"])
+page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router", "FireWall", "VPN", "VRF"])
 
 
 
@@ -1365,9 +1421,10 @@ elif page == "FireWall":
     selected_df3 = F_tables[selected_table3]
     st.dataframe(selected_df3, width=800)
 
-    
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    
+
+# VPN 페이지
 elif page == "VPN":
     # 네트워크 설정 명령어로 대제목 설정
     st.title('VPN 설정 명령어')
@@ -1383,30 +1440,27 @@ elif page == "VPN":
 
 
 
-    # 선택할 수 있는 명령어 유형 목록
-    command_types = list(network_commands.keys())
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# VRF 페이지
+elif page == "VRF":
+    # 네트워크 설정 명령어로 대제목 설정
+    st.title('VRF 설정 명령어')
+
+#리스트 기능
+    table_names5 = list(VRF_tables.keys())
+    selected_table5 = st.selectbox("", table_names5)  
+
+#테이블 시각화
+    selected_df5 = VRF_tables[selected_table5]
+    st.dataframe(selected_df5, width=800)
+
     
-    # 사용자로부터 명령어 유형 선택
-    selected_command_type = st.selectbox("명령어 유형 선택", command_types)
-    
-    # 선택한 명령어 유형에 따른 데이터 가져오기
-    selected_data = network_commands.get(selected_command_type)
-    
-    # 선택한 명령어 유형이 유효한지 확인
-    if selected_data:
-        # 데이터프레임 생성
-        df = pd.DataFrame({"명령어": selected_data.get("명령어", []), "설명": selected_data.get("설명", [])})
-    
-        # 선택한 명령어 유형에 따른 명령어 목록 표시
-        st.subheader(f"{selected_command_type} 명령어")
-        st.dataframe(df)
-    else:
-        st.error("선택한 명령어 유형에 해당하는 데이터를 찾을 수 없습니다.")
 
 
 
 
-
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 ID = """
