@@ -1282,6 +1282,7 @@ VRF = {
         "config-if)#ip vrf forwarding <Blue>",
         "config-if)#ip address <192.168.1.254> <255.255.255.0>",
         "ip route vrf <VRF Name> <IP> <NetMask>",
+        "",
         "show ip route vrf <VRF Name>",
         "show ip vrf",
         "ping vrf <Blue> <192.168.1.1>"
@@ -1292,6 +1293,7 @@ VRF = {
         "이 인터페이스에 VRF를 <Blue>로 실행",
         "인터페이스 IP 지정",
         "VRF에 스태틱 라우트 설정",
+        "",
         "가상 라우팅 테이블 확인 (show ip route로는 VRF를 볼 수 없음)",
         "VRF 인터페이스 확인",
         "VRF의 인터페이스로 통신 확인"
@@ -1302,12 +1304,16 @@ VRF_OSPF = {
     "명령어": [
         "ISP(config)#router ospf 1 vrf Blue",
         "ISP(config-router)#network 192.168.1.0 0.0.0.255 area 0",
-        "ISP(config-router)#network 192.168.3.0 0.0.0.255 area 0"
+        "ISP(config-router)#network 192.168.3.0 0.0.0.255 area 0",
+        "",
+        "show ip route vrf <VRF Name> ospf"
     ],
     "설명": [
         "<Blue1>과 <Blue2> 사이에 존재하는 중앙 집결지의 <ISP>가 VRF로 OSPF 설정을 해줘야 함",
         "<ISP>가 <Blue1>의 네트워크와 Neighbor",
-        "<ISP>가 <Blue2>의 네트워크와 Neighbor"
+        "<ISP>가 <Blue2>의 네트워크와 Neighbor",
+        "",
+        "<이름>의 OSPF 테이블 확인."
     ]
 }
 
@@ -1320,6 +1326,7 @@ VRF_BGP = {
         "config-if)#ip address <192.168.1.254> <255.255.255.0>",
         "config)#router bgp [ASNum]",
         "config-router)# address-family ipv4 vrf [vrf_name]",
+        "",
         "show ip route vrf blue bgp",
         "show bgp vpnv4 unicast all summary",
         "show ip bgp vpnv4 vrf <VRF ID>",
@@ -1333,6 +1340,7 @@ VRF_BGP = {
         "인터페이스 IP 지정",
         "BGP Num을 지정하여 BGP 생성",
         "<이름>을 가진 VRF로 BGP를 실행",
+        "",
         "VRF <이름>의 BGP 테이블 확인",
         "BGP Neighbor 확인",
         "VRF를 구분하는 VRF RD 값 확인",
