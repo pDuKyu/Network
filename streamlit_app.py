@@ -1306,8 +1306,8 @@ VRF_OSPF = {
     ],
     "설명": [
         "<Blue1>과 <Blue2> 사이에 존재하는 중앙 집결지의 <ISP>가 VRF로 OSPF 설정을 해줘야 함",
-        "<ISP>가 <Blue1>의 네트워크를 광고",
-        "<ISP>가 <Blue2>의 네트워크를 광고"
+        "<ISP>가 <Blue1>의 네트워크와 Neighbor",
+        "<ISP>가 <Blue2>의 네트워크와 Neighbor"
     ]
 }
 
