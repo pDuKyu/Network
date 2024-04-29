@@ -1302,22 +1302,58 @@ VRF = {
     ]
 }
 
-VRF_IGP_BGP = {
+VRF_OSPF = {
     "명령어": [
-        "router ospf [pid] vrf [vrf_name]",
-        "router bgp [ASNum]",
-        "address-family ipv4 vrf [vrf_name]"
+        "Blue1(config)#router ospf 1",
+        "Blue1(config-router)#network 192.168.1.0 0.0.0.255 area 0",
+        "Blue2(config)#router ospf 1",
+        "Blue2(config-router)#network 192.168.3.0 0.0.0.255 area 0",
+        "ISP(config)#router ospf 1 vrf Blue",
+        "ISP(config-router)#network 192.168.1.0 0.0.0.255 area 0",
+        "ISP(config-router)#network 192.168.3.0 0.0.0.255 area 0"
     ],
     "설명": [
-        "<이름>을 가진 VRF에 OSPF를 실행",
+        "OSPF 지정.",
+        "Neighbor 설정.",
+        "OSPF 지정.",
+        "Nighbor 설정.",
+        "<Blue1>과 <Blue2> 사이에 존재하는 제 3의 <ISP>가 VRF로 OSPF 설정을 해줘야 함.",
+        "<ISP>가 <Blue1>의 Network 광고.",
+        "<ISP>가 <Blue2>의 Networ 광고."
+    ]
+}
+
+VRF_BGP = {
+    "명령어": [
+        "config)#ip vrf <Name>",
+        "config-vrf)#rd [ASN:nn]",
+        "config)#interface FastEthernet 0/0",
+        "config-if)# ip vrf forwarding [vrf_name]",
+        "config-if)#ip address <192.168.1.254> <255.255.255.0>",
+        "config)#router bgp [ASNum]",
+        "config-router)# address-family ipv4 vrf [vrf_name]",
+        "show ip route vrf blue bgp",
+        "show bgp vpnv4 unicast all summary",
+        "show ip bgp vpnv4 vrf <VRF ID>"
+    ],
+    "설명": [
+        "VRF 생성",
+        "BGP 연동 시 VRF를 구분하기 위한 값 지정",
+        "VRF를 적용할 인터페이스에 접근",
+        "특정 인터페이스에 VRF를 할당. 할당 시 이 인터페이스의 설정은 다 초기화 됨. (VLAN 인터페이스 지정과 같은 원리)",
+        "인터페이스 IP 지정",
         "BGP Num을 지정하여 BGP 생성",
-        "<이름>을 가진 VRF로 BGP를 실행"
+        "<이름>을 가진 VRF로 BGP를 실행",
+        "VRF <이름>의 BGP 테이블 확인",
+        "BGP Neighbor 확인",
+        "VRF를 구분하는 VRF RD 값 확인"
     ]
 }
 
 
 VRF_tables = {"VRF 설정 명령어":VRF,
-              "OSPF/BGP 연동 명령어": VRF_IGP_BGP
+              "OSPF 연동 명령어": VRF_OSPF,
+              "BGP 연동 명령어" VRF_BGP
            }
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1375,6 +1411,7 @@ if page == "Switch":
     st.markdown("이더넷 헤더  |  [ARP프로토콜](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#5adbab7beab0475fa1312af106c4b027)  |  [LAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#e90619ac89694afbbc76d2afb58b4c9e)  |  [VLAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#66916382c2cf4fd19cf6adba72d58959)  |  [트렁크](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#526de6ef5bb84ff19d52a84b566874b5)  |  [VTP](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#fce97913a59848acb4a5278b5e5b3087)  |  [Native VLAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#86d55c1d27ee474ca347af8256c86884)  |  [Allowed VLAN](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#9373ea0a750841a79ca58ef0ca04a3aa)  |  [Spanning-Tree](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#a68460c49db24bd4b1f7d3a4366e08fc)  |  [BPDU](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#1f379c70abb74050a09b73db36a6c637)  |  [PVST](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#3c834b70666d412d9f923729c9f76a80)  |  [RPVST](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#1266000c9e5e4ddf8a5131b1f07b586c)  |  [Etherchannel](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#907033e4a07f4a6a9a9c9362348b68ee)  |  [SVI](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#d2d0e2925f044cc4ba888e64409c5fcc)  |  [Routedport](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#db1a0bd441024c4e8b9464677a82827e)  |  [HSRP](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#8ecacfb272d547a4b91495a791142b0f)  |  [VRRP](https://www.notion.so/543021e334a04929a75f00db36ec89f9?pvs=4#9307d07092d548b0a933428db3afcc09)")
 
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -1408,7 +1445,8 @@ elif page == "Router":
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-# 라우터 페이지
+# 방화벽 페이지
+
 elif page == "FireWall":
     # 네트워크 설정 명령어로 대제목 설정
     st.title('방화벽 설정 명령어')
@@ -1425,6 +1463,7 @@ elif page == "FireWall":
 
 
 # VPN 페이지
+
 elif page == "VPN":
     # 네트워크 설정 명령어로 대제목 설정
     st.title('VPN 설정 명령어')
@@ -1443,6 +1482,7 @@ elif page == "VPN":
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 # VRF 페이지
+
 elif page == "VRF":
     # 네트워크 설정 명령어로 대제목 설정
     st.title('VRF 설정 명령어')
