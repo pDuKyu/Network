@@ -1487,7 +1487,7 @@ elif page == "VRF":
     # 네트워크 설정 명령어로 대제목 설정
     st.title('VRF 설정 명령어')
 
-#리스트 기능
+#리스트 기능.
     table_names5 = list(VRF_tables.keys())
     selected_table5 = st.selectbox("", table_names5)  
 
