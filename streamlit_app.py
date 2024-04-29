@@ -1277,12 +1277,10 @@ V_tables = {"GRE 명령어": GRE,
 
 VRF = {
     "명령어": [
-        "ip vrf [vrf_name]",
-        "rd [ASN:nn]",
-        "ip vrf forwarding [vrf_name]",
-        "interface FastEthernet 0/0",
-        "ip vrf forwarding <Blue>",
-        "ip address <192.168.1.254> <255.255.255.0>",
+        "config)# ip vrf [vrf_name]",
+        "config)#interface FastEthernet 0/0",
+        "config-if)#ip vrf forwarding <Blue>",
+        "config-if)#ip address <192.168.1.254> <255.255.255.0>",
         "ip route vrf <VRF Name> <IP> <NetMask>",
         "show ip route vrf <VRF Name>",
         "show ip vrf",
@@ -1290,11 +1288,9 @@ VRF = {
     ],
     "설명": [
         "VRF 이름 지정 (대소문자 구분)",
-        "BGP 연동 시 VRF를 구분하기 위한 값 지정",
-        "특정 인터페이스에 VRF를 할당. 할당 시 이 인터페이스의 설정은 다 초기화 됨. (VLAN 인터페이스 지정과 같은 원리)",
-        "VRF를 적용할 인터페이스 접근",
+        "VRF를 적용할 인터페이스에 접근",
         "이 인터페이스에 VRF를 <Blue>로 실행",
-        "인터페이스 IP 주소 지정",
+        "인터페이스 IP 지정",
         "VRF에 스태틱 라우트 설정",
         "가상 라우팅 테이블 확인 (show ip route로는 VRF를 볼 수 없음)",
         "VRF 인터페이스 확인",
@@ -1304,22 +1300,14 @@ VRF = {
 
 VRF_OSPF = {
     "명령어": [
-        "Blue1(config)#router ospf 1",
-        "Blue1(config-router)#network 192.168.1.0 0.0.0.255 area 0",
-        "Blue2(config)#router ospf 1",
-        "Blue2(config-router)#network 192.168.3.0 0.0.0.255 area 0",
         "ISP(config)#router ospf 1 vrf Blue",
         "ISP(config-router)#network 192.168.1.0 0.0.0.255 area 0",
         "ISP(config-router)#network 192.168.3.0 0.0.0.255 area 0"
     ],
     "설명": [
-        "OSPF 지정.",
-        "Neighbor 설정.",
-        "OSPF 지정.",
-        "Nighbor 설정.",
-        "<Blue1>과 <Blue2> 사이에 존재하는 제 3의 <ISP>가 VRF로 OSPF 설정을 해줘야 함.",
-        "<ISP>가 <Blue1>의 Network 광고.",
-        "<ISP>가 <Blue2>의 Networ 광고."
+        "<Blue1>과 <Blue2> 사이에 존재하는 중앙 집결지의 <ISP>가 VRF로 OSPF 설정을 해줘야 함",
+        "<ISP>가 <Blue1>의 네트워크를 광고",
+        "<ISP>가 <Blue2>의 네트워크를 광고"
     ]
 }
 
@@ -1334,26 +1322,28 @@ VRF_BGP = {
         "config-router)# address-family ipv4 vrf [vrf_name]",
         "show ip route vrf blue bgp",
         "show bgp vpnv4 unicast all summary",
-        "show ip bgp vpnv4 vrf <VRF ID>"
+        "show ip bgp vpnv4 vrf <VRF ID>",
+        "제3의 라우터와 테이블 공유 시"
     ],
     "설명": [
         "VRF 생성",
         "BGP 연동 시 VRF를 구분하기 위한 값 지정",
         "VRF를 적용할 인터페이스에 접근",
-        "특정 인터페이스에 VRF를 할당. 할당 시 이 인터페이스의 설정은 다 초기화 됨. (VLAN 인터페이스 지정과 같은 원리)",
+        "특정 인터페이스에 VRF를 할당. 할당할 시 이 인터페이스의 설정은 다 초기화 됨. (VLAN 인터페이스 지정과 같은 원리)",
         "인터페이스 IP 지정",
         "BGP Num을 지정하여 BGP 생성",
         "<이름>을 가진 VRF로 BGP를 실행",
         "VRF <이름>의 BGP 테이블 확인",
         "BGP Neighbor 확인",
-        "VRF를 구분하는 VRF RD 값 확인"
+        "VRF를 구분하는 VRF RD 값 확인",
+        "제 3의 라우터도 같은 rd 값을 가진 라우팅 테이블을 구성해야 공유 가능"
     ]
 }
 
 
-VRF_tables = {"VRF 설정 명령어":VRF,
-              "OSPF 연동 명령어": VRF_OSPF,
-              "BGP 연동 명령어": VRF_BGP
+VRF_tables = {"VRF 설정 명령어 (집결지 라우터만 설정)":VRF,
+              "OSPF 연동 명령어 (집결지 라우터만 설정)": VRF_OSPF,
+              "BGP 연동 명령어 (집결지 라우터만 설정)": VRF_BGP
            }
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
