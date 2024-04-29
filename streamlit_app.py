@@ -1306,14 +1306,16 @@ VRF_OSPF = {
         "ISP(config-router)#network 192.168.1.0 0.0.0.255 area 0",
         "ISP(config-router)#network 192.168.3.0 0.0.0.255 area 0",
         "",
-        "show ip route vrf <VRF Name> ospf"
+        "show ip route vrf <VRF Name> ospf",
+        "여러 VRF로 OSPF를 구성할 시"
     ],
     "설명": [
         "<Blue1>과 <Blue2> 사이에 존재하는 중앙 집결지의 <ISP>가 VRF로 OSPF 설정을 해줘야 함",
         "<ISP>가 <Blue1>의 네트워크와 Neighbor",
         "<ISP>가 <Blue2>의 네트워크와 Neighbor",
         "",
-        "<이름>의 OSPF 테이블 확인."
+        "<이름>의 OSPF 테이블 확인.",
+        "OSPF의 ID를 다르게 설정해야 함"
     ]
 }
 
