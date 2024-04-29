@@ -1307,6 +1307,7 @@ VRF_OSPF = {
         "ISP(config-router)#network 192.168.3.0 0.0.0.255 area 0",
         "",
         "show ip route vrf <VRF Name> ospf",
+        "",
         "여러 VRF로 OSPF를 구성할 시"
     ],
     "설명": [
@@ -1315,6 +1316,7 @@ VRF_OSPF = {
         "<ISP>가 <Blue2>의 네트워크와 Neighbor",
         "",
         "<이름>의 OSPF 테이블 확인.",
+        "",
         "OSPF의 ID를 다르게 설정해야 함"
     ]
 }
@@ -1332,6 +1334,7 @@ VRF_BGP = {
         "show ip route vrf blue bgp",
         "show bgp vpnv4 unicast all summary",
         "show ip bgp vpnv4 vrf <VRF ID>",
+        "",
         "제3의 라우터와 테이블 공유 시"
     ],
     "설명": [
@@ -1346,6 +1349,7 @@ VRF_BGP = {
         "VRF <이름>의 BGP 테이블 확인",
         "BGP Neighbor 확인",
         "VRF를 구분하는 VRF RD 값 확인",
+        "",
         "제 3의 라우터도 같은 rd 값을 가진 라우팅 테이블을 구성해야 공유 가능"
     ]
 }
