@@ -795,7 +795,7 @@ network_commands = {
         })
     },
     "IPsec 명령어": {
-        "[Phase1] IPsec ISAKMP SA 생성": pd.DataFrame({
+        "[Phase1] ISAKMP SA 생성": pd.DataFrame({
             "명령어": [
                 "(config)#crypto isakmp policy 1",
                 "(config-isakmp)#encryption aes",
@@ -813,7 +813,7 @@ network_commands = {
                 "특정 IP 주소에 대한 ISAKMP 사전 Pre-Shared Key(사전 공유 키)를 설정"
             ]
         }),
-        "[Phase2] IPsec IPsec SA 생성": pd.DataFrame({
+        "[Phase2] IPsec SA 생성": pd.DataFrame({
             "명령어": [
                 "(config)#crypto ipsec transform-set <MYTRANSFORMSET> esp-aes esp-sha-hmac"
             ],
@@ -864,7 +864,7 @@ network_commands = {
         })
     },
     "IPsec Dynamic Crypto Map 명령어": {
-        "[Phase1] IPsec_Dynamic Crypto MAP ISAKMP SA 생성" : pd.DataFrame({
+        "[Phase1] ISAKMP SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)# crypto isakmp policy 10",
                 "(config-isakmp)# encryption 3des",
@@ -883,7 +883,7 @@ network_commands = {
             ]
         }),
         
-        "[Phase2] IPsec_Dynamic Crypto MAP IPsec SA 생성" : pd.DataFrame({
+        "[Phase2] IPsec SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)# ip access-list extended <ACL 이름>",
                 "(config-ext-nacl)# permit ip <sIP> <Wmask> <dIP> <Wmask>",
@@ -896,7 +896,7 @@ network_commands = {
             ]
         }),
         
-        "[Phase3] IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성 및 적용" : pd.DataFrame({
+        "[Phase3] Dynamic Crypto MAP생성 및 적용" : pd.DataFrame({
             "명령어": [
                 "(config)# crypto dynamic-map <DMAP> 10",
                 "(config-crypto-map)# match address <ACL 이름>",
@@ -942,7 +942,7 @@ network_commands = {
         }),
         
         
-        "[Phase2] IPsec ISAKMP SA 생성" : pd.DataFrame({
+        "[Phase2] ISAKMP SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)#crypto isakmp policy 1",
                 "(config-isakmp)#encryption aes",
@@ -961,7 +961,7 @@ network_commands = {
             ]
         }),
         
-        "[Phase3] IPsec IPsec SA 생성" : pd.DataFrame({
+        "[Phase3] IPsec SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)#crypto ipsec transform-set <MYTRANSFORMSET> esp-aes esp-sha-hmac"
             ],
@@ -970,7 +970,7 @@ network_commands = {
             ]
         }),
         
-        "[Phase4] IPsec Crypto MAP 생성 및 적용": pd.DataFrame({
+        "[Phase4] Crypto MAP 생성 및 적용": pd.DataFrame({
             "명령어": [
                 "(config)#crypto map <CRYPTOMAP> 10 ipsec-isakmp",
                 "(config-crypto-map)#set peer <상대 라우터 퍼블릭 인터페이스 IP>",
@@ -1011,7 +1011,7 @@ network_commands = {
         })
     },
     "IPsec VTI 명령어": {
-        "[Phase1] IPsec VTI ISAKMP SA 생성": pd.DataFrame({
+        "[Phase1] ISAKMP SA 생성": pd.DataFrame({
             "명령어": [
                 "crypto isakmp policy 10",
                 "encryption aes",
@@ -1030,7 +1030,7 @@ network_commands = {
             ]
         }),
         
-        "[Phase2] IPsec VTI IPsec SA 생성" : pd.DataFrame({
+        "[Phase2] IPsec SA 생성" : pd.DataFrame({
             "명령어": [
                 "crypto ipsec transform-set PHASE2 esp-aes esp-sha-hmac"
             ],
@@ -1072,7 +1072,7 @@ network_commands = {
         })
     },
     "ASA_IPsec_VPN 명령어": {
-        "[Phase1] ASA IPsec VPN SAKMP SA 생성" : pd.DataFrame({
+        "[Phase1] SAKMP SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)# crypto ikev1 policy 10",
                 "(config-ikev1-policy)# authentication pre-share",
@@ -1102,7 +1102,7 @@ network_commands = {
         }),
         
         
-        "[Phase2] ASA_IPsec VPN IPsec SA 생성" : pd.DataFrame({
+        "[Phase2] IPsec SA 생성" : pd.DataFrame({
             "명령어": [
                 "crypto ipsec ikev1 transform-set MY_TRANSFORM_SET esp-aes-256 esp-sha-hmac",
                 "access-list LAN1_LAN2 extended permit ip 192.168.1.0 255.255.255.0 192.168.2.0 255.255.255.0"
