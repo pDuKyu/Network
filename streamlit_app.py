@@ -1813,7 +1813,15 @@ elif page == "VRF":
     if selected_command:
         selected_details = st.selectbox(f"{selected_command}의 세부 내용 선택", list(dict2[selected_command].keys()))
     
-    st.dataframe(selected_details, width=800)
+        # 선택된 세부 내용에 따라 출력
+        if selected_details:
+            if isinstance(dict2[selected_command][selected_details], list):
+                st.write("내용:")
+                option_df = pd.DataFrame({"옵션": dict2[selected_command][selected_details]})
+                st.write(option_df)
+            else:
+                st.write(dict2[selected_command][selected_details])
+
         
 
 
