@@ -1748,21 +1748,21 @@ elif page == "VPN":
     selected_df4 = V_tables[selected_table4]
     st.dataframe(selected_df4, width=800)
 
-# dict1의 명령어 선택
-selected_command12 = st.selectbox("명령어 선택", VPN_LIST)
-
-# 선택된 명령어에 따라 dict2의 세부 내용 표시
-if selected_command12:
-    selected_details = st.selectbox(f"{selected_command12}의 세부 내용 선택", list(network_commands[selected_command12].keys()))
-
-    # 선택된 세부 내용에 따라 출력
-    if selected_details:
-        if isinstance(network_commands[selected_command12][selected_details], list):
-            st.write("내용:")
-            option_df = pd.DataFrame({"옵션": network_commands[selected_command12][selected_details]})
-            st.write(option_df)
-        else:
-            st.write(network_commands[selected_command12][selected_details])
+    # dict1의 명령어 선택
+    selected_command12 = st.selectbox("명령어 선택", VPN_LIST)
+    
+    # 선택된 명령어에 따라 dict2의 세부 내용 표시
+    if selected_command12:
+        selected_details = st.selectbox(f"{selected_command12}의 세부 내용 선택", list(network_commands[selected_command12].keys()))
+    
+        # 선택된 세부 내용에 따라 출력
+        if selected_details:
+            if isinstance(network_commands[selected_command12][selected_details], list):
+                st.write("내용:")
+                option_df = pd.DataFrame({"옵션": network_commands[selected_command12][selected_details]})
+                st.write(option_df)
+            else:
+                st.write(network_commands[selected_command12][selected_details])
 
 
 
@@ -1784,42 +1784,6 @@ elif page == "VRF":
 
 
 
-    # dict1과 dict2 정의
-    dict1 = ["도움말", "검색", "저장"]
-    
-    dict2 = {
-        "도움말": {
-            "사용 예시": "도움말 명령어 사용법",
-            "상세 설명": "사용 가능한 명령어 목록을 표시합니다.",
-            "도움말 옵션": ["-상세: 명령어에 대한 상세 정보 표시"]
-        },
-        "검색": {
-            "사용 방법": "검색어를 입력하고 엔터 키를 누르세요.",
-            "기능 설명": "인터넷에서 정보를 검색합니다.",
-            "예시": "예시: '검색 openai'를 입력하여 OpenAI에 대한 정보를 검색합니다."
-        },
-        "저장": {
-            "사용 방법": "저장할 파일명을 입력하고 엔터 키를 누르세요.",
-            "기능 설명": "작업한 내용을 저장합니다.",
-            "옵션": ["-경로 [경로]: 저장할 파일의 경로 지정"]
-        }
-    }
-    
-    # dict1의 명령어 선택
-    selected_command = st.selectbox("명령어 선택", dict1)
-    
-    # 선택된 명령어에 따라 dict2의 세부 내용 표시
-    if selected_command:
-        selected_details = st.selectbox(f"{selected_command}의 세부 내용 선택", list(dict2[selected_command].keys()))
-    
-        # 선택된 세부 내용에 따라 출력
-        if selected_details:
-            if isinstance(dict2[selected_command][selected_details], list):
-                st.write("내용:")
-                option_df = pd.DataFrame({"옵션": dict2[selected_command][selected_details]})
-                st.write(option_df)
-            else:
-                st.write(dict2[selected_command][selected_details])
 
         
 
