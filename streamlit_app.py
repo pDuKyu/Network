@@ -1499,6 +1499,45 @@ elif page == "VRF":
     selected_df5 = VRF_tables[selected_table5]
     st.dataframe(selected_df5, width=800)
 
+
+
+
+    # dict1과 dict2 정의
+    dict1 = ["도움말", "검색", "저장"]
+    
+    dict2 = {
+        "도움말": {
+            "사용 예시": "도움말 명령어",
+            "기능": "사용 가능한 명령어 목록을 표시합니다.",
+            "옵션": ["-상세: 명령어에 대한 상세 정보 표시"]
+        },
+        "검색": {
+            "사용 예시": "검색 [키워드]",
+            "기능": "인터넷에서 정보를 검색합니다.",
+            "옵션": ["-상세: 검색 결과를 상세히 보여줍니다."]
+        },
+        "저장": {
+            "사용 예시": "저장",
+            "기능": "작업한 내용을 저장합니다.",
+            "옵션": ["-경로 [경로]: 저장할 파일의 경로 지정"]
+        }
+    }
+    
+    # dict1의 명령어 선택
+    selected_command = st.selectbox("명령어 선택", dict1)
+    
+    # 선택된 명령어에 따라 dict2의 세부 내용 표시
+    if selected_command:
+        selected_details = st.selectbox(f"{selected_command}의 세부 내용 선택", list(dict2[selected_command].keys()))
+    
+        # 선택된 세부 내용에 따라 출력
+        if selected_details:
+            if selected_details == "옵션":
+                st.write("옵션에 대한 내용:")
+                option_df = pd.DataFrame({"옵션": dict2[selected_command]["옵션"]})
+                st.write(option_df)
+            else:
+                st.write(dict2[selected_command][selected_details])
     
 
 
