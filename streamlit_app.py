@@ -1287,7 +1287,7 @@ network_commands = {
         }
     },
     "GRE over IPsec 명령어": {
-        "GRE_over_IPsec_GRE 명령어" : {
+        "GRE 명령어" : {
             "명령어": [
                 "(config)#interface tunnel <Tunnel Num>",
                 "(config-if)#tunnel source <SIP or IF>",
@@ -1313,7 +1313,7 @@ network_commands = {
         },
         
         
-        "GRE_over_IPsec_ISAKMP_SA 생성" : {
+        "IPsec ISAKMP SA 생성" : {
             "명령어": [
                 "(config)#crypto isakmp policy 1",
                 "(config-isakmp)#encryption aes",
@@ -1332,7 +1332,7 @@ network_commands = {
             ]
         },
         
-        "GRE_over_IPsec_IPsec_SA 생성" : {
+        "IPsec IPsec SA 생성" : {
             "명령어": [
                 "(config)#crypto ipsec transform-set <MYTRANSFORMSET> esp-aes esp-sha-hmac"
             ],
@@ -1342,7 +1342,7 @@ network_commands = {
             ]
         },
         
-        "GRE_over_IPsec_Crypto_MAP 생성 및 적용": {
+        "IPsec Crypto MAP 생성 및 적용": {
             "명령어": [
                 "(config)#crypto map <CRYPTOMAP> 10 ipsec-isakmp",
                 "(config-crypto-map)#set peer <상대 라우터 퍼블릭 인터페이스 IP>",
@@ -1365,7 +1365,7 @@ network_commands = {
             ]
         },
         
-        "GRE_over_IPsec_확인": {
+        "GRE over IPsec 확인": {
             "명령어": [
                 "ping 통신 시도",
                 "show crypto ipsec sa",
@@ -1383,15 +1383,124 @@ network_commands = {
         }
     },
     "IPsec VTI 명령어": {
-        "IPsec VTI ISAKMP SA 생성": "IPsec_VTI_ISAKMP_SA",
-        "IPsec VTI IPsec SA 생성": "IPsec_VTI_IPsec_SA",
-        "IPsec_Profile 생성": "IPsec_Profile",
-        "VTI Tunnel 동작": "VTI_Tunnel"
+        "IPsec VTI ISAKMP SA 생성": {
+            "명령어": [
+                "crypto isakmp policy 10",
+                "encryption aes",
+                "authentication pre-share",
+                "hash md5",
+                "group 2",
+                "crypto isakmp key cisco address 0.0.0.0 0.0.0.0"
+            ],
+            "설명": [
+                "IKE 정책을 설정 (정책 번호 10)",
+                "AES 암호화 알고리즘을 사용",
+                "사전 공유 키 방식의 인증을 설정",
+                "MD5 해시 알고리즘을 사용",
+                "Diffie-Hellman 그룹 번호를 설정",
+                "동적 IP를 가진 라우터와 VPN 터널을 설정하기 위한 사전 공유 키를 지정. (고정 IP를 가졌다면 그 IP를 지정)"
+            ]
+        },
+        
+        "IPsec VTI IPsec SA 생성" : {
+            "명령어": [
+                "crypto ipsec transform-set PHASE2 esp-aes esp-sha-hmac"
+            ],
+            "설명": [
+                "IPSec 변환 세트를 설정. 'PHASE2'는 사용자가 정의한 이름."
+            ]
+        },
+        
+        "IPsec Profile 생성" : {
+            "명령어": [
+                "crypto ipsec profile VTI-PROFILE",
+                "set transform-set PHASE2"
+            ],
+            "설명": [
+                "IPSec 프로필을 설정. 'VTI-PROFILE'은 사용자가 정의한 프로필 이름.",
+                "프로필에 IPSec 변환 세트를 설정. 'PHASE2'는 이전에 정의한 변환 세트의 이름."
+            ]
+        },
+        
+        "VTI_Tunnel 생성 및 적용" : {
+            "명령어": [
+                "interface tunnel <Num>",
+                "ip address <IP> <Netmask>",
+                "tunnel source <sIP>",
+                "tunnel destination <dIP>",
+                "tunnel mode ipsec ipv4",
+                "tunnel protection ipsec profile VTI-PROFILE",
+                "OSPF Neighbor"
+            ],
+            "설명": [
+                "터널 인터페이스를 설정",
+                "터널 인터페이스에 IP 주소를 할당",
+                "터널의 출발지 IP 주소를 설정",
+                "터널의 목적지 IP 주소를 설정. (상대가 동적 IP를 가지고 있다면 생략)",
+                "터널을 VTI로 동작하게 설정",
+                "터널에 IPSec 프로필을 적용하여 보안을 활성화. 'VTI-PROFILE'은 이전에 정의한 IPSec 프로필의 이름",
+                "OSPF 설정으로 경로 광고 및 학습"
+            ]
+        }
     },
     "ASA_IPsec_VPN 명령어": {
-        "ASA_IPsec_VPN_SAKMP_SA 생성": "ASA_IPsec_VPN_SAKMP_SA",
-        "ASA_IPsec_VPN_IPsec_SA 생성": "ASA_IPsec_VPN_IPsec_SA",
-        "Crypto_MAP 생성 및 적용": "Crypto_MAP"
+        "ASA IPsec VPN SAKMP SA 생성" : {
+            "명령어": [
+                "(config)# crypto ikev1 policy 10",
+                "(config-ikev1-policy)# authentication pre-share",
+                "(config-ikev1-policy)# encryption aes",
+                "(config-ikev1-policy)# hash sha",
+                "(config-ikev1-policy)# group 2",
+                "(config-ikev1-policy)# lifetime 3600",
+                "(config)# crypto ikev1 enable OUTSIDE",
+                "(config)# crypto isakmp identity address",
+                "(config)# tunnel-group 10.10.10.2 type ipsec-l2l",
+                "(config)# tunnel-group 10.10.10.2 ipsec-attributes",
+                "(config-tunnel-ipsec)# ikev1 pre-shared-key MY_SHARED_KEY"
+            ],
+            "설명": [
+                "IKEv1 정책을 설정. '10'은 정책 번호.",
+                "사전 공유 키 방식의 인증을 사용.",
+                "AES 암호화 알고리즘을 사용.",
+                "SHA 해시 알고리즘을 사용.",
+                "Diffie-Hellman 그룹 번호를 설정.",
+                "보안 연결의 수명을 3600초로 설정.",
+                "IKEv1을 외부 (OUTSIDE) 인터페이스에 활성화.",
+                "ISAKMP 신원 검사를 IP 주소로 설정.",
+                "IPsec 사이트 간 터널 그룹을 설정. 여기서 '10.10.10.2'는 터널의 대상 peer IP 주소. L2끼리 맺는 설정.",
+                "IPsec 터널 그룹의 속성을 설정.",
+                "IKEv1 사전 공유 키를 설정. 'MY_SHARED_KEY'는 공유 키의 실제 값."
+            ]
+        },
+        
+        
+        "ASA_IPsec VPN IPsec SA 생성" : {
+            "명령어": [
+                "crypto ipsec ikev1 transform-set MY_TRANSFORM_SET esp-aes-256 esp-sha-hmac",
+                "access-list LAN1_LAN2 extended permit ip 192.168.1.0 255.255.255.0 192.168.2.0 255.255.255.0"
+            ],
+            "설명": [
+                "IPSec IKEv1 변환 세트를 설정. 데이터를 AES-256 알고리즘으로 암호화하고, SHA 해시를 사용하여 데이터 무결성을 보장.",
+                "ACL을 설정하여 LAN1 네트워크에서 LAN2 네트워크로의 모든 IP 트래픽을 허용."
+            ]
+        },
+        
+        "Crypto MAP 생성 및 적용" : {
+            "명령어": [
+                "crypto map MY_CRYPTO_MAP 10 match address LAN1_LAN2",
+                "crypto map MY_CRYPTO_MAP 10 set peer 10.10.10.2",
+                "crypto map MY_CRYPTO_MAP 10 set ikev1 transform-set MY_TRANSFORM_SET",
+                "crypto map MY_CRYPTO_MAP 10 set security-association lifetime seconds 3600",
+                "crypto map MY_CRYPTO_MAP interface OUTSIDE"
+            ],
+            "설명": [
+                "ACL 'LAN1_LAN2'와 일치하는 트래픽만 해당 IPSec 보안 정책에 매치.",
+                "터널의 대상 피어 IP 주소를 설정. 여기서 '10.10.10.2'는 터널의 대상 IP 주소.",
+                "IKEv1 변환 세트를 'MY_TRANSFORM_SET'으로 설정.",
+                "보안 연결 수명을 3600초로 설정.",
+                "'OUTSIDE' 인터페이스에 'MY_CRYPTO_MAP' IPSec 맵을 적용하여 외부와의 통신에 보안을 적용."
+            ]
+        }
     }
 }
 
