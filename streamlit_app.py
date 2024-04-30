@@ -1066,6 +1066,76 @@ VTI_Tunnel = {
 }
 
 
+# 데이터 생성
+ASA_IPsec_VPN_SAKMP_SA = {
+    "명령어": [
+        "(config)# crypto ikev1 policy 10",
+        "(config-ikev1-policy)# authentication pre-share",
+        "(config-ikev1-policy)# encryption aes",
+        "(config-ikev1-policy)# hash sha",
+        "(config-ikev1-policy)# group 2",
+        "(config-ikev1-policy)# lifetime 3600",
+        "(config)# crypto ikev1 enable OUTSIDE",
+        "(config)# crypto isakmp identity address",
+        "(config)# tunnel-group 10.10.10.2 type ipsec-l2l",
+        "(config)# tunnel-group 10.10.10.2 ipsec-attributes",
+        "(config-tunnel-ipsec)# ikev1 pre-shared-key MY_SHARED_KEY"
+    ],
+    "설명": [
+        "IKEv1 정책을 설정. '10'은 정책 번호.",
+        "사전 공유 키 방식의 인증을 사용.",
+        "AES 암호화 알고리즘을 사용.",
+        "SHA 해시 알고리즘을 사용.",
+        "Diffie-Hellman 그룹 번호를 설정.",
+        "보안 연결의 수명을 3600초로 설정.",
+        "IKEv1을 외부 (OUTSIDE) 인터페이스에 활성화.",
+        "ISAKMP 신원 검사를 IP 주소로 설정.",
+        "IPsec 사이트 간 터널 그룹을 설정. 여기서 '10.10.10.2'는 터널의 대상 peer IP 주소. L2끼리 맺는 설정.",
+        "IPsec 터널 그룹의 속성을 설정.",
+        "IKEv1 사전 공유 키를 설정. 'MY_SHARED_KEY'는 공유 키의 실제 값."
+    ]
+}
+
+
+ASA_IPsec_VPN_IPsec_SA = {
+    "명령어": [
+        "crypto ipsec ikev1 transform-set MY_TRANSFORM_SET esp-aes-256 esp-sha-hmac",
+        "access-list LAN1_LAN2 extended permit ip 192.168.1.0 255.255.255.0 192.168.2.0 255.255.255.0"
+    ],
+    "설명": [
+        "IPSec IKEv1 변환 세트를 설정. 데이터를 AES-256 알고리즘으로 암호화하고, SHA 해시를 사용하여 데이터 무결성을 보장.",
+        "ACL을 설정하여 LAN1 네트워크에서 LAN2 네트워크로의 모든 IP 트래픽을 허용."
+    ]
+}
+
+Crypto_MAP = {
+    "명령어": [
+        "crypto map MY_CRYPTO_MAP 10 match address LAN1_LAN2",
+        "crypto map MY_CRYPTO_MAP 10 set peer 10.10.10.2",
+        "crypto map MY_CRYPTO_MAP 10 set ikev1 transform-set MY_TRANSFORM_SET",
+        "crypto map MY_CRYPTO_MAP 10 set security-association lifetime seconds 3600",
+        "crypto map MY_CRYPTO_MAP interface OUTSIDE"
+    ],
+    "설명": [
+        "ACL 'LAN1_LAN2'와 일치하는 트래픽만 해당 IPSec 보안 정책에 매치.",
+        "터널의 대상 피어 IP 주소를 설정. 여기서 '10.10.10.2'는 터널의 대상 IP 주소.",
+        "IKEv1 변환 세트를 'MY_TRANSFORM_SET'으로 설정.",
+        "보안 연결 수명을 3600초로 설정.",
+        "'OUTSIDE' 인터페이스에 'MY_CRYPTO_MAP' IPSec 맵을 적용하여 외부와의 통신에 보안을 적용."
+    ]
+}
+
+#--------------------------------------------------------------------------------------------------------------------------------------------
+VPN_LIST = ["GRE 명령어", 
+            "IPsec 명령어", 
+            "IPsec IPsec SA 생성", 
+            "Crypto MAP 생성 및 적용", 
+            "IPsec 기본 명령어", 
+            "IPsec Dynamic Crypto Map 명령어", 
+            "GRE over IPsec 명령어", 
+            "IPsec VTI 명령어",
+           "ASA_IPsec_VPN 명령어"]
+
 network_commands = {
     "GRE 명령어": {
         "명령어": [
@@ -1178,67 +1248,17 @@ network_commands = {
         "IPsec VTI IPsec SA 생성": IPsec_VTI_IPsec_SA,
         "IPsec_Profile 생성": IPsec_Profile,
         "VTI Tunnel 동작": VTI_Tunnel
+    },
+    "ASA_IPsec_VPN 명령어": {
+        "ASA_IPsec_VPN_SAKMP_SA 생성": ASA_IPsec_VPN_SAKMP_SA,
+        "ASA_IPsec_VPN_IPsec_SA 생성": ASA_IPsec_VPN_IPsec_SA,
+        "Crypto_MAP 생성 및 적용": Crypto_MAP
     }
 }
 
-# 데이터 생성
-ASA_IPsec_VPN_SAKMP_SA = {
-    "명령어": [
-        "(config)# crypto ikev1 policy 10",
-        "(config-ikev1-policy)# authentication pre-share",
-        "(config-ikev1-policy)# encryption aes",
-        "(config-ikev1-policy)# hash sha",
-        "(config-ikev1-policy)# group 2",
-        "(config-ikev1-policy)# lifetime 3600",
-        "(config)# crypto ikev1 enable OUTSIDE",
-        "(config)# crypto isakmp identity address",
-        "(config)# tunnel-group 10.10.10.2 type ipsec-l2l",
-        "(config)# tunnel-group 10.10.10.2 ipsec-attributes",
-        "(config-tunnel-ipsec)# ikev1 pre-shared-key MY_SHARED_KEY"
-    ],
-    "설명": [
-        "IKEv1 정책을 설정. '10'은 정책 번호.",
-        "사전 공유 키 방식의 인증을 사용.",
-        "AES 암호화 알고리즘을 사용.",
-        "SHA 해시 알고리즘을 사용.",
-        "Diffie-Hellman 그룹 번호를 설정.",
-        "보안 연결의 수명을 3600초로 설정.",
-        "IKEv1을 외부 (OUTSIDE) 인터페이스에 활성화.",
-        "ISAKMP 신원 검사를 IP 주소로 설정.",
-        "IPsec 사이트 간 터널 그룹을 설정. 여기서 '10.10.10.2'는 터널의 대상 peer IP 주소. L2끼리 맺는 설정.",
-        "IPsec 터널 그룹의 속성을 설정.",
-        "IKEv1 사전 공유 키를 설정. 'MY_SHARED_KEY'는 공유 키의 실제 값."
-    ]
-}
+#--------------------------------------------------------------------------------------------------------------------------------------------
 
 
-ASA_IPsec_VPN_IPsec_SA = {
-    "명령어": [
-        "crypto ipsec ikev1 transform-set MY_TRANSFORM_SET esp-aes-256 esp-sha-hmac",
-        "access-list LAN1_LAN2 extended permit ip 192.168.1.0 255.255.255.0 192.168.2.0 255.255.255.0"
-    ],
-    "설명": [
-        "IPSec IKEv1 변환 세트를 설정. 데이터를 AES-256 알고리즘으로 암호화하고, SHA 해시를 사용하여 데이터 무결성을 보장.",
-        "ACL을 설정하여 LAN1 네트워크에서 LAN2 네트워크로의 모든 IP 트래픽을 허용."
-    ]
-}
-
-Crypto_MAP = {
-    "명령어": [
-        "crypto map MY_CRYPTO_MAP 10 match address LAN1_LAN2",
-        "crypto map MY_CRYPTO_MAP 10 set peer 10.10.10.2",
-        "crypto map MY_CRYPTO_MAP 10 set ikev1 transform-set MY_TRANSFORM_SET",
-        "crypto map MY_CRYPTO_MAP 10 set security-association lifetime seconds 3600",
-        "crypto map MY_CRYPTO_MAP interface OUTSIDE"
-    ],
-    "설명": [
-        "ACL 'LAN1_LAN2'와 일치하는 트래픽만 해당 IPSec 보안 정책에 매치.",
-        "터널의 대상 피어 IP 주소를 설정. 여기서 '10.10.10.2'는 터널의 대상 IP 주소.",
-        "IKEv1 변환 세트를 'MY_TRANSFORM_SET'으로 설정.",
-        "보안 연결 수명을 3600초로 설정.",
-        "'OUTSIDE' 인터페이스에 'MY_CRYPTO_MAP' IPSec 맵을 적용하여 외부와의 통신에 보안을 적용."
-    ]
-}
 
 
 
@@ -1480,7 +1500,21 @@ elif page == "VPN":
     selected_df4 = V_tables[selected_table4]
     st.dataframe(selected_df4, width=800)
 
+# dict1의 명령어 선택
+selected_command12 = st.selectbox("명령어 선택", VPN_LIST)
 
+# 선택된 명령어에 따라 dict2의 세부 내용 표시
+if selected_command12:
+    selected_details = st.selectbox(f"{selected_command12}의 세부 내용 선택", list(network_commands[selected_command12].keys()))
+
+    # 선택된 세부 내용에 따라 출력
+    if selected_details:
+        if isinstance(network_commands[selected_command12][selected_details], list):
+            st.write("내용:")
+            option_df = pd.DataFrame({"옵션": network_commands[selected_command12][selected_details]})
+            st.write(option_df)
+        else:
+            st.write(network_commands[selected_command12][selected_details])
 
 
 
