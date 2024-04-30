@@ -1337,8 +1337,7 @@ network_commands = {
                 "(config)#crypto ipsec transform-set <MYTRANSFORMSET> esp-aes esp-sha-hmac"
             ],
             "설명": [
-                "IPSec 변환 세트를 정의",
-                "이 세트는 데이터를 암호화하는 데 사용되며 AES 암호화 및 SHA 해시를 사용"
+                "IPSec 변환 세트를 정의. 이 세트는 데이터를 암호화하는 데 사용되며 AES 암호화 및 SHA 해시를 사용"
             ]
         }),
         
