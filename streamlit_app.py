@@ -1136,7 +1136,7 @@ VPN_LIST = ["GRE 명령어",
             "IPsec VTI 명령어",
            "ASA_IPsec_VPN 명령어"]
 
-network_commands = pd.DataFrame({
+network_commands = {
     "GRE 명령어": {
         "명령어": [
             "(config)#interface tunnel <Tunnel Num>",
@@ -1164,7 +1164,7 @@ network_commands = pd.DataFrame({
             "OSPF 라우터 구성",
             "터널의 IP로 IGP를 통해 지사 간 Neighbor P2P 연결"
         ]
-    }),
+    },
     "IPsec 명령어": pd.DataFrame({
         "IPsec ISAKMP SA 생성": {
             "명령어": [
