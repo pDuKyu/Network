@@ -1740,13 +1740,6 @@ elif page == "VPN":
     # 네트워크 설정 명령어로 대제목 설정
     st.title('VPN 설정 명령어')
 
-#리스트 기능
-    table_names4 = list(V_tables.keys())
-    selected_table4 = st.selectbox("", table_names4)  
-
-#테이블 시각화
-    selected_df4 = V_tables[selected_table4]
-    st.dataframe(selected_df4, width=800)
 
     # dict1의 명령어 선택
     selected_command12 = st.selectbox("명령어 선택", VPN_LIST)
