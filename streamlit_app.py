@@ -1217,20 +1217,22 @@ network_commands = {
         ]
     },
     "IPsec 기본 명령어": {
-        "명령어": [
-            "통신 시도",
-            "show crypto ipsec sa",
-            "show crypto isakmp sa",
-            "clear crypto isakmp",
-            "clear crypto sa"
-        ],
-        "설명": [
-            "통신 시도로 인해 터널 생성",
-            "IPSec 터널의 암호화 및 복호화 횟수 확인",
-            "ISAKMP 터널 테이블 확인",
-            "ISAKMP 터널 삭제",
-            "IPSec 터널 삭제"
-        ]
+        "IPsec 기본 명령어": {
+            "명령어": [
+                "통신 시도",
+                "show crypto ipsec sa",
+                "show crypto isakmp sa",
+                "clear crypto isakmp",
+                "clear crypto sa"
+            ],
+            "설명": [
+                "통신 시도로 인해 터널 생성",
+                "IPSec 터널의 암호화 및 복호화 횟수 확인",
+                "ISAKMP 터널 테이블 확인",
+                "ISAKMP 터널 삭제",
+                "IPSec 터널 삭제"
+            ]
+        }
     },
     "IPsec Dynamic Crypto Map 명령어": {
         "IPsec DMAP ISAKMP SA 생성": "IPsec_Dynamic_Crypto_MAP_ISAKMP_SA",
