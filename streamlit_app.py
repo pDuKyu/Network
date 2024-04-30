@@ -1346,7 +1346,7 @@ elif page == "VPN":
     
     # 선택된 명령어에 따라 dict2의 세부 내용 표시
     if selected_command12:
-        selected_details = st.selectbox(f"{selected_command12} 단계 선택", list(network_commands[selected_command12].keys()))
+        selected_details = st.selectbox(f"{selected_command12} Phase", list(network_commands[selected_command12].keys()))
     
         # 선택된 세부 내용에 따라 출력
         if selected_details:
