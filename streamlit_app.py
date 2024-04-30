@@ -1234,30 +1234,30 @@ network_commands = {
             ]
         }
     },
-    "IPsec Dynamic Crypto Map 명령어": {
-        "IPsec DMAP ISAKMP SA 생성": IPsec_Dynamic_Crypto_MAP_ISAKMP_SA,
-        "IPsec DMAP IPsec SA 생성": IPsec_Dynamic_Crypto_MAP_IPsec_SA,
-        "Dynamic MAP 생성 및 적용": IPsec_Dynamic_Crypto_MAP_IPsec_SA
-    },
-    "GRE over IPsec 명령어": {
-        "GRE over IPsec GRE 생성": GRE_over_IPsec_GRE,
-        "GRE over IPsec ISAKMP SA 생성": GRE_over_IPsec_ISAKMP_SA,
-        "GRE over IPsec IPsec SA 생성": GRE_over_IPsec_IPsec_SA,
-        "GRE over IPsec Crypto MAP 생성 및 적용": GRE_over_IPsec_Crypto_MAP,
-        "IPsec 기본 명령어": GRE_over_IPsec_FINAL
-    },
-    "IPsec VTI 명령어": {
-        "IPsec VTI ISAKMP SA 생성": IPsec_VTI_ISAKMP_SA,
-        "IPsec VTI IPsec SA 생성": IPsec_VTI_IPsec_SA,
-        "IPsec_Profile 생성": IPsec_Profile,
-        "VTI Tunnel 동작": VTI_Tunnel
-    },
-    "ASA_IPsec_VPN 명령어": {
-        "ASA_IPsec_VPN_SAKMP_SA 생성": ASA_IPsec_VPN_SAKMP_SA,
-        "ASA_IPsec_VPN_IPsec_SA 생성": ASA_IPsec_VPN_IPsec_SA,
-        "Crypto_MAP 생성 및 적용": Crypto_MAP
+        "IPsec Dynamic Crypto Map 명령어": {
+            "IPsec DMAP ISAKMP SA 생성": IPsec_Dynamic_Crypto_MAP_ISAKMP_SA,
+            "IPsec DMAP IPsec SA 생성": IPsec_Dynamic_Crypto_MAP_IPsec_SA,
+            "Dynamic MAP 생성 및 적용": IPsec_Dynamic_Crypto_MAP_IPsec_SA
+        },
+        "GRE over IPsec 명령어": {
+            "GRE over IPsec GRE 생성": GRE_over_IPsec_GRE,
+            "GRE over IPsec ISAKMP SA 생성": GRE_over_IPsec_ISAKMP_SA,
+            "GRE over IPsec IPsec SA 생성": GRE_over_IPsec_IPsec_SA,
+            "GRE over IPsec Crypto MAP 생성 및 적용": GRE_over_IPsec_Crypto_MAP,
+            "IPsec 기본 명령어": GRE_over_IPsec_FINAL
+        },
+        "IPsec VTI 명령어": {
+            "IPsec VTI ISAKMP SA 생성": IPsec_VTI_ISAKMP_SA,
+            "IPsec VTI IPsec SA 생성": IPsec_VTI_IPsec_SA,
+            "IPsec_Profile 생성": IPsec_Profile,
+            "VTI Tunnel 동작": VTI_Tunnel
+        },
+        "ASA_IPsec_VPN 명령어": {
+            "ASA_IPsec_VPN_SAKMP_SA 생성": ASA_IPsec_VPN_SAKMP_SA,
+            "ASA_IPsec_VPN_IPsec_SA 생성": ASA_IPsec_VPN_IPsec_SA,
+            "Crypto_MAP 생성 및 적용": Crypto_MAP
+        }
     }
-}
 
 #--------------------------------------------------------------------------------------------------------------------------------------------
 
