@@ -1252,7 +1252,7 @@ network_commands = {
                 "Diffie-Hellman 그룹 번호 설정 (그룹 2)",
                 "사전 공유 키 지정 및 대상 주소 설정"
             ]
-        }
+        },
         
         "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성" = {
             "명령어": [
@@ -1265,7 +1265,7 @@ network_commands = {
                 "내부 특정 IP 주소 및 서브넷간의 통신을 허용하는 ACL 규칙을 추가",
                 "IPSec 변환 세트를 정의. AES 암호화 및 SHA 해시를 사용"
             ]
-        }
+        },
         
         "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성 및 적용" = {
             "명령어": [
