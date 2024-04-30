@@ -1165,7 +1165,7 @@ network_commands = {
             "터널의 IP로 IGP를 통해 지사 간 Neighbor P2P 연결"
         ]
     },
-    "IPsec 명령어": ({
+    "IPsec 명령어": {
         "IPsec ISAKMP SA 생성": {
             "명령어": [
                 "(config)#crypto isakmp policy 1",
