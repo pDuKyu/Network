@@ -1138,33 +1138,34 @@ VPN_LIST = ["GRE 명령어",
 
 network_commands = {
     "GRE 명령어": {
-        "명령어": [
-            "(config)#interface tunnel <Tunnel Num>",
-            "(config-if)#tunnel source <SIP or IF>",
-            "(config-if)#tunnel destination <DIP>",
-            "(config-if)#ip address <IP> <Netmask>",
-            "(config-if)#tunnel key <Num>",
-            "(config-if)#keepalive <Num>",
-            "",
-            "show interfaces tunnel <Tunnel Num>",
-            "",
-            "(config)#router ospf 1",
-            "(config-router)#network <T SIP> <Net mask> area 0"
-        ],
-        "설명": [
-            "터널 인터페이스 생성",
-            "터널 Src IP로 사용할 IF 또는 IP 지정",
-            "터널 Dest IP 입력",
-            "터널의 논리적 IF의 IP 지정. 양쪽이 동일한 NET을 가져야 함",
-            "터널의 키 값 지정(양쪽이 동일해야 함)",
-            "Health Check 메세지 초 지정",
-            "",
-            "터널 정보 확인",
-            "",
-            "OSPF 라우터 구성",
-            "터널의 IP로 IGP를 통해 지사 간 Neighbor P2P 연결"
-        ]
-    },
+        "GRE 명령어": {
+            "명령어": [
+                "(config)#interface tunnel <Tunnel Num>",
+                "(config-if)#tunnel source <SIP or IF>",
+                "(config-if)#tunnel destination <DIP>",
+                "(config-if)#ip address <IP> <Netmask>",
+                "(config-if)#tunnel key <Num>",
+                "(config-if)#keepalive <Num>",
+                "",
+                "show interfaces tunnel <Tunnel Num>",
+                "",
+                "(config)#router ospf 1",
+                "(config-router)#network <T SIP> <Net mask> area 0"
+            ],
+            "설명": [
+                "터널 인터페이스 생성",
+                "터널 Src IP로 사용할 IF 또는 IP 지정",
+                "터널 Dest IP 입력",
+                "터널의 논리적 IF의 IP 지정. 양쪽이 동일한 NET을 가져야 함",
+                "터널의 키 값 지정(양쪽이 동일해야 함)",
+                "Health Check 메세지 초 지정",
+                "",
+                "터널 정보 확인",
+                "",
+                "OSPF 라우터 구성",
+                "터널의 IP로 IGP를 통해 지사 간 Neighbor P2P 연결"
+            ]
+        },
     "IPsec 명령어": {
         "IPsec ISAKMP SA 생성": {
             "명령어": [
@@ -1191,7 +1192,8 @@ network_commands = {
             "설명": [
                 "IPSec 변환 세트를 정의. 이 세트는 데이터를 암호화하는 데 사용되며 AES 암호화 및 SHA 해시를 사용"
             ]
-        },
+        }
+    }
         "Crypto MAP 생성 및 적용": {
             "명령어": [
                 "(config)#crypto map <CRYPTOMAP> 10 ipsec-isakmp",
