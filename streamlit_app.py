@@ -1195,44 +1195,43 @@ network_commands = {
             ]
         }
     },
-        "Crypto MAP 생성 및 적용": {
-            "명령어": [
-                "(config)#crypto map <CRYPTOMAP> 10 ipsec-isakmp",
-                "(config-crypto-map)#set peer <상대 라우터 퍼블릭 인터페이스 IP>",
-                "(config-crypto-map)#set transform-set <MYTRANSFORMSET>",
-                "(config-crypto-map)#match address 100",
-                "(config-crypto-map)#reverse-route",
-                "(config)#access-list 100 permit ip host <내 호스트IP> host <상대 호스트 IP>",
-                "(config)#interface <Interface>",
-                "(config-if)#crypto map <CRYPTOMAP>"
-            ],
-            "설명": [
-                "IPsec 및 ISAKMP를 위한 crypto 맵 설정. 맵 번호는 10. (crypto map은 하나의 이름만 사용)",
-                "VPN 터널의 대상 피어를 설정",
-                "전에 설정한 IPsec 변환 세트 적용",
-                "암호화 및 인증을 위해 적용할 ACL을 지정. 여기서는 ACL 100",
-                "대상에 대한 Static Route 자동 생성",
-                "ACL 100을 생성하여 IPSec 터널을 통해 통신 할 IP 선정. (Out Bound 방식)",
-                "VPN 설정을 적용할 네트워크 인터페이스 선택.",
-                "인터페이스에 VPN 설정을 적용."
-            ]
-        },
-        "IPsec 기본 명령어": {
-            "명령어": [
-                "통신 시도",
-                "show crypto ipsec sa",
-                "show crypto isakmp sa",
-                "clear crypto isakmp",
-                "clear crypto sa"
-            ],
-            "설명": [
-                "통신 시도로 인해 터널 생성",
-                "IPSec 터널의 암호화 및 복호화 횟수 확인",
-                "ISAKMP 터널 테이블 확인",
-                "ISAKMP 터널 삭제",
-                "IPSec 터널 삭제"
-            ]
-        }
+    "Crypto MAP 생성 및 적용": {
+        "명령어": [
+            "(config)#crypto map <CRYPTOMAP> 10 ipsec-isakmp",
+            "(config-crypto-map)#set peer <상대 라우터 퍼블릭 인터페이스 IP>",
+            "(config-crypto-map)#set transform-set <MYTRANSFORMSET>",
+            "(config-crypto-map)#match address 100",
+            "(config-crypto-map)#reverse-route",
+            "(config)#access-list 100 permit ip host <내 호스트IP> host <상대 호스트 IP>",
+            "(config)#interface <Interface>",
+            "(config-if)#crypto map <CRYPTOMAP>"
+        ],
+        "설명": [
+            "IPsec 및 ISAKMP를 위한 crypto 맵 설정. 맵 번호는 10. (crypto map은 하나의 이름만 사용)",
+            "VPN 터널의 대상 피어를 설정",
+            "전에 설정한 IPsec 변환 세트 적용",
+            "암호화 및 인증을 위해 적용할 ACL을 지정. 여기서는 ACL 100",
+            "대상에 대한 Static Route 자동 생성",
+            "ACL 100을 생성하여 IPSec 터널을 통해 통신 할 IP 선정. (Out Bound 방식)",
+            "VPN 설정을 적용할 네트워크 인터페이스 선택.",
+            "인터페이스에 VPN 설정을 적용."
+        ]
+    },
+    "IPsec 기본 명령어": {
+        "명령어": [
+            "통신 시도",
+            "show crypto ipsec sa",
+            "show crypto isakmp sa",
+            "clear crypto isakmp",
+            "clear crypto sa"
+        ],
+        "설명": [
+            "통신 시도로 인해 터널 생성",
+            "IPSec 터널의 암호화 및 복호화 횟수 확인",
+            "ISAKMP 터널 테이블 확인",
+            "ISAKMP 터널 삭제",
+            "IPSec 터널 삭제"
+        ]
     },
     "IPsec Dynamic Crypto Map 명령어": {
         "IPsec DMAP ISAKMP SA 생성": "IPsec_Dynamic_Crypto_MAP_ISAKMP_SA",
@@ -1258,6 +1257,7 @@ network_commands = {
         "Crypto_MAP 생성 및 적용": "Crypto_MAP"
     }
 }
+
 
 #--------------------------------------------------------------------------------------------------------------------------------------------
 
