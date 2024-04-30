@@ -1507,18 +1507,18 @@ elif page == "VRF":
     
     dict2 = {
         "도움말": {
-            "사용 예시": "도움말 명령어",
-            "기능": "사용 가능한 명령어 목록을 표시합니다.",
-            "옵션": ["-상세: 명령어에 대한 상세 정보 표시"]
+            "사용 예시": "도움말 명령어 사용법",
+            "상세 설명": "사용 가능한 명령어 목록을 표시합니다.",
+            "도움말 옵션": ["-상세: 명령어에 대한 상세 정보 표시"]
         },
         "검색": {
-            "사용 예시": "검색 [키워드]",
-            "기능": "인터넷에서 정보를 검색합니다.",
-            "옵션": ["-상세: 검색 결과를 상세히 보여줍니다."]
+            "사용 방법": "검색어를 입력하고 엔터 키를 누르세요.",
+            "기능 설명": "인터넷에서 정보를 검색합니다.",
+            "예시": "예시: '검색 openai'를 입력하여 OpenAI에 대한 정보를 검색합니다."
         },
         "저장": {
-            "사용 예시": "저장",
-            "기능": "작업한 내용을 저장합니다.",
+            "사용 방법": "저장할 파일명을 입력하고 엔터 키를 누르세요.",
+            "기능 설명": "작업한 내용을 저장합니다.",
             "옵션": ["-경로 [경로]: 저장할 파일의 경로 지정"]
         }
     }
@@ -1532,13 +1532,13 @@ elif page == "VRF":
     
         # 선택된 세부 내용에 따라 출력
         if selected_details:
-            if selected_details == "옵션":
-                st.write("옵션에 대한 내용:")
-                option_df = pd.DataFrame({"옵션": dict2[selected_command]["옵션"]})
+            if isinstance(dict2[selected_command][selected_details], list):
+                st.write("내용:")
+                option_df = pd.DataFrame({"옵션": dict2[selected_command][selected_details]})
                 st.write(option_df)
             else:
                 st.write(dict2[selected_command][selected_details])
-    
+        
 
 
 
