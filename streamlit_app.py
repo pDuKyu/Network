@@ -795,7 +795,7 @@ network_commands = {
         })
     },
     "IPsec 명령어": {
-        "IPsec ISAKMP SA 생성": pd.DataFrame({
+        "[Phase1] IPsec ISAKMP SA 생성": pd.DataFrame({
             "명령어": [
                 "(config)#crypto isakmp policy 1",
                 "(config-isakmp)#encryption aes",
@@ -813,7 +813,7 @@ network_commands = {
                 "특정 IP 주소에 대한 ISAKMP 사전 Pre-Shared Key(사전 공유 키)를 설정"
             ]
         }),
-        "IPsec IPsec SA 생성": pd.DataFrame({
+        "[Phase2] IPsec IPsec SA 생성": pd.DataFrame({
             "명령어": [
                 "(config)#crypto ipsec transform-set <MYTRANSFORMSET> esp-aes esp-sha-hmac"
             ],
@@ -821,7 +821,7 @@ network_commands = {
                 "IPSec 변환 세트를 정의. 이 세트는 데이터를 암호화하는 데 사용되며 AES 암호화 및 SHA 해시를 사용"
             ]
         }),
-    "Crypto MAP 생성 및 적용": pd.DataFrame({
+    "[Phase3] Crypto MAP 생성 및 적용": pd.DataFrame({
             "명령어": [
                 "(config)#crypto map <CRYPTOMAP> 10 ipsec-isakmp",
                 "(config-crypto-map)#set peer <상대 라우터 퍼블릭 인터페이스 IP>",
@@ -864,7 +864,7 @@ network_commands = {
         })
     },
     "IPsec Dynamic Crypto Map 명령어": {
-        "IPsec_Dynamic_Crypto_MAP_ISAKMP_SA 생성" : pd.DataFrame({
+        "[Phase1] IPsec_Dynamic Crypto MAP ISAKMP SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)# crypto isakmp policy 10",
                 "(config-isakmp)# encryption 3des",
@@ -883,7 +883,7 @@ network_commands = {
             ]
         }),
         
-        "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성" : pd.DataFrame({
+        "[Phase2] IPsec_Dynamic Crypto MAP IPsec SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)# ip access-list extended <ACL 이름>",
                 "(config-ext-nacl)# permit ip <sIP> <Wmask> <dIP> <Wmask>",
@@ -896,7 +896,7 @@ network_commands = {
             ]
         }),
         
-        "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성 및 적용" : pd.DataFrame({
+        "[Phase3] IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성 및 적용" : pd.DataFrame({
             "명령어": [
                 "(config)# crypto dynamic-map <DMAP> 10",
                 "(config-crypto-map)# match address <ACL 이름>",
@@ -916,7 +916,7 @@ network_commands = {
         })
     },
     "GRE over IPsec 명령어": {
-        "GRE 명령어" : pd.DataFrame({
+        "[Phase1] GRE 명령어" : pd.DataFrame({
             "명령어": [
                 "(config)#interface tunnel <Tunnel Num>",
                 "(config-if)#tunnel source <SIP or IF>",
@@ -942,7 +942,7 @@ network_commands = {
         }),
         
         
-        "IPsec ISAKMP SA 생성" : pd.DataFrame({
+        "[Phase2] IPsec ISAKMP SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)#crypto isakmp policy 1",
                 "(config-isakmp)#encryption aes",
@@ -961,7 +961,7 @@ network_commands = {
             ]
         }),
         
-        "IPsec IPsec SA 생성" : pd.DataFrame({
+        "[Phase3] IPsec IPsec SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)#crypto ipsec transform-set <MYTRANSFORMSET> esp-aes esp-sha-hmac"
             ],
@@ -970,7 +970,7 @@ network_commands = {
             ]
         }),
         
-        "IPsec Crypto MAP 생성 및 적용": pd.DataFrame({
+        "[Phase4] IPsec Crypto MAP 생성 및 적용": pd.DataFrame({
             "명령어": [
                 "(config)#crypto map <CRYPTOMAP> 10 ipsec-isakmp",
                 "(config-crypto-map)#set peer <상대 라우터 퍼블릭 인터페이스 IP>",
@@ -1011,7 +1011,7 @@ network_commands = {
         })
     },
     "IPsec VTI 명령어": {
-        "IPsec VTI ISAKMP SA 생성": pd.DataFrame({
+        "[Phase1] IPsec VTI ISAKMP SA 생성": pd.DataFrame({
             "명령어": [
                 "crypto isakmp policy 10",
                 "encryption aes",
@@ -1030,7 +1030,7 @@ network_commands = {
             ]
         }),
         
-        "IPsec VTI IPsec SA 생성" : pd.DataFrame({
+        "[Phase2] IPsec VTI IPsec SA 생성" : pd.DataFrame({
             "명령어": [
                 "crypto ipsec transform-set PHASE2 esp-aes esp-sha-hmac"
             ],
@@ -1039,7 +1039,7 @@ network_commands = {
             ]
         }),
         
-        "IPsec Profile 생성" : pd.DataFrame({
+        "[Phase3] IPsec Profile 생성" : pd.DataFrame({
             "명령어": [
                 "crypto ipsec profile VTI-PROFILE",
                 "set transform-set PHASE2"
@@ -1050,7 +1050,7 @@ network_commands = {
             ]
         }),
         
-        "VTI_Tunnel 생성 및 적용" : pd.DataFrame({
+        "[Phase4] VTI_Tunnel 생성 및 적용" : pd.DataFrame({
             "명령어": [
                 "interface tunnel <Num>",
                 "ip address <IP> <Netmask>",
@@ -1072,7 +1072,7 @@ network_commands = {
         })
     },
     "ASA_IPsec_VPN 명령어": {
-        "ASA IPsec VPN SAKMP SA 생성" : pd.DataFrame({
+        "[Phase1] ASA IPsec VPN SAKMP SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)# crypto ikev1 policy 10",
                 "(config-ikev1-policy)# authentication pre-share",
@@ -1102,7 +1102,7 @@ network_commands = {
         }),
         
         
-        "ASA_IPsec VPN IPsec SA 생성" : pd.DataFrame({
+        "[Phase2] ASA_IPsec VPN IPsec SA 생성" : pd.DataFrame({
             "명령어": [
                 "crypto ipsec ikev1 transform-set MY_TRANSFORM_SET esp-aes-256 esp-sha-hmac",
                 "access-list LAN1_LAN2 extended permit ip 192.168.1.0 255.255.255.0 192.168.2.0 255.255.255.0"
@@ -1113,7 +1113,7 @@ network_commands = {
             ]
         }),
         
-        "Crypto MAP 생성 및 적용" : pd.DataFrame({
+        "[Phase3] Crypto MAP 생성 및 적용" : pd.DataFrame({
             "명령어": [
                 "crypto map MY_CRYPTO_MAP 10 match address LAN1_LAN2",
                 "crypto map MY_CRYPTO_MAP 10 set peer 10.10.10.2",
@@ -1346,7 +1346,7 @@ elif page == "VPN":
     
     # 선택된 명령어에 따라 dict2의 세부 내용 표시
     if selected_command12:
-        selected_details = st.selectbox(f"{selected_command12}의 세부 내용 선택", list(network_commands[selected_command12].keys()))
+        selected_details = st.selectbox(f"{selected_command12} 단계 선택", list(network_commands[selected_command12].keys()))
     
         # 선택된 세부 내용에 따라 출력
         if selected_details:
