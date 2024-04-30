@@ -1235,7 +1235,7 @@ network_commands = {
         }
     },
     "IPsec Dynamic Crypto Map 명령어": {
-        "IPsec_Dynamic_Crypto_MAP_ISAKMP_SA 생성"  {
+        "IPsec_Dynamic_Crypto_MAP_ISAKMP_SA 생성" : {
             "명령어": [
                 "(config)# crypto isakmp policy 10",
                 "(config-isakmp)# encryption 3des",
@@ -1254,7 +1254,7 @@ network_commands = {
             ]
         },
         
-        "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성"  {
+        "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성" : {
             "명령어": [
                 "(config)# ip access-list extended <ACL 이름>",
                 "(config-ext-nacl)# permit ip <sIP> <Wmask> <dIP> <Wmask>",
@@ -1267,7 +1267,7 @@ network_commands = {
             ]
         },
         
-        "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성 및 적용"  {
+        "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성 및 적용" : {
             "명령어": [
                 "(config)# crypto dynamic-map <DMAP> 10",
                 "(config-crypto-map)# match address <ACL 이름>",
