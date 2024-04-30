@@ -1235,9 +1235,56 @@ network_commands = {
         }
     },
     "IPsec Dynamic Crypto Map 명령어": {
-        "IPsec DMAP ISAKMP SA 생성": "IPsec_Dynamic_Crypto_MAP_ISAKMP_SA",
-        "IPsec DMAP IPsec SA 생성": "IPsec_Dynamic_Crypto_MAP_IPsec_SA",
-        "Dynamic MAP 생성 및 적용": "IPsec_Dynamic_Crypto_MAP_IPsec_SA"
+        "IPsec_Dynamic_Crypto_MAP_ISAKMP_SA 생성" = {
+            "명령어": [
+                "(config)# crypto isakmp policy 10",
+                "(config-isakmp)# encryption 3des",
+                "(config-isakmp)# authentication pre-share",
+                "(config-isakmp)# hash md5",
+                "(config-isakmp)# group 2",
+                "(config)# crypto isakmp key cisco address 0.0.0.0 0.0.0.0"
+            ],
+            "설명": [
+                "IKE 정책 설정 (정책 번호 10)",
+                "3DES 암호화 알고리즘 설정",
+                "사전 공유 키 방식의 인증 설정",
+                "MD5 해시 알고리즘 설정",
+                "Diffie-Hellman 그룹 번호 설정 (그룹 2)",
+                "사전 공유 키 지정 및 대상 주소 설정"
+            ]
+        }
+        
+        "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성" = {
+            "명령어": [
+                "(config)# ip access-list extended <ACL 이름>",
+                "(config-ext-nacl)# permit ip <sIP> <Wmask> <dIP> <Wmask>",
+                "(config)# crypto ipsec transform-set <PHASE2> esp-aes esp-sha-hmac"
+            ],
+            "설명": [
+                "확장된 IP 접근 목록을 설정",
+                "내부 특정 IP 주소 및 서브넷간의 통신을 허용하는 ACL 규칙을 추가",
+                "IPSec 변환 세트를 정의. AES 암호화 및 SHA 해시를 사용"
+            ]
+        }
+        
+        "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성 및 적용" = {
+            "명령어": [
+                "(config)# crypto dynamic-map <DMAP> 10",
+                "(config-crypto-map)# match address <ACL 이름>",
+                "(config-crypto-map)# set transform-set <PHASE2>",
+                "(config)# crypto map <VPN> 10 ipsec-isakmp dynamic <DMAP>",
+                "(config)# interface <Interface>",
+                "(config-subif)# crypto map <VPN>"
+            ],
+            "설명": [
+                "동적 맵을 설정. <DMAP>은 사용자가 정의한 이름으로 대체되어야 함",
+                "ACL 이름을 사용하여 트래픽 일치 조건을 설정",
+                "변환 세트를 설정하여 IPSec 정책을 적용. <PHASE2>는 사용자가 정의한 이름으로 대체되어야 함",
+                "IPSec 터널을 설정하고 동적 맵을 사용하여 정책을 적용. <VPN>은 사용자가 정의한 이름으로 대체되어야 함",
+                "인터페이스 설정 모드로 이동. <Interface>는 설정할 인터페이스의 이름",
+                "인터페이스에 IPSec VPN을 적용하기 위해 VPN 맵을 적용. <VPN>은 이전에 정의한 VPN 맵의 이름"
+            ]
+        }
     },
     "GRE over IPsec 명령어": {
         "GRE over IPsec GRE 생성": "GRE_over_IPsec_GRE",
