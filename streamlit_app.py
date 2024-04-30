@@ -1165,7 +1165,7 @@ network_commands = {
             "터널의 IP로 IGP를 통해 지사 간 Neighbor P2P 연결"
         ]
     },
-    "IPsec 명령어": pd.DataFrame({
+    "IPsec 명령어": ({
         "IPsec ISAKMP SA 생성": {
             "명령어": [
                 "(config)#crypto isakmp policy 1",
@@ -1183,7 +1183,7 @@ network_commands = {
                 "Diffie-Hellman 그룹 번호를 설정 (그룹 2는 비교적 보안 수준이 높고 효율적인 그룹)",
                 "특정 IP 주소에 대한 ISAKMP 사전 Pre-Shared Key(사전 공유 키)를 설정"
             ]
-        }),
+        },
         "IPsec IPsec SA 생성": {
             "명령어": [
                 "(config)#crypto ipsec transform-set <MYTRANSFORMSET> esp-aes esp-sha-hmac"
