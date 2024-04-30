@@ -1166,7 +1166,7 @@ network_commands = {
         })
     },
     "IPsec 명령어": {
-        "IPsec ISAKMP SA 생성": {
+        "IPsec ISAKMP SA 생성": pd.DataFrame({
             "명령어": [
                 "(config)#crypto isakmp policy 1",
                 "(config-isakmp)#encryption aes",
@@ -1183,16 +1183,16 @@ network_commands = {
                 "Diffie-Hellman 그룹 번호를 설정 (그룹 2는 비교적 보안 수준이 높고 효율적인 그룹)",
                 "특정 IP 주소에 대한 ISAKMP 사전 Pre-Shared Key(사전 공유 키)를 설정"
             ]
-        },
-        "IPsec IPsec SA 생성": {
+        }),
+        "IPsec IPsec SA 생성": pd.DataFrame({
             "명령어": [
                 "(config)#crypto ipsec transform-set <MYTRANSFORMSET> esp-aes esp-sha-hmac"
             ],
             "설명": [
                 "IPSec 변환 세트를 정의. 이 세트는 데이터를 암호화하는 데 사용되며 AES 암호화 및 SHA 해시를 사용"
             ]
-        },
-    "Crypto MAP 생성 및 적용": {
+        }),
+    "Crypto MAP 생성 및 적용": pd.DataFrame({
             "명령어": [
                 "(config)#crypto map <CRYPTOMAP> 10 ipsec-isakmp",
                 "(config-crypto-map)#set peer <상대 라우터 퍼블릭 인터페이스 IP>",
@@ -1213,11 +1213,11 @@ network_commands = {
                 "VPN 설정을 적용할 네트워크 인터페이스 선택.",
                 "인터페이스에 VPN 설정을 적용."
             ]
-        }
+        })
     },
     
     "IPsec 기본 명령어": {
-        "IPsec 기본 명령어": {
+        "IPsec 기본 명령어": pd.DataFrame({
             "명령어": [
                 "통신 시도",
                 "show crypto ipsec sa",
@@ -1232,10 +1232,10 @@ network_commands = {
                 "ISAKMP 터널 삭제",
                 "IPSec 터널 삭제"
             ]
-        }
+        })
     },
     "IPsec Dynamic Crypto Map 명령어": {
-        "IPsec_Dynamic_Crypto_MAP_ISAKMP_SA 생성" : {
+        "IPsec_Dynamic_Crypto_MAP_ISAKMP_SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)# crypto isakmp policy 10",
                 "(config-isakmp)# encryption 3des",
@@ -1252,9 +1252,9 @@ network_commands = {
                 "Diffie-Hellman 그룹 번호 설정 (그룹 2)",
                 "사전 공유 키 지정 및 대상 주소 설정"
             ]
-        },
+        }),
         
-        "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성" : {
+        "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)# ip access-list extended <ACL 이름>",
                 "(config-ext-nacl)# permit ip <sIP> <Wmask> <dIP> <Wmask>",
@@ -1265,9 +1265,9 @@ network_commands = {
                 "내부 특정 IP 주소 및 서브넷간의 통신을 허용하는 ACL 규칙을 추가",
                 "IPSec 변환 세트를 정의. AES 암호화 및 SHA 해시를 사용"
             ]
-        },
+        }),
         
-        "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성 및 적용" : {
+        "IPsec_Dynamic_Crypto_MAP_IPsec_SA 생성 및 적용" : pd.DataFrame({
             "명령어": [
                 "(config)# crypto dynamic-map <DMAP> 10",
                 "(config-crypto-map)# match address <ACL 이름>",
@@ -1284,10 +1284,10 @@ network_commands = {
                 "인터페이스 설정 모드로 이동. <Interface>는 설정할 인터페이스의 이름",
                 "인터페이스에 IPSec VPN을 적용하기 위해 VPN 맵을 적용. <VPN>은 이전에 정의한 VPN 맵의 이름"
             ]
-        }
+        })
     },
     "GRE over IPsec 명령어": {
-        "GRE 명령어" : {
+        "GRE 명령어" : pd.DataFrame({
             "명령어": [
                 "(config)#interface tunnel <Tunnel Num>",
                 "(config-if)#tunnel source <SIP or IF>",
@@ -1310,10 +1310,10 @@ network_commands = {
                 "OSPF 생성",
                 "Tunnel의 IP로 IGP를 통해 지사 간 Neighbor P2P 연결"
             ]
-        },
+        }),
         
         
-        "IPsec ISAKMP SA 생성" : {
+        "IPsec ISAKMP SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)#crypto isakmp policy 1",
                 "(config-isakmp)#encryption aes",
@@ -1330,9 +1330,9 @@ network_commands = {
                 "Diffie-Hellman 그룹 번호를 설정 (그룹 2는 비교적 보안 수준이 높고 효율적인 그룹)",
                 "특정 IP 주소에 대한 ISAKMP 사전 Pre-Shared Key(사전 공유 키)를 설정"
             ]
-        },
+        }),
         
-        "IPsec IPsec SA 생성" : {
+        "IPsec IPsec SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)#crypto ipsec transform-set <MYTRANSFORMSET> esp-aes esp-sha-hmac"
             ],
@@ -1340,9 +1340,9 @@ network_commands = {
                 "IPSec 변환 세트를 정의",
                 "이 세트는 데이터를 암호화하는 데 사용되며 AES 암호화 및 SHA 해시를 사용"
             ]
-        },
+        }),
         
-        "IPsec Crypto MAP 생성 및 적용": {
+        "IPsec Crypto MAP 생성 및 적용": pd.DataFrame({
             "명령어": [
                 "(config)#crypto map <CRYPTOMAP> 10 ipsec-isakmp",
                 "(config-crypto-map)#set peer <상대 라우터 퍼블릭 인터페이스 IP>",
@@ -1363,9 +1363,9 @@ network_commands = {
                 "VPN 설정을 적용할 네트워크 인터페이스 선택.",
                 "인터페이스에 VPN 설정을 적용."
             ]
-        },
+        }),
         
-        "GRE over IPsec 확인": {
+        "GRE over IPsec 확인": pd.DataFrame({
             "명령어": [
                 "ping 통신 시도",
                 "show crypto ipsec sa",
@@ -1380,10 +1380,10 @@ network_commands = {
                 "ISAKMP 터널 삭제",
                 "IPSec 터널 삭제"
             ]
-        }
+        })
     },
     "IPsec VTI 명령어": {
-        "IPsec VTI ISAKMP SA 생성": {
+        "IPsec VTI ISAKMP SA 생성": pd.DataFrame({
             "명령어": [
                 "crypto isakmp policy 10",
                 "encryption aes",
@@ -1400,18 +1400,18 @@ network_commands = {
                 "Diffie-Hellman 그룹 번호를 설정",
                 "동적 IP를 가진 라우터와 VPN 터널을 설정하기 위한 사전 공유 키를 지정. (고정 IP를 가졌다면 그 IP를 지정)"
             ]
-        },
+        }),
         
-        "IPsec VTI IPsec SA 생성" : {
+        "IPsec VTI IPsec SA 생성" : pd.DataFrame({
             "명령어": [
                 "crypto ipsec transform-set PHASE2 esp-aes esp-sha-hmac"
             ],
             "설명": [
                 "IPSec 변환 세트를 설정. 'PHASE2'는 사용자가 정의한 이름."
             ]
-        },
+        }),
         
-        "IPsec Profile 생성" : {
+        "IPsec Profile 생성" : pd.DataFrame({
             "명령어": [
                 "crypto ipsec profile VTI-PROFILE",
                 "set transform-set PHASE2"
@@ -1420,9 +1420,9 @@ network_commands = {
                 "IPSec 프로필을 설정. 'VTI-PROFILE'은 사용자가 정의한 프로필 이름.",
                 "프로필에 IPSec 변환 세트를 설정. 'PHASE2'는 이전에 정의한 변환 세트의 이름."
             ]
-        },
+        }),
         
-        "VTI_Tunnel 생성 및 적용" : {
+        "VTI_Tunnel 생성 및 적용" : pd.DataFrame({
             "명령어": [
                 "interface tunnel <Num>",
                 "ip address <IP> <Netmask>",
@@ -1441,10 +1441,10 @@ network_commands = {
                 "터널에 IPSec 프로필을 적용하여 보안을 활성화. 'VTI-PROFILE'은 이전에 정의한 IPSec 프로필의 이름",
                 "OSPF 설정으로 경로 광고 및 학습"
             ]
-        }
+        })
     },
     "ASA_IPsec_VPN 명령어": {
-        "ASA IPsec VPN SAKMP SA 생성" : {
+        "ASA IPsec VPN SAKMP SA 생성" : pd.DataFrame({
             "명령어": [
                 "(config)# crypto ikev1 policy 10",
                 "(config-ikev1-policy)# authentication pre-share",
@@ -1471,10 +1471,10 @@ network_commands = {
                 "IPsec 터널 그룹의 속성을 설정.",
                 "IKEv1 사전 공유 키를 설정. 'MY_SHARED_KEY'는 공유 키의 실제 값."
             ]
-        },
+        }),
         
         
-        "ASA_IPsec VPN IPsec SA 생성" : {
+        "ASA_IPsec VPN IPsec SA 생성" : pd.DataFrame({
             "명령어": [
                 "crypto ipsec ikev1 transform-set MY_TRANSFORM_SET esp-aes-256 esp-sha-hmac",
                 "access-list LAN1_LAN2 extended permit ip 192.168.1.0 255.255.255.0 192.168.2.0 255.255.255.0"
@@ -1483,9 +1483,9 @@ network_commands = {
                 "IPSec IKEv1 변환 세트를 설정. 데이터를 AES-256 알고리즘으로 암호화하고, SHA 해시를 사용하여 데이터 무결성을 보장.",
                 "ACL을 설정하여 LAN1 네트워크에서 LAN2 네트워크로의 모든 IP 트래픽을 허용."
             ]
-        },
+        }),
         
-        "Crypto MAP 생성 및 적용" : {
+        "Crypto MAP 생성 및 적용" : pd.DataFrame({
             "명령어": [
                 "crypto map MY_CRYPTO_MAP 10 match address LAN1_LAN2",
                 "crypto map MY_CRYPTO_MAP 10 set peer 10.10.10.2",
@@ -1500,7 +1500,7 @@ network_commands = {
                 "보안 연결 수명을 3600초로 설정.",
                 "'OUTSIDE' 인터페이스에 'MY_CRYPTO_MAP' IPSec 맵을 적용하여 외부와의 통신에 보안을 적용."
             ]
-        }
+        })
     }
 }
 
