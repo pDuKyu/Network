@@ -1193,9 +1193,7 @@ network_commands = {
                 "IPSec 변환 세트를 정의. 이 세트는 데이터를 암호화하는 데 사용되며 AES 암호화 및 SHA 해시를 사용"
             ]
         }
-    },
     "Crypto MAP 생성 및 적용": {
-        "Crypto MAP 생성 및 적용": {
             "명령어": [
                 "(config)#crypto map <CRYPTOMAP> 10 ipsec-isakmp",
                 "(config-crypto-map)#set peer <상대 라우터 퍼블릭 인터페이스 IP>",
