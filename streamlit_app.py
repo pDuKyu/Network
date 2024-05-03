@@ -240,7 +240,7 @@ tables = {
 "트렁크 설정 명령어": trunk_protocol_commands_df,
 "네이티브 VLAN 명령어": native_vlan_commands_df,
 "STP 설정 명령어": stp_settings_df,
-"루트 브릿지 보안 설정 명령어": root_bridge_security_df,
+"STP 세부 설정 명령어": root_bridge_security_df,
 "트래킹 설정 명령어": tracking_data_df,
 "트러블 슈팅 명령어": trouble_shooting_data_df,
 "이더채널 설정 명령어": etherchannel_data_df,
