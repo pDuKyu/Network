@@ -1263,6 +1263,7 @@ routing_network_command = {
     "명령어": [
         "config)# ntp server 172.20.11.2",
         "config)# copp profile strict",
+        "",
         "show ip interface brief vrf management",
         "show vrf",
         "show ip route",
@@ -1271,6 +1272,7 @@ routing_network_command = {
     "설명": [
         "NTP(Network Time Protocol) 서버 주소를 172.20.11.2로 설정",
         "Control Plane Policing(CoPP) 프로파일을 엄격 모드로 설정",
+        "",
         "관리 VRF(Virtual Routing and Forwarding)에 속한 인터페이스의 간단한 IP 정보를 표시",
         "시스템에 구성된 VRF(Virtual Routing and Forwarding) 목록을 표시",
         "시스템의 IP 라우팅 테이블을 표시",
@@ -1298,10 +1300,12 @@ security_authentication_command = {
 boot_system_command = {
     "명령어": [
         "config)# boot nxos bootflash:nxos64-cs.10.2.4.M.bin",
+        "",
         "dir"
     ],
     "설명": [
         "지정된 Nexus 운영 체제(NX-OS) 이미지 파일을 부트플래시로 설정하여 장비를 해당 버전으로 부팅",
+        "",
         "파일 경로 확인"
     ]
 }
@@ -1313,6 +1317,7 @@ role_command = {
         "config-role)# rule 2 permit read-write feature router-ospf",
         "config-role)# rule 3 permit read feature router-bgp",
         "config)# username admin2 password cisco role OSPF_Config",
+        "",
         "show user-account",
         "show role",
         "show role feature-group",
@@ -1324,6 +1329,7 @@ role_command = {
         "역할에 대한 규칙 2를 설정. \"router-ospf\" 기능에 대한 읽기/쓰기 액세스를 허용",
         "역할에 대한 규칙 3을 설정. \"router-bgp\" 기능에 대한 읽기 액세스를 허용",
         "사용자 이름이 \"admin1\"이고 비밀번호가 \"cisco\"인 사용자를 추가하며, 해당 사용자에게 \"OSPF_Config\" 역할을 할당",
+        "",
         "사용자 계정 정보를 표시",
         "시스템에 구성된 역할 정보를 표시",
         "역할 그룹에 속한 기능 정보를 표시",
@@ -1334,11 +1340,13 @@ role_command = {
 feature_command = {
     "명령어": [
         "feature <Feature Name>",
+        "",
         "show feature",
         "show run | sec feature"
     ],
     "설명": [
         "OSPF와 같은 Feature를 활성화",
+        "",
         "Feature 활성화 상태를 확인",
         "run config에서 feature 설정을 확인"
     ]
@@ -1350,6 +1358,7 @@ rollback_command = {
         "rollback run checkpoint <C name>",
         "checkpoint file <dir>",
         "rollback run file <dir: C Name>",
+        "",
         "show checkpoint <C Name>",
         "show checkpoint summary",
         "dir"
@@ -1359,6 +1368,7 @@ rollback_command = {
         "User Checkpoint를 롤백하여 실행",
         "체크포인트를 <dir>에 파일로 저장",
         "User Checkpoint 파일을 <dir: C Name>으로 롤백하여 실행",
+        "",
         "<C Name>의 체크포인트 확인",
         "체크포인트 축약 정보 확인",
         "디렉토리(저장소) 확인 (파일 형태의 체크포인트 확인용)"
