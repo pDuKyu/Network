@@ -760,7 +760,7 @@ VPN_LIST = ["GRE 명령어",
             "IPsec 기본 명령어", 
             "IPsec Dynamic Crypto Map 명령어", 
             "GRE over IPsec 명령어", 
-            "IPsec VTI 명령어",
+            "IPsec VTI 명령어 (Virtual Tunnel Interface)",
            "ASA_IPsec_VPN 명령어"]
 
 network_commands = {
