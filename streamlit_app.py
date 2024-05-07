@@ -1010,7 +1010,7 @@ network_commands = {
             ]
         })
     },
-    "IPsec VTI 명령어": {
+    "IPsec VTI 명령어 (Virtual Tunnel Interface)": {
         "[Phase1] ISAKMP SA 생성": pd.DataFrame({
             "명령어": [
                 "crypto isakmp policy 10",
