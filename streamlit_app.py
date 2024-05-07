@@ -1451,7 +1451,11 @@ peer_link = {
         "(config-if)# switchport mode trunk",
         "(config-if)# switchport trunk allowed vlan <1-100>",
         "(config-if)# spanning-tree port type network",
-        "(config-if)# vpc peer-link"
+        "(config-if)# vpc peer-link",
+        "",
+        "(config)# interface <Interface>",
+        "(config-if)# switchport mode trunk",
+        "(config-if)# switchport trunk allowed vlan <100-200>"
     ],
     "설명": [
         "LACP 기능 활성화",
@@ -1465,6 +1469,10 @@ peer_link = {
         "트렁크에 허용되는 VLAN 설정 (VLAN 1부터 100까지 허용)",
         "포트를 네트워크 유형으로 설정 (Default 적용으로서 생략 가능)",
         "vPC 피어 링크 설정"
+        "",
+        "Orphan 구성 시 None Member(vPC) VLAN 인터링크로 사용할 인터페이스 지정.",
+        "트렁크 모드로 설정.",
+        "None Member VLAN 통신할 VLAN 설정."
     ]
 }
 
