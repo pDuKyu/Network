@@ -1249,7 +1249,7 @@ st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
 
 
 # 오늘 날짜 가져오기
-today_date = datetime.today().strftime('%Y-%m-%d')
+today_date = datetime.today().strftime('%Y-%m-%d %A')
 st.sidebar.write(f"오늘은 {today_date}일 입니다!")
 
 
