@@ -1227,6 +1227,154 @@ VRF_tables = {"VRF 설정 명령어 (집결지 라우터만 설정)":VRF,
               "OSPF 연동 명령어 (집결지 라우터만 설정)": VRF_OSPF,
               "BGP 연동 명령어 (집결지 라우터만 설정)": VRF_BGP
            }
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+#Nexus
+
+
+host_name_interface_command = {
+    "명령어": [
+        "config)# switchname N9K-1",
+        "config)# interface mgmt0",
+        "config-if)# ip address 10.1.50.1 255.255.255.0"
+    ],
+    "설명": [
+        "해당 장비의 호스트 이름을 'N9K-1'로 설정",
+        "관리 인터페이스(Mgmt0)로 이동. (Management VRF에 기본으로 소속)",
+        "관리 인터페이스에 IP 주소를 할당"
+    ]
+}
+
+
+vrf_command = {
+    "명령어": [
+        "config)# vrf context management",
+        "config-vrf)# ip route 0.0.0.0/0 10.1.50.254",
+        "config-if)# vrf member <VRF Name>"
+    ],
+    "설명": [
+        "관리 VRF(Virtual Routing and Forwarding) 컨텍스트를 생성하거나 변경",
+        "관리 VRF의 Default 라우팅 설정",
+        "인터페이스를 지정된 VRF에 소속"
+    ]
+}
+
+routing_network_command = {
+    "명령어": [
+        "config)# ntp server 172.20.11.2",
+        "config)# copp profile strict",
+        "show ip interface brief vrf management",
+        "show vrf",
+        "show ip route",
+        "show ip route vrf management"
+    ],
+    "설명": [
+        "NTP(Network Time Protocol) 서버 주소를 172.20.11.2로 설정",
+        "Control Plane Policing(CoPP) 프로파일을 엄격 모드로 설정",
+        "관리 VRF(Virtual Routing and Forwarding)에 속한 인터페이스의 간단한 IP 정보를 표시",
+        "시스템에 구성된 VRF(Virtual Routing and Forwarding) 목록을 표시",
+        "시스템의 IP 라우팅 테이블을 표시",
+        "관리 VRF(Virtual Routing and Forwarding)에 대한 IP 라우팅 테이블을 표시"
+    ]
+}
+
+security_authentication_command = {
+    "명령어": [
+        "config)# username admin password cisco123 role network-admin",
+        "config)# no feature telnet",
+        "config)# ssh key rsa 1024 force",
+        "config)# feature ssh",
+        "config)# password strength-check"
+    ],
+    "설명": [
+        "사용자 이름이 'admin'이고 비밀번호가 'cisco123'이며 역할이 'network-admin'인 사용자를 추가",
+        "Telnet 서비스를 비활성화",
+        "RSA 암호화 알고리즘을 사용하여 1024비트의 SSH 키를 생성하고, 이미 존재하는 경우에도 덮어쓰기",
+        "SSH 서비스를 활성화",
+        "강화된 패스워드 설정"
+    ]
+}
+
+boot_system_command = {
+    "명령어": [
+        "config)# boot nxos bootflash:nxos64-cs.10.2.4.M.bin",
+        "dir"
+    ],
+    "설명": [
+        "지정된 Nexus 운영 체제(NX-OS) 이미지 파일을 부트플래시로 설정하여 장비를 해당 버전으로 부팅",
+        "파일 경로 확인"
+    ]
+}
+
+role_command = {
+    "명령어": [
+        "config)# role name OSPF_Config",
+        "config-role)# rule 1 permit command config t ; interface *",
+        "config-role)# rule 2 permit read-write feature router-ospf",
+        "config-role)# rule 3 permit read feature router-bgp",
+        "config)# username admin2 password cisco role OSPF_Config",
+        "show user-account",
+        "show role",
+        "show role feature-group",
+        "show role feature"
+    ],
+    "설명": [
+        "\"OSPF_Config\"라는 이름의 역할을 생성",
+        "역할에 대한 규칙 1을 설정. \"config t\" 명령어와 \"interface *\" 명령어에 대한 사용을 허용",
+        "역할에 대한 규칙 2를 설정. \"router-ospf\" 기능에 대한 읽기/쓰기 액세스를 허용",
+        "역할에 대한 규칙 3을 설정. \"router-bgp\" 기능에 대한 읽기 액세스를 허용",
+        "사용자 이름이 \"admin1\"이고 비밀번호가 \"cisco\"인 사용자를 추가하며, 해당 사용자에게 \"OSPF_Config\" 역할을 할당",
+        "사용자 계정 정보를 표시",
+        "시스템에 구성된 역할 정보를 표시",
+        "역할 그룹에 속한 기능 정보를 표시",
+        "역할이 사용할 수 있는 기능 정보를 표시"
+    ]
+}
+
+feature_command = {
+    "명령어": [
+        "feature <Feature Name>",
+        "show feature",
+        "show run | sec feature"
+    ],
+    "설명": [
+        "OSPF와 같은 Feature를 활성화",
+        "Feature 활성화 상태를 확인",
+        "run config에서 feature 설정을 확인"
+    ]
+}
+
+rollback_command = {
+    "명령어": [
+        "checkpoint <C Name>",
+        "rollback run checkpoint <C name>",
+        "checkpoint file <dir>",
+        "rollback run file <dir: C Name>",
+        "show checkpoint <C Name>",
+        "show checkpoint summary",
+        "dir"
+    ],
+    "설명": [
+        "User Checkpoint를 <C Name>으로 임시 저장",
+        "User Checkpoint를 롤백하여 실행",
+        "체크포인트를 <dir>에 파일로 저장",
+        "User Checkpoint 파일을 <dir: C Name>으로 롤백하여 실행",
+        "<C Name>의 체크포인트 확인",
+        "체크포인트 축약 정보 확인",
+        "디렉토리(저장소) 확인 (파일 형태의 체크포인트 확인용)"
+    ]
+}
+
+nexus_tables = {"호스트 이름 및 인터페이스 설정 명령어":host_name_interface_command,
+              "보안 및 인증 설정 명령어": security_authentication_command,
+              "Feature 활성화 명령어": feature_command,
+              "VRF 설정 명령어": vrf_command,
+              "라우팅 및 네트워크 설정 명령어": routing_network_command,
+              "부팅 및 파일 시스템 설정 명령어": boot_system_command,
+              "사용자 역할 설정 명령어": role_command,
+              "Rollback 명령어": rollback_command
+           }
+
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1272,7 +1420,7 @@ st.sidebar.write(f"오늘은 {today_date} {weekday_kr} 입니다!")
 
 
 # 사이드바에 버튼 추가
-page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router", "FireWall", "VPN", "VRF"])
+page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router", "FireWall", "VPN", "VRF" "Nexus"])
 
 
 
@@ -1392,16 +1540,24 @@ elif page == "VRF":
     st.dataframe(selected_df5, width=800)
 
 
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+# Nexus 페이지
 
+elif page == "Nexus":
+    # 네트워크 설정 명령어로 대제목 설정
+    st.title('Nexus 장비 설정 명령어')
 
-        
+#리스트 기능.
+    table_names6 = list(nexus_tables.keys())
+    selected_table6 = st.selectbox("", table_names6)  
 
-
+#테이블 시각화
+    selected_df6 = nexus_tables[selected_table6]
+    st.dataframe(selected_df6, width=800)
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 ID = """
 
