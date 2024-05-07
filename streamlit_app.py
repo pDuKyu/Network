@@ -1441,21 +1441,25 @@ keep_alive_link = {
 
 peer_link = {
     "명령어": [
-        "feature lacp",
-        "feature vpc",
-        "interface <ethernet 3/1, ethernet 4/1>",
-        "channel-group <2> mode active",
-        "interface port-channel <2>",
-        "switchport mode trunk",
-        "switchport trunk allowed vlan <1-100>",
-        "spanning-tree port type network",
-        "vpc peer-link"
+        "(config)# feature lacp",
+        "(config)# feature vpc",
+        "",
+        "(config)# interface <ethernet 3/1, ethernet 4/1>",
+        "(config-if)# channel-group <2> mode active",
+        "",
+        "(config)# interface port-channel <2>",
+        "(config-if)# switchport mode trunk",
+        "(config-if)# switchport trunk allowed vlan <1-100>",
+        "(config-if)# spanning-tree port type network",
+        "(config-if)# vpc peer-link"
     ],
     "설명": [
         "LACP 기능 활성화",
         "vPC 기능 활성화",
+        "",
         "설정을 시작할 Ethernet 인터페이스에 접속 (모듈 이원화)",
         "포트 채널 그룹 2를 활성 LACP 모드로 설정",
+        "",
         "포트 채널 그룹 2에 접속하여 설정을 시작",
         "포트 채널을 트렁크 모드로 설정(VLAN 통신을 할 때도 있기 때문)",
         "트렁크에 허용되는 VLAN 설정 (VLAN 1부터 100까지 허용)",
