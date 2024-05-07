@@ -1387,6 +1387,7 @@ rollback_command = {
 nexus_tables = {"호스트 이름 및 인터페이스 설정 명령어":host_name_interface_command,
               "보안 및 인증 설정 명령어": security_authentication_command,
               "Feature 활성화 명령어": feature_command,
+                "STP 포트 타입 설정": stp_port_type,
               "VRF 설정 명령어": vrf_command,
               "라우팅 및 네트워크 설정 명령어": routing_network_command,
               "부팅 및 파일 시스템 설정 명령어": boot_system_command,
