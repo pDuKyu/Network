@@ -1387,10 +1387,62 @@ nexus_tables = {"호스트 이름 및 인터페이스 설정 명령어":host_nam
 
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#vPC
 
+vpc = {
+    "명령어": [
+        "feature vpc",
+        "vpc domain <Num>",
+        "role priority <Num[Default = 32667]>",
+        "",
+        "show vpc role"
+    ],
+    "설명": [
+        "vPC 기능 활성화",
+        "vPC 도메인 생성",
+        "장비의 우선순위 값 설정",
+        "",
+        "vPC 역할 확인"
+    ]
+}
 
+keep_alive_link = {
+    "명령어": [
+        "(config)#feature lacp",
+        "(config)#feature vpc",
+        "(config)#interface <int-int>",
+        "(config-if)#channel-group <Num> mode active",
+        "",
+        "(config)#vrf context <VRF Name>",
+        "",
+        "(config)#interface <LACP Port>",
+        "(config-if)#vrf member <VRF Name>",
+        "(config-if)#ip address <내 IP/sub>",
+        "",
+        "(config)#vpc domain <Num>",
+        "(config-vpc-domain)#peer-keepalive destination <상대 IP> source <내 IP> vrf <VRF Name>"
+    ],
+    "설명": [
+        "LACP 기능 활성화",
+        "vPC(Virtual Port Channel) 기능 활성화",
+        "LACP를 설정할 포트에 접속",
+        "LACP Port-Channel을 지정하고 활성화",
+        "",
+        "KeepAlive Link를 위한 VRF 생성",
+        "",
+        "Port-Channel에 접속",
+        "이 포트가 참고할 VRF를 지정",
+        "이 포트의 IP 주소 설정",
+        "",
+        "vPC 도메인 생성 또는 접속",
+        "KeepAlive 메시지를 보낼 때 사용할 도착지 IP, 출발지 IP, VRF 설정"
+    ]
+}
 
-
+vpc_tables = {"vpc 생성 및 우선 값 명령어": vpc,
+              "KeepaLive Link 명령어":keep_alive_link
+           }
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 # 커스텀 워닝 문구
@@ -1430,7 +1482,7 @@ st.sidebar.write(f"오늘은 {today_date} {weekday_kr} 입니다!")
 
 
 # 사이드바에 버튼 추가
-page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router", "FireWall", "VPN", "VRF", "Nexus"])
+page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router", "FireWall", "VPN", "VRF", "Nexus", "vPC"])
 
 
 
@@ -1565,6 +1617,21 @@ elif page == "Nexus":
 #테이블 시각화
     selected_df6 = nexus_tables[selected_table6]
     st.dataframe(selected_df6, width=800)
+
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+elif page == "vPC":
+    # 네트워크 설정 명령어로 대제목 설정
+    st.title('vPC 설정 명령어')
+
+#리스트 기능.
+    table_names7 = list(vpc_tables.keys())
+    selected_table7 = st.selectbox("", table_names7)  
+
+#테이블 시각화
+    selected_df7 = vpc_tables[selected_table7]
+    st.dataframe(selected_df7, width=800)
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
