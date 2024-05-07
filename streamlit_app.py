@@ -1300,11 +1300,13 @@ security_authentication_command = {
 boot_system_command = {
     "명령어": [
         "config)# boot nxos bootflash:nxos64-cs.10.2.4.M.bin",
+        "cli alias name <Name> <config>",
         "",
         "dir"
     ],
     "설명": [
         "지정된 Nexus 운영 체제(NX-OS) 이미지 파일을 부트플래시로 설정하여 장비를 해당 버전으로 부팅",
+        "약어를 사용하여 Config 설정",
         "",
         "파일 경로 확인"
     ]
