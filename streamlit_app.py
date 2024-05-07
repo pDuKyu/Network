@@ -1248,9 +1248,26 @@ caption=''
 st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
 
 
-# 오늘 날짜 가져오기
-today_date = datetime.today().strftime('%Y-%m-%d %A')
-st.sidebar.write(f"오늘은 {today_date}일 입니다!")
+# 한글 요일 매핑
+weekdays_kr = {
+    '0': '월요일',
+    '1': '화요일',
+    '2': '수요일',
+    '3': '목요일',
+    '4': '금요일',
+    '5': '토요일',
+    '6': '일요일'
+}
+
+# 오늘 날짜와 요일 가져오기
+today_date = datetime.today().strftime('%Y-%m-%d')
+weekday_num = datetime.today().strftime('%w')  # 숫자로 된 요일
+
+# 한글로 변환된 요일을 가져오기
+weekday_kr = weekdays_kr[weekday_num]
+
+# 결과 출력
+st.sidebar.write(f"오늘은 {today_date} ({weekday_kr}) 입니다!")
 
 
 
