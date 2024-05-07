@@ -1391,9 +1391,9 @@ nexus_tables = {"호스트 이름 및 인터페이스 설정 명령어":host_nam
 
 vpc = {
     "명령어": [
-        "feature vpc",
-        "vpc domain <Num>",
-        "role priority <Num[Default = 32667]>",
+        "(config)# feature vpc",
+        "(config)# vpc domain <Num>",
+        "(config-vpc-domain)# role priority <Num[Default = 32667]>",
         "",
         "show vpc role"
     ],
@@ -1408,19 +1408,19 @@ vpc = {
 
 keep_alive_link = {
     "명령어": [
-        "(config)#feature lacp",
-        "(config)#feature vpc",
-        "(config)#interface <int-int>",
-        "(config-if)#channel-group <Num> mode active",
+        "(config)# feature lacp",
+        "(config)# feature vpc",
+        "(config)# interface <int-int>",
+        "(config-if)# channel-group <Num> mode active",
         "",
-        "(config)#vrf context <VRF Name>",
+        "(config)# vrf context <VRF Name>",
         "",
-        "(config)#interface <LACP Port>",
-        "(config-if)#vrf member <VRF Name>",
-        "(config-if)#ip address <내 IP/sub>",
+        "(config)# interface <LACP Port>",
+        "(config-if)# vrf member <VRF Name>",
+        "(config-if)# ip address <내 IP/sub>",
         "",
-        "(config)#vpc domain <Num>",
-        "(config-vpc-domain)#peer-keepalive destination <상대 IP> source <내 IP> vrf <VRF Name>"
+        "(config)# vpc domain <Num>",
+        "(config-vpc-domain)# peer-keepalive destination <상대 IP> source <내 IP> vrf <VRF Name>"
     ],
     "설명": [
         "LACP 기능 활성화",
@@ -1439,8 +1439,36 @@ keep_alive_link = {
     ]
 }
 
+peer_link = {
+    "명령어": [
+        "feature lacp",
+        "feature vpc",
+        "interface <ethernet 3/1, ethernet 4/1>",
+        "channel-group <2> mode active",
+        "interface port-channel <2>",
+        "switchport mode trunk",
+        "switchport trunk allowed vlan <1-100>",
+        "spanning-tree port type network",
+        "vpc peer-link"
+    ],
+    "설명": [
+        "LACP 기능 활성화",
+        "vPC 기능 활성화",
+        "설정을 시작할 Ethernet 인터페이스에 접속 (모듈 이원화)",
+        "포트 채널 그룹 2를 활성 LACP 모드로 설정",
+        "포트 채널 그룹 2에 접속하여 설정을 시작",
+        "포트 채널을 트렁크 모드로 설정(VLAN 통신을 할 때도 있기 때문)",
+        "트렁크에 허용되는 VLAN 설정 (VLAN 1부터 100까지 허용)",
+        "포트를 네트워크 유형으로 설정 (Default 적용으로서 생략 가능)",
+        "vPC 피어 링크 설정"
+    ]
+}
+
+
+
 vpc_tables = {"vpc 생성 및 우선 값 명령어": vpc,
-              "KeepaLive Link 명령어":keep_alive_link
+              "KeepaLive Link 설정 명령어":keep_alive_link,
+              "peer link 설정 명령어": peer_link
            }
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
