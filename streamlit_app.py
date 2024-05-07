@@ -1476,11 +1476,33 @@ peer_link = {
     ]
 }
 
-
+member_port = {
+    "명령어": [
+        "(config)# interface ethernet 2/3",
+        "(config-if)# channel-group <Num> mode active",
+        "",
+        "(config)# interface port-channel <Num>",
+        "(config-if)# switchport mode trunk",
+        "(config-if)# switchport trunk allowed <vlan 1-100>",
+        "(config-if)# spanning-tree port guard root",
+        "(config-if)# vpc 10"
+    ],
+    "설명": [
+        "vPC 멤버 포트에 접속하여 설정을 시작",
+        "LACP 모드로 설정",
+        "",
+        "포트 채널 그룹에 접속하여 설정을 시작",
+        "포트 채널을 트렁크 모드로 설정",
+        "Member VLAN 설정 (VLAN 1부터 100까지 허용)",
+        "포트를 루트 가드로 설정",
+        "포트 채널에 vPC 활성화"
+    ]
+}
 
 vpc_tables = {"vpc 생성 및 우선 값 명령어": vpc,
               "KeepaLive Link 설정 명령어":keep_alive_link,
-              "peer link 설정 명령어": peer_link
+              "peer link 설정 명령어": peer_link,
+              "Member Port를 Port Channel로 구성하는 명령어": member_port
            }
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
