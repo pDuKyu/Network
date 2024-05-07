@@ -96,7 +96,7 @@ stp_settings = {
 # 루트 브릿지 보안 설정 명령어
 root_bridge_security = {
     "코드": ["spanning-tree portfast", "spanning-tree guard root", "spanning-tree bpduguard enable", "spanning-tree bpdufilter enable", "spanning-tree loopguard default", "spanning-tree vlan ~ root primery", "spanning-tree vlan ~ root seconfdery"],
-    "설명": ["리스닝/러닝 단계를 건너뛰는 포트를 설정", "루트 브리지 변경을 방지하고 낮은 BPDU 브리지 차단", "해당 인터페이스에 BPDU가 들어오면 차단", "BPDU를 해당 포트로 송/수신하지 않음", "단방향 링크로 인한 루프 형성 방지", "vlan을 루트 브릿지로 설정", "vlan을 두번 째 브릿지로 설정"]
+    "설명": ["리스닝/러닝 단계를 건너뛰는 포트를 설정", "루트 브리지 변경을 방지하고 낮은 BPDU 브리지 차단", "해당 인터페이스에 BPDU가 들어오면 차단", "BPDU를 해당 포트로 송/수신하지 않음", "어떤 이벤트가 일어나도 이 포트를 BLK로 유지(BLK포트에만 적용 가능)", "vlan을 루트 브릿지로 설정", "vlan을 두번 째 브릿지로 설정"]
 }
 
 # 트래킹 설정 명령어
