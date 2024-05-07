@@ -1488,7 +1488,9 @@ member_port = {
         "(config-if)# switchport trunk allowed <vlan 1-100>",
         "(config-if)# spanning-tree port guard root",
         "(config-if)# vpc 10",
-        ""
+        "",
+        "show vpc",
+        "show vpc orphan-ports"
     ],
     "설명": [
         "vPC 멤버 포트에 접속하여 설정을 시작",
@@ -1499,7 +1501,9 @@ member_port = {
         "Member VLAN 설정 (VLAN 1부터 100까지 허용)",
         "포트를 루트 가드로 설정",
         "포트 채널에 vPC 활성화",
-        "Peer 장비에도 똑같은 Config 입력"
+        "Peer 장비에도 똑같은 Config 입력",
+        "vpc 상태 확인",
+        "Orphan Port 확인"
     ]
 }
 
