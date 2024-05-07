@@ -1245,7 +1245,14 @@ host_name_interface_command = {
     ]
 }
 
-
+stp_port_type = {
+    "명령어": [
+        "spanning-tree port type <type>"
+    ],
+    "설명": [
+        "STP 포트 타입 설정"
+    ]
+}
 vrf_command = {
     "명령어": [
         "config)# vrf context management",
