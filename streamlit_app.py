@@ -1734,10 +1734,14 @@ elif page == "vPC":
     
     # 각 단어에 대한 버튼 생성
     for i, (word, definition) in enumerate(definitions.items()):
-        if i % 2 == 0:
+        if i % 4 == 0:
             button_container = col1
-        else:
+        elif i % 4 == 1:
             button_container = col2
+        elif i % 4 == 2:
+            button_container = col3
+        else:
+            button_container = col4
     
         if button_container.button(word):
             # 클릭된 버튼에 해당하는 설명 표시
