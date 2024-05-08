@@ -1743,7 +1743,7 @@ elif page == "vPC":
         else:
             button_container = col4
     
-        button_clicked = button_container.button(word)
+        button_clicked = button_container.button(word, key=word)
         if button_clicked:
             # 클릭된 버튼에 해당하는 설명 표시
             st.write(definition)
