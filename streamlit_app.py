@@ -1729,6 +1729,9 @@ elif page == "vPC":
     selected_df7 = vpc_tables[selected_table7]
     st.dataframe(selected_df7, width=800)
     
+    # 구분선 표시
+    st.markdown("---")
+    
     # 열 생성
     col1, col2, col3, col4 = st.columns(4)
     
