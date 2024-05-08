@@ -1729,8 +1729,8 @@ elif page == "vPC":
     selected_df7 = vpc_tables[selected_table7]
     st.dataframe(selected_df7, width=800)
 
-    # 버튼을 가로로 배열하기 위해 열 생성
-    col1, col2 = st.beta_columns(2)
+    # 열 생성
+    col1, col2 = st.columns(2)
     
     # 각 단어에 대한 버튼 생성
     for i, (word, definition) in enumerate(definitions.items()):
