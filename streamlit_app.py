@@ -1748,6 +1748,8 @@ elif page == "vPC":
     
         button_clicked = button_container.button(word, key=word)
         if button_clicked:
+            # 구분선 표시
+            st.markdown("---")
             # 클릭된 버튼에 해당하는 설명 표시
             st.write(definition)
 
