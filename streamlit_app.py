@@ -1520,6 +1520,19 @@ vpc_tables = {"vPC 도메인 생성 및 우선 값 명령어": vpc,
               "Peer Link 설정 명령어": peer_link,
               "Member Port선언 및 Port Channel 구성 명령어": member_port
            }
+
+
+# 단어와 설명을 딕셔너리로 정의
+definitions = {
+    "vPC Domain": "vPC의 환경 자체를 말하는 것으로 세부 환경 설정을 해야 하며 Nexus 장비는 단 하나의 vPC Domain만을 가질 수 있음.",
+    "vPC": "가상의 Port-Channel. 포트들을 특정 Number값을 가진 vPC로 선언하면 지정된 포트들은 가상의 하나로 묶여진 포트로 동작 함.",
+    "Peer Device": "vPC 도메인 내의 두 장비를 말함.",
+    "Member Port": "vPC 선언이 된 인터페이스.",
+    "Member VLAN": "vPC에 Allowed된 VLAN.",
+    "Orphan Port": "vPC 장비에 VLAN이 Allowed 되었지만 vPC 선언은 되지 않은 포트.",
+    "KeepAlive Link": "Peer 장비 간에 상태 정보를 주고 받는 역할을 하지만 Peer Link도 서로의 상태 정보를 CFS로 주고 받기 때문에 KeepAlive 정보 이중화라고 보면 됨.",
+    "Peer Link": "Peer 장비 간에 상태 정보를 주고 받으며 Primary의 MAC address, IGMP snooping, Config consistency check, vPC Member Port status, BPDU 정보를 모두 동기화하는 링크."
+}
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
@@ -1684,17 +1697,7 @@ elif page == "VRF":
 
 # Nexus 페이지
 
-# 단어와 설명을 딕셔너리로 정의
-definitions = {
-    "vPC Domain": "vPC의 환경 자체를 말하는 것으로 세부 환경 설정을 해야 하며 Nexus 장비는 단 하나의 vPC Domain만을 가질 수 있음.",
-    "vPC": "가상의 Port-Channel. 포트들을 특정 Number값을 가진 vPC로 선언하면 지정된 포트들은 가상의 하나로 묶여진 포트로 동작 함.",
-    "Peer Device": "vPC 도메인 내의 두 장비를 말함.",
-    "Member Port": "vPC 선언이 된 인터페이스.",
-    "Member VLAN": "vPC에 Allowed된 VLAN.",
-    "Orphan Port": "vPC 장비에 VLAN이 Allowed 되었지만 vPC 선언은 되지 않은 포트.",
-    "KeepAlive Link": "Peer 장비 간에 상태 정보를 주고 받는 역할을 하지만 Peer Link도 서로의 상태 정보를 CFS로 주고 받기 때문에 KeepAlive 정보 이중화라고 보면 됨.",
-    "Peer Link": "Peer 장비 간에 상태 정보를 주고 받으며 Primary의 MAC address, IGMP snooping, Config consistency check, vPC Member Port status, BPDU 정보를 모두 동기화하는 링크."
-}
+
 
 
 elif page == "Nexus":
@@ -1709,7 +1712,11 @@ elif page == "Nexus":
     selected_df6 = nexus_tables[selected_table6]
     st.dataframe(selected_df6, width=800)
 
-
+# 각 단어에 대한 버튼 생성
+    for word in definitions.keys():
+        if st.button(word):
+            # 클릭된 버튼에 해당하는 설명 표시
+            st.write(definitions[word])
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
