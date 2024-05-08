@@ -1730,7 +1730,7 @@ elif page == "vPC":
     st.dataframe(selected_df7, width=800)
 
     # 열 생성
-    col1, col2 = st.columns(2)
+    col1, col2, col3, col4 = st.columns(4)
     
     # 각 단어에 대한 버튼 생성
     for i, (word, definition) in enumerate(definitions.items()):
