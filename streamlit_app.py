@@ -1732,9 +1732,6 @@ elif page == "vPC":
     # 열 생성
     col1, col2, col3, col4 = st.columns(4)
     
-    # 버튼의 너비 설정
-    button_width = 150
-    
     # 각 단어에 대한 버튼 생성
     for i, (word, definition) in enumerate(definitions.items()):
         if i % 4 == 0:
@@ -1746,7 +1743,7 @@ elif page == "vPC":
         else:
             button_container = col4
     
-        button_clicked = st.button(word, style={'width': f'{button_width}px'})
+        button_clicked = button_container.button(word)
         if button_clicked:
             # 클릭된 버튼에 해당하는 설명 표시
             st.write(definition)
