@@ -1728,10 +1728,10 @@ elif page == "vPC":
 #테이블 시각화
     selected_df7 = vpc_tables[selected_table7]
     st.dataframe(selected_df7, width=800)
-
+    
     # 열 생성
     col1, col2, col3, col4 = st.columns(4)
-
+    
     # 버튼의 너비 설정
     button_width = 150
     
@@ -1746,10 +1746,10 @@ elif page == "vPC":
         else:
             button_container = col4
     
-        with button_container:
-            if st.button(word, style={'width': f'{button_width}px'}):
-                # 클릭된 버튼에 해당하는 설명 표시
-                st.write(definition)
+        button_clicked = button_container.button(word, style={'width': f'{button_width}px'})
+        if button_clicked:
+            # 클릭된 버튼에 해당하는 설명 표시
+            st.write(definition)
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
