@@ -1703,17 +1703,13 @@ elif page == "Nexus":
 
 #리스트 기능.
     table_names6 = list(nexus_tables.keys())
-    selected_table6 = st.selectbox("", table_names6)  
+    selected_table6 = st.selectbox("", table_names6)
 
 #테이블 시각화
     selected_df6 = nexus_tables[selected_table6]
     st.dataframe(selected_df6, width=800)
 
-# 각 단어에 대한 버튼 생성
-    for word in definitions.keys():
-        if st.button(word):
-            # 클릭된 버튼에 해당하는 설명 표시
-            st.write(definitions[word])
+
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
