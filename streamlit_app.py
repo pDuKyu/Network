@@ -1747,7 +1747,8 @@ elif page == "vPC":
             button_container = col4
     
         with button_container:
-            if st.button(word, style={'width': f'{button_width}px'}):
+            button = f'<button style="width: {button_width}px">{word}</button>'
+            if st.markdown(button, unsafe_allow_html=True):
                 # 클릭된 버튼에 해당하는 설명 표시
                 st.write(definition)
 
