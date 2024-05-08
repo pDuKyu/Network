@@ -1746,7 +1746,7 @@ elif page == "vPC":
         else:
             button_container = col4
     
-        button_clicked = button_container.button(word, style={'width': f'{button_width}px'})
+        button_clicked = st.button(word, style={'width': f'{button_width}px'})
         if button_clicked:
             # 클릭된 버튼에 해당하는 설명 표시
             st.write(definition)
