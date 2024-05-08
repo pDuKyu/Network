@@ -1712,11 +1712,7 @@ elif page == "Nexus":
     selected_df6 = nexus_tables[selected_table6]
     st.dataframe(selected_df6, width=800)
 
-# 각 단어에 대한 버튼 생성
-    for word in definitions.keys():
-        if st.button(word):
-            # 클릭된 버튼에 해당하는 설명 표시
-            st.write(definitions[word])
+
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1733,6 +1729,11 @@ elif page == "vPC":
     selected_df7 = vpc_tables[selected_table7]
     st.dataframe(selected_df7, width=800)
 
+# 각 단어에 대한 버튼 생성
+    for word in definitions.keys():
+        if st.button(word):
+            # 클릭된 버튼에 해당하는 설명 표시
+            st.write(definitions[word])
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
