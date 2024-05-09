@@ -1418,14 +1418,11 @@ vpc = {
 
 keep_alive_link = {
     "명령어": [
-        "(config)# feature lacp",
         "(config)# feature vpc",
-        "(config)# interface <int-int>",
-        "(config-if)# channel-group <Num> mode active",
         "",
         "(config)# vrf context <VRF Name>",
         "",
-        "(config)# interface <LACP Port>",
+        "(config)# interface <KAL Interface>",
         "(config-if)# vrf member <VRF Name>",
         "(config-if)# ip address <내 IP/sub>",
         "",
@@ -1435,14 +1432,11 @@ keep_alive_link = {
         "show vpc peer-keepalive"
     ],
     "설명": [
-        "LACP 기능 활성화",
         "vPC(Virtual Port Channel) 기능 활성화",
-        "LACP를 설정할 포트에 접속",
-        "LACP Port-Channel을 지정하고 활성화",
         "",
         "KeepAlive Link를 위한 VRF 생성",
         "",
-        "Port-Channel에 접속",
+        "KeepAlive 인터페이스에 접속",
         "이 포트가 참고할 VRF를 지정",
         "이 포트의 IP 주소 설정",
         "",
