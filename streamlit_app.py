@@ -1528,7 +1528,7 @@ vpc_tables = {"vPC 도메인 생성 및 우선 값 명령어": vpc,
 
 # 단어와 설명을 딕셔너리로 정의
 definitions = {
-    "vPC Domain": "vPC의 환경 자체를 말하는 것으로 세부 환경 설정을 해야 하며 Nexus 장비는 단 하나의 vPC Domain만을 가질 수 있음.",
+    "vPC Domain": "vPC의 환경 자체를 말하는 것으로 세부 환경 설정을 해야 하며 Nexus 장비는 단 하나의 vPC Domain와 단 두 대의 Peer장비 만을 가질 수 있음.",
     "vPC": "가상의 Port-Channel. 포트들을 특정 Number값을 가진 vPC로 선언하면 지정된 포트들은 가상의 하나로 묶여진 포트로 동작 함.(하단의 장비가 이렇게 인식하는 것. vPC장비는 선언만 해줌.)",
     "Peer Device": "vPC 도메인 내의 두 장비를 말함.",
     "Member Port": "vPC 선언이 된 인터페이스.",
