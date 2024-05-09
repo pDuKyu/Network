@@ -1523,14 +1523,14 @@ member_port = {
 
 vpc_error_commands = {
     "명령어": [
-        "auto recovery",
-        "auto recovery reload-delay",
-        "vpc role preempt",
-        "peer-switch",
-        "peer-gateway",
-        "ip arp synchronize",
-        "dual-active exclude interface-vlan <VLAN Num>",
-        "vpc orphan-ports suspend"
+        "(config-vpc-domain)# auto recovery",
+        (config-vpc-domain)# "auto recovery reload-delay",
+        "(config-vpc-domain)# vpc role preempt",
+        "(config-vpc-domain)# peer-switch",
+        "(config-vpc-domain)# peer-gateway",
+        "(config-vpc-domain)# ip arp synchronize",
+        "(config-vpc-domain)# dual-active exclude interface-vlan <VLAN Num>",
+        "(config-if)# vpc orphan-ports suspend"
     ],
     "설명": [
         "Peer Link가 끊어진 후 S장비가 Member Port를 차단한 뒤 P장비가 Down되는 상황에서 장애를 대비하기 위한 명령어. Secondary 장비에서 걸어주는 명령어로 장비가 KeepAlive 메세지를 연속 3회 동안 받지 못하면 자신의 Suspend 포트를 풀고 Operational Primary로 동작하게 됨.",
