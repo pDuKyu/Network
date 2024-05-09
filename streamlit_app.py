@@ -1524,7 +1524,7 @@ member_port = {
 vpc_error_commands = {
     "명령어": [
         "(config-vpc-domain)# auto recovery",
-        (config-vpc-domain)# "auto recovery reload-delay",
+        "(config-vpc-domain)# auto recovery reload-delay",
         "(config-vpc-domain)# vpc role preempt",
         "(config-vpc-domain)# peer-switch",
         "(config-vpc-domain)# peer-gateway",
