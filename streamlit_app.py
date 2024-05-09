@@ -1771,6 +1771,8 @@ elif page == "vPC":
     st.write('')
     st.write('')
     st.write('')
+    st.write('')
+    st.write('')
     # 열 생성
     col1, col2, col3, col4 = st.columns(4)
     
