@@ -1392,7 +1392,7 @@ nexus_tables = {"호스트 이름 및 인터페이스 설정 명령어":host_nam
               "라우팅 및 네트워크 설정 명령어": routing_network_command,
               "부팅 및 파일 시스템 설정 명령어": boot_system_command,
               "사용자 역할 설정 명령어": role_command,
-              "Rollback 명령어": rollback_command
+              "Checkout & Rollback 명령어": rollback_command
            }
 
 
