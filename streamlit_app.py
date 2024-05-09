@@ -1430,7 +1430,9 @@ keep_alive_link = {
         "(config-if)# ip address <내 IP/sub>",
         "",
         "(config)# vpc domain <Num>",
-        "(config-vpc-domain)# peer-keepalive destination <상대 IP> source <내 IP> vrf <VRF Name>"
+        "(config-vpc-domain)# peer-keepalive destination <상대 IP> source <내 IP> vrf <VRF Name>",
+        "",
+        "show vpc peer-keepalive"
     ],
     "설명": [
         "LACP 기능 활성화",
@@ -1445,7 +1447,9 @@ keep_alive_link = {
         "이 포트의 IP 주소 설정",
         "",
         "vPC 도메인 생성 또는 접속",
-        "KeepAlive 메시지를 보낼 때 사용할 도착지 IP, 출발지 IP, VRF 설정"
+        "KeepAlive 메시지를 보낼 때 사용할 도착지 IP, 출발지 IP, VRF 설정",
+        "",
+        "peer-keepalive 상태 확인"
     ]
 }
 
