@@ -1519,11 +1519,30 @@ member_port = {
     ]
 }
 
-vpc_tables = {"vPC 도메인 생성 및 우선 값 명령어": vpc,
-              "KeepAlive Link 설정 명령어":keep_alive_link,
-              "Peer Link 설정 명령어": peer_link,
-              "Member Port선언 및 Port Channel 구성 명령어": member_port
-           }
+
+
+vpc_error_commands = {
+    "명령어": [
+        "auto recovery",
+        "auto recovery reload-delay",
+        "vpc role preempt",
+        "peer-switch",
+        "peer-gateway",
+        "ip arp synchronize",
+        "dual-active exclude interface-vlan <VLAN Num>",
+        "vpc orphan-ports suspend"
+    ],
+    "설명": [
+        "Secondary 장비에서 걸어주는 명령어로 장비가 KeepAlive 메세지를 연속 3회 동안 받지 못하면 자신의 Suspend 포트를 풀고 Operational Primary로 동작하게 됨.",
+        "Peer 장비들을 동시에 Reboot하였지만 한 대의 장비가 booting되지 않아 서로 vPC 협상을 맺지 않고 vPC 활성화가 되지 않을 때 지정하는 명령어. 협상이 일정 시간 이상 진행되지 않는 경우 해당 장비를 Primary로 실행 함.",
+        "vPC Role을 중요도 순으로 역할을 재정리하는 명령어.",
+        "STP/BPDU는 P장비가 주도함. P장비가 Down될 경우 S장비가 STP를 주도하기 위해 주도권을 가져오는데 이때 DownTime이 3초 발생. 이를 방지하기 위해 System MAC을 Bridge ID로 사용하여 두 장비 모두에게 STP 주도권을 주어 DownTime을 없애는 명령어. (두 장비의 STP Priority를 같게 설정해야 함 `spanning-tree vlan <Member VLAN Num> priority <priority>`)",
+        "이중화 구성 시 출발 패킷은 가상 MAC 주소를 보고 게이트웨이로 향한 뒤 SVI 인터페이스의 MAC을 src로 달고 내려감. 되돌아 오는 패킷도 마찬가지로 가상 MAC을 향해 보내지며 내려올 때 SVI 인터페이스의 MAC을 달고 내려감. 그러나 패킷을 반송하는 장비가 가상 MAC이 아닌 실제 MAC을 향해 패킷을 보낸다면 패킷 손실이 발생할 수 있음. 예로 만약 P장비의 실제 MAC을 dest로 넣고 패킷을 쏜 뒤 이 패킷이 S장비로 향하게 되면 S장비는 P장비의 MAC정보를 알기 때문에 Peer링크로 이 패킷을 P장비에 전달. 하지만 이는 로컬 처리 룰에 어긋나기 때문에 패킷을 전달하지 않음. 이를 방지하기 위해 P와 S장비가 서로의 실제 MAC 주소를 공유하여 본인이 직접 이 패킷을 로컬 처리 하기 위해 설정하는 명령어. (두 장비는 자신과 상대의 실제 MAC 주소를 G Flag를 달고 테이블에 올림. 실제 Gateway MAC 주소를 공유하여 로컬로 처리할 수 있게 만드는 것)",
+        "Peer Link 가 Down되면 Peer 장비들은 상대방의 ARP 정보를 손실하게 됨. Peer Link가 다시 연결됐을 때 ARP 테이블을 채우려면 시간이 걸리게 됨. 이를 방지하기 위해 서로의 ARP 테이블을 공유하여 동일하게 저장하는 명령어.",
+        "Peer Link 다운 시 Orphan Port를 살리는 방법. vPC 도메인에 `dual-active exclude interface-vlan <VLAN Num>` 명령어를 입력하여 Peer Link가 Down되도 VLAN은 UP 상태로 유지.",
+        "Peer Link 다운 시 Orphan Port를 죽이는 방법. Orphan Port 인터페이스에 `vpc orphan-ports suspend` 명령어를 입력하여 Peer Link가 다운될 시 Orphan Port도 함께 Down시킴."
+    ]
+}
 
 
 # 단어와 설명을 딕셔너리로 정의
@@ -1537,6 +1556,16 @@ definitions = {
     "KeepAlive Link": "Peer 장비 간에 상태 정보를 주고 받는 역할을 하지만 Peer Link도 서로의 상태 정보를 CFS로 주고 받기 때문에 KeepAlive 정보 이중화라고 보면 됨.",
     "Peer Link": "Peer 장비 간에 상태 정보를 주고 받으며 Primary의 MAC address, IGMP snooping, Config consistency check, vPC Member Port status, BPDU 정보를 모두 동기화하는 링크."
 }
+
+
+
+
+vpc_tables = {"vPC 도메인 생성 및 우선 값 명령어": vpc,
+              "KeepAlive Link 설정 명령어":keep_alive_link,
+              "Peer Link 설정 명령어": peer_link,
+              "Member Port선언 및 Port Channel 구성 명령어": member_port,
+              "vPC 장애 대비 명령어" : vpc_error_commands
+           }
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
