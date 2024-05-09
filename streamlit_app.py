@@ -1559,7 +1559,7 @@ definitions = {
     "Member Port": "vPC 선언이 된 인터페이스.",
     "Member VLAN": "vPC에 Allowed된 VLAN.",
     "Orphan Port": "vPC 장비에 VLAN이 Allowed 되었지만 vPC 선언은 되지 않은 포트.",
-    "KeepAlive Link": "Peer 장비 간에 상태 정보를 주고 받는 역할을 하지만 Peer Link도 서로의 상태 정보를 CFS로 주고 받기 때문에 KeepAlive 정보 이중화라고 보면 됨.",
+    "KeepAlive Link": "Peer 장비 간에 상태 정보를 주고 받는 역할을 하지만 vPC 협상이 이루어진 후, Peer Link도 서로의 상태 정보를 CFS로 주고 받기 때문에 KeepAlive 정보 이중화라고 보면 됨.",
     "Peer Link": "Peer 장비 간에 상태 정보를 주고 받으며 Primary의 MAC address, IGMP snooping, Config consistency check, vPC Member Port status, BPDU 정보를 모두 동기화하는 링크."
 }
 
