@@ -1533,7 +1533,7 @@ vpc_error_commands = {
         "vpc orphan-ports suspend"
     ],
     "설명": [
-        "Secondary 장비에서 걸어주는 명령어로 장비가 KeepAlive 메세지를 연속 3회 동안 받지 못하면 자신의 Suspend 포트를 풀고 Operational Primary로 동작하게 됨.",
+        "Peer Link가 끊어진 후 S장비가 Member Port를 차단한 뒤 P장비가 Down되는 상황에서 장애를 대비하기 위한 명령어. Secondary 장비에서 걸어주는 명령어로 장비가 KeepAlive 메세지를 연속 3회 동안 받지 못하면 자신의 Suspend 포트를 풀고 Operational Primary로 동작하게 됨.",
         "Peer 장비들을 동시에 Reboot하였지만 한 대의 장비가 booting되지 않아 서로 vPC 협상을 맺지 않고 vPC 활성화가 되지 않을 때 지정하는 명령어. 협상이 일정 시간 이상 진행되지 않는 경우 해당 장비를 Primary로 실행 함.",
         "vPC Role을 중요도 순으로 역할을 재정리하는 명령어.",
         "STP/BPDU는 P장비가 주도함. P장비가 Down될 경우 S장비가 STP를 주도하기 위해 주도권을 가져오는데 이때 DownTime이 3초 발생. 이를 방지하기 위해 System MAC을 Bridge ID로 사용하여 두 장비 모두에게 STP 주도권을 주어 DownTime을 없애는 명령어. (두 장비의 STP Priority를 같게 설정해야 함 `spanning-tree vlan <Member VLAN Num> priority <priority>`)",
