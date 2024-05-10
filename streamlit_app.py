@@ -1540,7 +1540,7 @@ vpc_error_commands = {
         "Peer Link 가 Down되면 Peer 장비들은 상대방의 ARP 정보를 손실하게 됨. Peer Link가 다시 연결됐을 때 ARP 테이블을 채우려면 시간이 걸리게 됨. 이를 방지하기 위해 서로의 ARP 테이블을 공유하여 동일하게 저장하는 명령어.",
         "",
         "Peer Link 다운 시 Orphan Port를 살리는 방법(별도의 인터링크가 필요함). vPC 도메인에 `dual-active exclude interface-vlan <VLAN Num>` 명령어를 입력하여 Peer Link가 Down되도 VLAN은 UP 상태로 유지.",
-        "Peer Link 다운 시 Orphan Port를 죽이는 방법. Orphan Port 인터페이스에 `vpc orphan-ports suspend` 명령어를 입력하여 Peer Link가 다운될 시 Orphan Port도 함께 Down시킴."
+        "Peer Link 다운 시 Orphan Port를 죽이는 방법. Orphan Port 인터페이스에 `vpc orphan-ports suspend` 명령어를 입력하여 Peer Link가 다운될 시 Orphan Port도 함께 Down시킴.(이 명령어를 Orphan Port가 아닌 인터페이스에 적용해도 위 상황 시 Down이 되기 때문에 주의해야 함)"
     ]
 }
 
