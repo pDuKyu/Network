@@ -1257,12 +1257,14 @@ vrf_command = {
     "명령어": [
         "config)# vrf context management",
         "config-vrf)# ip route 0.0.0.0/0 10.1.50.254",
-        "config-if)# vrf member <VRF Name>"
+        "config-if)# vrf member <VRF Name>",
+        "(config-router)# vrf <VRF Name>"
     ],
     "설명": [
         "관리 VRF(Virtual Routing and Forwarding) 컨텍스트를 생성하거나 변경",
         "관리 VRF의 Default 라우팅 설정",
-        "인터페이스를 지정된 VRF에 소속"
+        "인터페이스를 지정된 VRF에 소속",
+        "특정 Routing Protocol에 VRF 할당"
     ]
 }
 
@@ -1384,6 +1386,61 @@ rollback_command = {
     ]
 }
 
+ospf_commands = {
+    "명령어": [
+        "feature ospf",
+        "router ospf 1",
+        "router-id <IP형식의 ID>",
+        "interface <Interface>",
+        "ip router ospf 1 area <Area Num>",
+        "ip ospf passive-interface"
+    ],
+    "설명": [
+        "OSPF 활성화",
+        "OSPF 생성",
+        "OSPF router ID 생성",
+        "OSPF 적용을 할 인터페이스에 접속",
+        "이 인터페이스가 어떤 OSPF Area에 속할지 설정",
+        "Hello 메세지를 보내지 않겠다는 설정"
+    ]
+}
+
+bgp_commands = {
+    "명령어": [
+        "feature bgp",
+        "router bgp <AS Num>",
+        "neighbor <IP> remote-as <AS Num>",
+        "address-family ipv4 unicast",
+        "network <IP/CIDR>",
+        "next-hop-self"
+    ],
+    "설명": [
+        "BGP 활성화",
+        "BGP 생성",
+        "Neighbor를 맺을 상대방의 IP와 AS Num 지정",
+        "IPv4버전의 주소를 광고하기 위해 add-Family에 접속 (IPv4의 주소로 Neighbor를 활성화 하겠다는 뜻도 됨)",
+        "광고할 네트워크 대역 지정",
+        "Next Hop을 나의 주소로 변경하도록 설정"
+    ]
+}
+
+vrf_commands = {
+    "명령어": [
+        "vrf context <VRF Name>",
+        "ip route <IP/CIDR> <Next Hop IP>",
+        "vrf member <VRF Name>",
+        "vrf <VRF Name>"
+    ],
+    "설명": [
+        "VRF 생성",
+        "VRF에 Static route 설정",
+        "특정 인터페이스에 VRF를 할당 (할당 즉시 기존의 L3 정보 삭제)",
+        "특정 Routing Protocol에 VRF 할당"
+    ]
+}
+
+
+
 nexus_tables = {"호스트 이름 및 인터페이스 설정 명령어":host_name_interface_command,
               "보안 및 인증 설정 명령어": security_authentication_command,
               "Feature 활성화 명령어": feature_command,
@@ -1392,7 +1449,9 @@ nexus_tables = {"호스트 이름 및 인터페이스 설정 명령어":host_nam
               "라우팅 및 네트워크 설정 명령어": routing_network_command,
               "부팅 및 파일 시스템 설정 명령어": boot_system_command,
               "사용자 역할 설정 명령어": role_command,
-              "CheckPoint & Rollback 명령어": rollback_command
+              "CheckPoint & Rollback 명령어": rollback_command,
+                "OSPF 명령어" : ospf_commands,
+                "BGP 명령어" : bgp_commands,
            }
 
 
