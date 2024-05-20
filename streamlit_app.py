@@ -403,6 +403,103 @@ PAT_commands = {
     "설명": ["해당 인터페이스를 내부 네트워크로 지정", "해당 인터페이스를 외부 네트워크로 지정", "ACL1을 사용하여 NAT를 적용할 네트워크를 정의.", "inside에서 올라오는 IP가 ACL1과 일치하면 fastEthernet 1/0의 IP로 덮어 씌움(overload)", "", "NAT 테이블에서 IP 변환을 보여줌."]
 }
 
+bgp_Wight_commands = {
+    "명령어": [
+        "neighbor 192.168.13.3 route-map SETWEIGHT in",
+        "access-list 1 permit 22.22.22.0 0.0.0.255",
+        "route-map SETWEIGHT permit 10",
+        "match ip address 1",
+        "set weight 400",
+        "exit",
+        "route-map SETWEIGHT permit 20",
+        "set weight 0",
+        "clear ip bgp *",
+        "Neighbor의 모든 경로에 적용(Global) 시",
+        "router bgp 1",
+        "neighbor <IP> weight <Num>"
+    ],
+    "설명": [
+        "192.168.13.3 네이버에서 들어오는 경로에 'SETWEIGHT' Route Map 적용 선언(inbound).",
+        "ACL 1 생성, 22.22.22.0/24 네트워크 허용.",
+        "Route Map 'SETWEIGHT' 생성, 순서 10.",
+        "ACL 1에 매칭되는 IP 주소를 선택.",
+        "매칭되는 경로의 weight를 400으로 설정.",
+        "Route Map 구성 종료.",
+        "Route Map 'SETWEIGHT'에 추가 조건, 순서 20.",
+        "나머지 경로의 weight를 0으로 설정.",
+        "BGP 테이블 삭제 후 재생성.",
+        "",
+        "BGP 생성 후 AS 지정",
+        "네이버의 Weight 값을 지정"
+    ]
+}
+
+bgp_local_preference_commands = {
+    "명령어": [
+        "route-map <NAME> permit 10",
+        "set local-preference <100이상의 값>",
+        "router bgp <AS Num>",
+        "neighbor <IP> route-map <NAME> in",
+        "Neighbor의 모든 경로에 적용(Global) 시",
+        "router bgp <AS Num>",
+        "bgp default local-preference <Num>"
+    ],
+    "설명": [
+        "라우터 맵의 10번 규칙을 생성.",
+        "Local Preference 값을 100 이상의 값으로 지정. (기본값은 100)",
+        "BGP AS 생성",
+        "이 네이버로 들어오는 경로들의 Local Preference 값을 이 라우터 맵과 같게 지정.",
+        "",
+        "BGP AS 생성.",
+        "BGP의 기본 Local Preference를 지정."
+    ]
+}
+
+as_path_prepend_commands = {
+    "명령어": [
+        "route-map <NAME> permit 10",
+        "set as-path prepend 1 1 1 1 1",
+        "router bgp <Num>",
+        "neighbor <IP> route-map <NAME> out"
+    ],
+    "설명": [
+        "Route Map의 10번 정책 생성.",
+        "AS-Path 값에 1 1 1 1 1을 추가하는 정책 생성.",
+        "자신의 BGP AS에 접속.",
+        "이 네이버에게 경로를 전달할 때 AS Path 값을 Route-Map과 같게하여 전달."
+    ]
+}
+
+
+metric_commands = {
+    "명령어": [
+        "route-map <NAME> permit 10",
+        "set metric <Num>",
+        "router bgp <Num>",
+        "neighbor <IP> route-map <NAME> out"
+    ],
+    "설명": [
+        "Route Map의 10번 정책 생성.",
+        "메트릭 값 지정.",
+        "내 BGP AS 접속.",
+        "iBGP Neighbor에게 나의 MED 값을 route-map의 값으로 설정하여 전파."
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # 테이블 데이터 정의
@@ -412,6 +509,10 @@ r_tables = {"스태틱 라우팅 명령어": static_route_df,
            "Extended_ACL 명령어":Extended_ACL,
             "eBGP 명령어" : eBGP,
             "iBGP 명령어": iBGP,
+            "BGP Attribute의 Weight 값 조정(경로 조정) 명령어(나가는 트래픽을 특정 경로로 보내는 명령어)": bgp_Wight_commands,
+            "BGP Attribute의 local_preference 값 조정(경로 조정) 명령어(나가는 트래픽을 특정 경로로 보내는 명령어)": bgp_local_preference_commands,
+            "BGP Attribute의 AS_Path 값 조정(경로 조정) 명령어 (들어오는 트래픽 우회용 명령어)": as_path_prepend_commands,
+            "BGP Attribute의 MED 값 조정(경로 조정) 명령어 (들어오는 트래픽 우회용 명령어)": metric_commands,
             "Inside Static NAT 명령어": in_NAT_commands,
             "Outside Static NAT 명령어": out_NAT_commands,
             "Dynamic NAT 명령어": D_NAT_commands,
