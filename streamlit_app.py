@@ -405,18 +405,16 @@ PAT_commands = {
 
 bgp_Wight_commands = {
     "명령어": [
-        "neighbor 192.168.13.3 route-map SETWEIGHT in",
-        "access-list 1 permit 22.22.22.0 0.0.0.255",
-        "route-map SETWEIGHT permit 10",
-        "match ip address 1",
-        "set weight 400",
-        "exit",
-        "route-map SETWEIGHT permit 20",
-        "set weight 0",
-        "clear ip bgp *",
+        "(config-router)# neighbor 192.168.13.3 route-map SETWEIGHT in",
+        "(config)# access-list 1 permit 22.22.22.0 0.0.0.255",
+        "(config)# route-map SETWEIGHT permit 10",
+        "(config-route-map)# match ip address 1",
+        "(config-route-map)# set weight 400",
+        "(config)# route-map SETWEIGHT permit 20",
+        "(config-route-map)# set weight 0",
+        "# clear ip bgp *",
         "Neighbor의 모든 경로에 적용(Global) 시",
-        "router bgp 1",
-        "neighbor <IP> weight <Num>"
+        "(config-router)# neighbor <IP> weight <Num>"
     ],
     "설명": [
         "192.168.13.3 네이버에서 들어오는 경로에 'SETWEIGHT' Route Map 적용 선언(inbound).",
@@ -424,48 +422,40 @@ bgp_Wight_commands = {
         "Route Map 'SETWEIGHT' 생성, 순서 10.",
         "ACL 1에 매칭되는 IP 주소를 선택.",
         "매칭되는 경로의 weight를 400으로 설정.",
-        "Route Map 구성 종료.",
         "Route Map 'SETWEIGHT'에 추가 조건, 순서 20.",
         "나머지 경로의 weight를 0으로 설정.",
         "BGP 테이블 삭제 후 재생성.",
         "",
-        "BGP 생성 후 AS 지정",
         "네이버의 Weight 값을 지정"
     ]
 }
 
 bgp_local_preference_commands = {
     "명령어": [
-        "route-map <NAME> permit 10",
-        "set local-preference <100이상의 값>",
-        "router bgp <AS Num>",
-        "neighbor <IP> route-map <NAME> in",
+        "(config)# route-map <NAME> permit 10",
+        "(config-route-map)# set local-preference <100이상의 값>",
+        "(config-router)# neighbor <IP> route-map <NAME> in",
         "Neighbor의 모든 경로에 적용(Global) 시",
-        "router bgp <AS Num>",
-        "bgp default local-preference <Num>"
+        "(config-router)# bgp default local-preference <Num>"
     ],
     "설명": [
         "라우터 맵의 10번 규칙을 생성.",
         "Local Preference 값을 100 이상의 값으로 지정. (기본값은 100)",
-        "BGP AS 생성",
         "이 네이버로 들어오는 경로들의 Local Preference 값을 이 라우터 맵과 같게 지정.",
         "",
-        "BGP AS 생성.",
         "BGP의 기본 Local Preference를 지정."
     ]
 }
 
 as_path_prepend_commands = {
     "명령어": [
-        "route-map <NAME> permit 10",
-        "set as-path prepend 1 1 1 1 1",
-        "router bgp <Num>",
-        "neighbor <IP> route-map <NAME> out"
+        "(config)# route-map <NAME> permit 10",
+        "(config-route-map)# set as-path prepend 1 1 1 1 1",
+        "(config-router)# neighbor <IP> route-map <NAME> out"
     ],
     "설명": [
         "Route Map의 10번 정책 생성.",
         "AS-Path 값에 1 1 1 1 1을 추가하는 정책 생성.",
-        "자신의 BGP AS에 접속.",
         "이 네이버에게 경로를 전달할 때 AS Path 값을 Route-Map과 같게하여 전달."
     ]
 }
@@ -473,15 +463,13 @@ as_path_prepend_commands = {
 
 metric_commands = {
     "명령어": [
-        "route-map <NAME> permit 10",
-        "set metric <Num>",
-        "router bgp <Num>",
-        "neighbor <IP> route-map <NAME> out"
+        "(config)# route-map <NAME> permit 10",
+        "(config-route-map)# set metric <Num>",
+        "(config-router)# neighbor <IP> route-map <NAME> out"
     ],
     "설명": [
         "Route Map의 10번 정책 생성.",
         "메트릭 값 지정.",
-        "내 BGP AS 접속.",
         "iBGP Neighbor에게 나의 MED 값을 route-map의 값으로 설정하여 전파."
     ]
 }
