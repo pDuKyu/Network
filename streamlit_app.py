@@ -2251,7 +2251,7 @@ elif page == "Nexus vPC":
 
 
 
-elif page == "VxLAN":
+elif page == "Nexus VxLAN":
     # 네트워크 설정 명령어로 대제목 설정
     st.title('Nexus VxLAN 설정 명령어')
 
