@@ -1717,6 +1717,313 @@ vpc_tables = {"vPC 도메인 생성 및 우선 값 명령어": vpc,
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
+ospf_pim_commands = {
+    "명령어": [
+        "feature ospf",
+        "feature pim",
+        "router ospf 1",
+        "router-id 10.1.1.1",
+        "int eth1/1",
+        "description TO_N9K-3_ETH1/1",
+        "no switchport",
+        "mtu 9216",
+        "ip address 1.1.13.1/30",
+        "ip router ospf 1 area 0",
+        "ip ospf network point-to-point",
+        "ip pim sparse-mode",
+        "no shut",
+        "int lo0",
+        "ip address 10.1.1.1/32",
+        "ip router ospf 1 area 0",
+        "ip pim sparse-mode"
+    ],
+    "설명": [
+        "OSPF 프로토콜을 활성화함",
+        "PIM (Protocol Independent Multicast)을 활성화함",
+        "OSPF 프로세스를 설정하고 ID를 할당함",
+        "OSPF 라우터 ID 설정",
+        "이더넷 인터페이스 설정",
+        "인터페이스 설명 설정",
+        "스위치 모드를 비활성화함",
+        "최대 전송 단위(MTU) 설정 (Jumbo Frame)",
+        "인터페이스 IP 주소 및 서브넷 마스크 설정",
+        "OSPF 광고 및 Neighbor 설정",
+        "OSPF 네트워크 유형을 Point-to-Point로 설정",
+        "PIM의 희소 모드를 설정함",
+        "인터페이스를 활성화함",
+        "루프백 인터페이스 설정",
+        "루프백 인터페이스 IP 주소 설정",
+        "OSPF 영역 설정",
+        "PIM의 희소 모드를 설정함"
+    ]
+}
+
+ospf_pim_nv_commands = {
+    "명령어": [
+        "feature ospf",
+        "feature pim",
+        "feature nv overlay",
+        "feature vn-segment-vlan-based",
+        "feature interface-vlan",
+        "router ospf 1",
+        "router-id 10.1.1.3",
+        "int eth1/1",
+        "description TO_N9K-1_ETH1/1",
+        "no switchport",
+        "mtu 9216",
+        "ip address 1.1.13.2/30",
+        "ip router ospf 1 area 0",
+        "ip ospf network point-to-point",
+        "ip pim sparse-mode",
+        "no shut",
+        "int lo0",
+        "ip address 10.1.1.3/32",
+        "ip router ospf 1 area 0",
+        "ip pim sparse-mode"
+    ],
+    "설명": [
+        "OSPF 프로토콜을 활성화함",
+        "PIM (Protocol Independent Multicast)을 활성화함",
+        "VTEP/NVE 기능 활성화",
+        "VxLAN 번호 헤더를 붙이는 기능 활성화",
+        "SVI 활성화",
+        "OSPF 프로세스를 설정하고 ID를 할당함",
+        "OSPF 라우터의 고유 식별자를 설정함",
+        "이더넷 인터페이스 설정",
+        "인터페이스 설명 설정",
+        "스위치 모드를 비활성화함",
+        "최대 전송 단위(MTU) 설정",
+        "인터페이스 IP 주소 및 서브넷 마스크 설정",
+        "OSPF 영역 설정",
+        "OSPF 네트워크 유형을 Point-to-Point로 설정",
+        "PIM의 희소 모드를 설정함",
+        "인터페이스를 활성화함",
+        "루프백 인터페이스 설정",
+        "NVE 인터페이스 IP 주소 설정",
+        "OSPF 영역 설정",
+        "PIM의 희소 모드를 설정함"
+    ]
+}
+
+
+pim_anycast_rp_commands = {
+    "명령어": [
+        "ip pim rp-address 10.1.1.10 group-list 225.0.0.0/24",
+        "ip pim anycast-rp 10.1.1.10 10.1.1.1",
+        "ip pim anycast-rp 10.1.1.10 10.1.1.2",
+        "int lo1",
+        "description Anycast RP",
+        "ip address 10.1.1.10/32",
+        "ip router ospf 1 area 0",
+        "ip ospf network point-to-point",
+        "ip pim sparse-mode",
+        "",
+        "ip pim rp-address 10.1.1.10"
+    ],
+    "설명": [
+        "10.1.1.10의 주소를 가진 RP에게 225.0.0.0/24 Mcast를 처리하도록 설정",
+        "Anycast RP를 설정하고 그룹 주소에 대한 RP 주소를 할당함",
+        "Anycast RP를 설정하고 그룹 주소에 대한 RP 주소를 할당함",
+        "루프백 인터페이스 설정",
+        "인터페이스 설명 설정",
+        "인터페이스 IP 주소 설정",
+        "OSPF 영역 설정",
+        "OSPF 네트워크 유형을 Point-to-Point로 설정",
+        "PIM의 희소 모드를 설정함",
+        "",
+        "Leaf 장비에 PIM RP 주소를 설정함"
+    ]
+}
+
+bgp_evpn_commands = {
+    "명령어": [
+        "feature bgp",
+        "feature nv overlay",
+        "nv overlay evpn",
+        "router bgp 65535",
+        "router-id 11.11.11.11",
+        "neighbor 1.1.1.1",
+        "remote-as 65535",
+        "update-source loopback0",
+        "address-family l2vpn evpn",
+        "send-community both",
+        "route-reflector-client"
+    ],
+    "설명": [
+        "BGP(Border Gateway Protocol)를 활성화합니다.",
+        "Network Virtualization(NV) 오버레이 기능을 활성화합니다.",
+        "MAC/IP 주소를 포함한 L2VPN/EVPN을 BGP로 전달하도록 하는 명령어.",
+        "BGP 프로토콜을 사용하여 BGP 프로세스를 시작, 자체 AS(Autonomous System) 번호를 65535로 설정.",
+        "BGP 라우터 식별자를 11.11.11.11로 설정.",
+        "이웃 BGP 라우터의 주소를 1.1.1.1로 설정.",
+        "이웃 BGP 라우터의 AS 번호 65535.",
+        "BGP 네트워크에 대한 업데이트를 보낼 소스 인터페이스를 loopback0으로 설정.",
+        "EVPN을 사용하는 Layer 2 VPN(L2VPN) 주소 패밀리를 활성화.",
+        "BGP 업데이트에서 양방향 커뮤니티를 보냄.",
+        "이 BGP 라우터를 라우트 리플렉터 클라이언트로 설정하여 다른 라우터로부터 라우팅 업데이트를 받음."
+    ]
+}
+
+nv_overlay_commands = {
+    "명령어": [
+        "interface nve1",
+        "no shutdown",
+        "source-interface loopback0",
+        "host-reachability protocol bgp",
+        "feature vn-segment-vlan-based",
+        "vlan 11",
+        "name Customer-A_Network-11",
+        "vn-segment 10011",
+        "vlan 123",
+        "name Customer-A_L3VNI",
+        "vn-segment 111213",
+        "vrf context Customer-A",
+        "vni 111213"
+    ],
+    "설명": [
+        "VxLAN의 작업대인 NVE를 생성하고 설정창에 접속.",
+        "지정한 인터페이스를 활성화.",
+        "NVE의 소스 인터페이스를 loopback0으로 설정.",
+        "BGP 프로토콜을 사용하여 호스트 접근성을 설정.",
+        "VLAN을 기반으로 하는 가상 네트워크(VN) 세그먼트 기능을 활성화.",
+        "VLAN 11을 생성.",
+        "VLAN 11의 이름을 'Customer-A_Network-11'로 지정.",
+        "VLAN 11의 VN 세그먼트 ID를 10011로 설정.",
+        "VLAN 123을 생성.",
+        "VLAN 123의 이름을 'Customer-A_L3VNI'로 지정.",
+        "VLAN 123의 VN 세그먼트 ID를 111213로 설정.",
+        "Customer-A라는 VRF(Virtual Routing and Forwarding) 컨텍스트를 생성.",
+        "VRF Customer-A에서 VNI(Virtual Network Identifier) 111213을 설정."
+    ]
+}
+
+nv_overlay_commands2 = {
+    "명령어": [
+        "interface nve1",
+        "no shutdown",
+        "source-interface loopback0",
+        "host-reachability protocol bgp",
+        "feature vn-segment-vlan-based",
+        "vlan 11",
+        "name Customer-A_Network-11",
+        "vn-segment 10011",
+        "vlan 123",
+        "name Customer-A_L3VNI",
+        "vn-segment 111213",
+        "vrf context Customer-A",
+        "vni 111213",
+        "feature interface-vlan",
+        "fabric forwarding anycast-gateway-mac 1234.1234.1234",
+        "interface vlan 11",
+        "no shutdown",
+        "vrf member Customer-A",
+        "ip address 1.1.11.1/24",
+        "fabric forwarding mode anycast-gateway",
+        "interface vlan 123",
+        "no shutdown",
+        "ip forward"
+    ],
+    "설명": [
+        "NV 오버레이 터널 인터페이스를 지정하고 해당 인터페이스를 설정.",
+        "지정한 인터페이스를 활성화.",
+        "NV 오버레이 터널의 소스 인터페이스를 loopback0으로 설정.",
+        "BGP 프로토콜을 사용하여 호스트 접근성을 설정.",
+        "VLAN을 기반으로 하는 가상 네트워크(VN) 세그먼트 기능을 활성화.",
+        "VLAN 11을 생성.",
+        "VLAN 11의 이름을 'Customer-A_Network-11'로 지정.",
+        "VLAN 11의 VN 세그먼트 ID를 10011로 설정.",
+        "VLAN 123을 생성.",
+        "VLAN 123의 이름을 'Customer-A_L3VNI'로 지정.",
+        "VLAN 123의 VN 세그먼트 ID를 111213로 설정.",
+        "Customer-A라는 VRF(Virtual Routing and Forwarding) 컨텍스트를 생성.",
+        "VRF Customer-A에서 VNI(Virtual Network Identifier) 111213을 설정.",
+        "인터페이스 VLAN을 활성화.",
+        "패브릭 포워딩에서 사용하는 애니캐스트 게이트웨이 MAC 주소를 설정.",
+        "VLAN 11에 대한 인터페이스 설정.",
+        "지정한 인터페이스를 활성화.",
+        "인터페이스를 VRF(Customer-A)의 멤버로 지정.",
+        "VLAN 11에 대한 IP 주소를 설정.",
+        "패브릭 포워딩 모드를 애니캐스트 게이트웨이 모드로 설정.",
+        "VLAN 123에 대한 인터페이스를 설정하고, VRF 멤버로서 Customer-A를 연결하며, IP 전달을 활성화.",
+        "지정한 인터페이스를 활성화.",
+        "인터페이스를 IP 전달 모드로 설정."
+    ]
+}
+
+configuration_data = {
+    "명령어": [
+        "interface nve1",
+        "member vni 10011",
+        "mcast-group 239.0.0.11",
+        "member vni 111213 associate-vrf",
+        "router bgp 65535",
+        "vrf Customer-A",
+        "address-family ipv4 unicast",
+        "redistribute direct route-map DIRECT",
+        "route-map DIRECT permit 10"
+    ],
+    "설명": [
+        "NV 오버레이 터널 인터페이스를 설정하고, VNI 10011을 구성하며, 멀티캐스트 그룹을 239.0.0.11로 설정하고, VRF와 연결된 VNI 111213을 연결.",
+        "인터페이스에 VNI 10011을 매핑.",
+        "멀티캐스트 그룹 주소를 설정.",
+        "인터페이스에 VNI 111213을 VRF와 연결.",
+        "BGP 프로세스를 시작.",
+        "VRF Customer-A에 대한 BGP 라우터 구성을 시작.",
+        "IPv4 유니캐스트 주소 패밀리를 활성화. (IPv4로 통신)",
+        "직접 연결된 디바이스를 다시 분배(광고)하고, route-map을 사용하여 특정 조건을 적용.",
+        "모든(10) 디바이스를 분배(광고)함."
+    ]
+}
+
+VxLAN_Show_commands = {
+    "명령어": [
+        "show nve peers",
+        "show nve vni",
+        "show ip arp suppression-cache detail",
+        "show vxlan interface",
+        "show bgp l2vpn evpn summary",
+        "show bgp l2vpn evpn",
+        "show l2route evpn mac all",
+        "show l2route evpn mac-ip all",
+        "PC# arp -n"
+    ],
+    "설명": [
+        "NV 터널 엔진(NVE) 피어에 대한 정보를 표시.",
+        "VNI번호/상태/모드/타입 등을 확인.",
+        "IP ARP 억제 캐시에 대한 자세한 정보를 표시.",
+        "VXLAN 인터페이스 정보 표시. (Nexus 9300에서는 지원되지 않음)",
+        "EVPN 요약 정보 주소 확인.",
+        "EVPN 주소 확인.",
+        "EVPN 맥 주소에 대한 모든 L2 라우팅 정보를 표시.",
+        "EVPN 맥-IP 주소에 대한 모든 L2 라우팅 정보를 표시합니다.",
+        "PC에서 ARP 테이블 확인."
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+VXLAN_table = {"Underlay Spine OSPF설정 명령어": ospf_pim_commands,
+              "Underlay Spine MP BGP EVPN 설정 명령어": bgp_evpn_commands,
+              "Underlay Leaf 설정 명령어":ospf_pim_nv_commands,
+              "Multicast 환경을 위한 RP(랑데뷰 포인트) 설정 명령어": pim_anycast_rp_commands,
+              "NVE & VLAN 설정 명령어": nv_overlay_commands,
+              "L2/L3 VxLAN 인터페이스 설정 명령어 ": nv_overlay_commands2,
+              "NVE에 VLAN을 Member로 넣고 BGP로 광고하는 설정 명령어 ": configuration_data,
+              "VxLAN 상태 확인 명령어 ": VxLAN_Show_commands,
+           }
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 # 커스텀 워닝 문구
 def custom_warning(message):
     st.markdown(f'<div style="color: orange; font-size: large;">{message}</div>', unsafe_allow_html=True)
@@ -1754,7 +2061,7 @@ st.sidebar.write(f"오늘은 {today_date} {weekday_kr} 입니다!")
 
 
 # 사이드바에 버튼 추가
-page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router", "FireWall", "VPN", "VRF", "Nexus", "vPC"])
+page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router", "FireWall", "VPN", "VRF", "Nexus", "vPC", "VxLAN"])
 
 
 
@@ -1935,7 +2242,38 @@ elif page == "vPC":
             st.markdown("---")
             st.write(f"**{word}**")
             st.write(f"{definition}")
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+
+# VxLAN 페이지
+
+
+
+
+elif page == "VxLAN":
+    # 네트워크 설정 명령어로 대제목 설정
+    st.title('Nexus VxLAN 설정 명령어')
+
+#리스트 기능.
+    table_names7 = list(VXLAN_table.keys())
+    selected_table7 = st.selectbox("", VXLAN_table)
+
+#테이블 시각화
+    selected_df7 = VXLAN_table[selected_table7]
+    st.dataframe(selected_df7, width=800)
+
+
+
+
+
+
+
+
+
+
+
+VXLAN_table
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ID = """
