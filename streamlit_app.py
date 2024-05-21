@@ -374,13 +374,13 @@ Extended_ACL = {
 # eBGP
 eBGP = {
     "명령어":["router bgp <Local AS-num>","neighbor <상대IP> remote-as <상대 as-num>","neighbor <IP주소> password <비밀번호>","network <광고할 IP> mask <서브넷 마스크>","", "show ip bgp summary", "show ip bgp", "show ip bgp <도착지 IP>"],
-    "설명":["Local AS 번호를 입력하여 BGP를 작동", "Neighbor를 맺고 싶은 상대의 IP와 AS를 입력하여 Neighbor 관계 요청", "Neighbor를 맺을 때 설정할 비밀번호", "광고하고 싶은 IP를 테이블에 등록", "", "BGP 이웃 관계 상세 정보 확인", "BGP 테이블 정보 확인", "BGP 테이블에서 도착지로 가는 경로 확인"]
+    "설명":["Local AS 번호를 입력하여 경계 게이트웨이 프로토콜(BGP) 작동", "Neighbor를 맺고 싶은 상대의 IP와 AS를 입력하여 Neighbor 관계 요청", "Neighbor를 맺을 때 설정할 비밀번호", "광고하고 싶은 IP를 테이블에 등록", "", "BGP 이웃 관계 상세 정보 확인", "BGP 테이블 정보 확인", "BGP 테이블에서 도착지로 가는 경로 확인"]
 }
 
 #iBGP
 iBGP = {
     "명령어":["router bgp <Local AS-num>", "neighbor <상대 Loopback IP> remote-as <상대 as-num>", "neighbor <상대 Loopback IP> update-source <내 Loopback 인터페이스>", "ip route <summary> <mask> null 0", "nighbor <iBGP Neighbor IP> next-hop-self", "neighbor <Neighbor IP> route-reflector-client", "", "show ip bgp summary", "show ip bgp", "show ip bgp <도착지 IP>","", "OSPF Nighbor"],
-    "설명":["Local AS 번호를 입력하여 BGP를 작동", "Neighbor를 맺고 싶은 상대의 Loopback IP와 AS를 입력하여 Neighbor 관계 요청", "내 소스 IP를 Loopback으로 수정하고 상대의Loopback IP를 통해 iBGP 이웃 관계를 맺는 설정.", "광고하려는 라우터에서 빈 공간에 축약 라우팅 정보 등록(null 0 자료 참고)", "eBGP 역할을 하는 라우터의 iBGP 설정 (Next-Hop Self 자료 참고)", "RR 기기에서 RRC 지정(RRC는 RR과 네이버만 맺으면 됨)", "", "BGP 이웃 관계 상세 정보 확인", "BGP 테이블 정보 확인", "BGP 테이블에서 도착지로 가는 경로 확인","", "OSPF로 경로와 Loopback IP를 광고해야 함"]
+    "설명":["Local AS 번호를 입력하여 경계 게이트웨이 프로토콜(BGP) 작동", "Neighbor를 맺고 싶은 상대의 Loopback IP와 AS를 입력하여 Neighbor 관계 요청", "내 소스 IP를 Loopback으로 수정하고 상대의Loopback IP를 통해 iBGP 이웃 관계를 맺는 설정.", "광고하려는 라우터에서 빈 공간에 축약 라우팅 정보 등록(null 0 자료 참고)", "eBGP 역할을 하는 라우터의 iBGP 설정 (Next-Hop Self 자료 참고)", "RR 기기에서 RRC 지정(RRC는 RR과 네이버만 맺으면 됨)", "", "BGP 이웃 관계 상세 정보 확인", "BGP 테이블 정보 확인", "BGP 테이블에서 도착지로 가는 경로 확인","", "OSPF로 경로와 Loopback IP를 광고해야 함"]
 }
 
 in_NAT_commands = {
@@ -492,11 +492,11 @@ metric_commands = {
 
 # 테이블 데이터 정의
 r_tables = {"스태틱 라우팅 명령어": static_route_df,
-           "OSPF 명령어": ospf_commands,
+           "OSPF(Open Shortest Path First) 명령어": ospf_commands,
            "standard_ACL 명령어": standard_ACL,
            "Extended_ACL 명령어":Extended_ACL,
-            "eBGP 명령어" : eBGP,
-            "iBGP 명령어": iBGP,
+            "External Border Gateway Protocol(외부 경계 게이트웨이 프로토콜) 명령어" : eBGP,
+            "Internal Border Gateway Protocol(내부 경계 게이트웨이 프로토콜) 명령어": iBGP,
             "BGP Attribute의 Weight 값 조정(경로 조정) 명령어(나가는 트래픽을 특정 경로로 보내는 명령어)": bgp_Wight_commands,
             "BGP Attribute의 local_preference 값 조정(경로 조정) 명령어(나가는 트래픽을 특정 경로로 보내는 명령어)": bgp_local_preference_commands,
             "BGP Attribute의 AS_Path 값 조정(경로 조정) 명령어 (들어오는 트래픽 우회용 명령어)": as_path_prepend_commands,
