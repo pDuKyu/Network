@@ -2061,7 +2061,7 @@ st.sidebar.write(f"오늘은 {today_date} {weekday_kr} 입니다!")
 
 
 # 사이드바에 버튼 추가
-page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router", "FireWall", "VPN", "VRF", "Nexus", "vPC", "VxLAN"])
+page = st.sidebar.selectbox("명령어를 확인할 기기를 선택해주세요.", ["Switch", "Router", "FireWall", "VPN", "VRF", "Nexus", "Nexus vPC", "Nexus VxLAN"])
 
 
 
@@ -2205,9 +2205,9 @@ elif page == "Nexus":
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-elif page == "vPC":
+elif page == "Nexus vPC":
     # 네트워크 설정 명령어로 대제목 설정
-    st.title('vPC 설정 명령어')
+    st.title('Nexus vPC 설정 명령어')
 
 #리스트 기능.
     table_names7 = list(vpc_tables.keys())
