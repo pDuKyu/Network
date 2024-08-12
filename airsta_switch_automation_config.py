@@ -5,11 +5,11 @@ import ipaddress
 # 사이드바에 이미지를 추가
 st.sidebar.image("https://raw.githubusercontent.com/pDuKyu/Network/main/arista-center.jpg", use_column_width=True)
 
-# 배경 이미지에 어두운 오버레이를 추가
+# CSS를 이용하여 메인 페이지 배경 이미지를 설정하고, 배경을 어둡게 조정
 page_bg_img = '''
 <style>
 .stApp {
-    background: url("https://raw.githubusercontent.com/pDuKyu/Network/main/shutterstock_1696920283-2.webp");
+    background-image: url("https://raw.githubusercontent.com/pDuKyu/Network/main/shutterstock_1696920283-2.webp");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -24,18 +24,13 @@ page_bg_img = '''
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* 어두운 오버레이 추가 */
-    z-index: -1; /* 오버레이를 텍스트 뒤로 보내기 */
+    z-index: 1; /* 오버레이를 텍스트 뒤로 보내기 */
+    pointer-events: none; /* 오버레이가 상호작용을 방해하지 않도록 설정 */
 }
 
-.stMarkdownContainer, .stTextInput, .stTextArea, .stSelectbox, .stMultiselect, .stButton button {
-    position: relative; /* 텍스트와 입력 필드가 오버레이 위에 오도록 설정 */
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.3); /* 입력 필드의 배경을 약간 어둡게 */
-    color: #ffffff; /* 흰색 텍스트 */
-    border: none; /* 테두리 제거 */
-    border-radius: 5px; /* 모서리 둥글게 */
-    padding: 10px; /* 패딩 추가 */
-    margin-bottom: 15px; /* 하단 여백 추가 */
+.stApp > div {
+    z-index: 2; /* 텍스트와 입력 필드가 오버레이 위에 오도록 설정 */
+    position: relative;
 }
 </style>
 '''
