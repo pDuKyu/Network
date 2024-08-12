@@ -5,7 +5,7 @@ import ipaddress
 # 사이드바에 이미지를 추가
 st.sidebar.image("https://raw.githubusercontent.com/pDuKyu/Network/main/arista-center.jpg", use_column_width=True)
 
-# CSS를 이용하여 메인 페이지 배경 이미지를 설정하고, 배경을 어둡게 조정
+# CSS를 이용하여 상단과 하단의 여백을 제거하고, 페이지를 전체 화면으로 확장
 page_bg_img = '''
 <style>
 .stApp {
@@ -13,7 +13,21 @@ page_bg_img = '''
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
     position: relative;
+}
+
+.block-container {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .stApp::before {
