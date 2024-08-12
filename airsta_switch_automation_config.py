@@ -9,7 +9,7 @@ st.sidebar.image("https://raw.githubusercontent.com/pDuKyu/Network/main/arista-c
 page_bg_img = '''
 <style>
 .stApp {
-    background-image: url("https://raw.githubusercontent.com/pDuKyu/Network/main/shutterstock_1696920283-2.webp");
+    background-image: url("https://raw.githubusercontent.com/pDuKyu/Network/main/shutterstock_1696920283-2.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
