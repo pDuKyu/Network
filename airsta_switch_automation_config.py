@@ -1,12 +1,11 @@
 import streamlit as st
 from netmiko import ConnectHandler
 import ipaddress
-import paramiko  # Import paramiko for SSH tunneling
 
-# Sidebar image
+# 사이드바에 이미지를 추가
 st.sidebar.image("https://raw.githubusercontent.com/pDuKyu/Network/main/arista-center.jpg", use_column_width=True)
 
-# CSS for background and styling
+# CSS를 이용하여 상단과 하단의 여백을 제거하고, 페이지를 전체 화면으로 확장하며, 배경에 어둡고 블러 처리된 오버레이를 추가
 page_bg_img = '''
 <style>
 .stApp {
@@ -38,14 +37,14 @@ page_bg_img = '''
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
-    filter: blur(5px); /* Blur effect */
-    z-index: 1;
-    pointer-events: none;
+    background-color: rgba(0, 0, 0, 0.5); /* 어두운 오버레이 추가 */
+    filter: blur(5px); /* 배경 블러 처리 */
+    z-index: 1; /* 오버레이를 텍스트 뒤로 보내기 */
+    pointer-events: none; /* 오버레이가 상호작용을 방해하지 않도록 설정 */
 }
 
 .stApp > div {
-    z-index: 2; /* Ensures content is above overlay */
+    z-index: 2; /* 텍스트와 입력 필드가 오버레이 위에 오도록 설정 */
     position: relative;
 }
 </style>
@@ -53,76 +52,7 @@ page_bg_img = '''
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-def setup_ssh_tunnel(ip, ssh_username, ssh_password, ssh_port=22, local_port=10022):
-    # Setup SSH tunnel using paramiko
-    client = paramiko.SSHClient()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    
-    try:
-        client.connect(ip, username=ssh_username, password=ssh_password, port=ssh_port)
-        transport = client.get_transport()
-        local_addr = ('localhost', local_port)
-        remote_addr = (ip, ssh_port)
-        
-        # Setup a forwarding channel (reverse tunnel)
-        transport.request_port_forward(local_addr, remote_addr)
-        st.success(f"SSH tunnel established on port {local_port}")
-        return transport
-    except Exception as e:
-        st.error(f"Failed to establish SSH tunnel: {e}")
-        return None
-
-def connect_and_run_commands(ip, username, password, enable_password, commands, ssh_tunnel=None):
-    device = {
-        'device_type': 'cisco_ios',
-        'ip': 'localhost' if ssh_tunnel else ip,  # Use localhost if tunneling
-        'username': username,
-        'password': password,
-        'port': 10022 if ssh_tunnel else 22,  # Local port if tunneling
-    }
-
-    results = {}
-
-    try:
-        with ConnectHandler(**device) as net_connect:
-            if enable_password:
-                net_connect.enable()
-
-            for command in commands:
-                output = net_connect.send_command(command)
-                results[command] = output
-
-        return results
-
-    except Exception as e:
-        return str(e)
-
-def connect_and_run_commands_arista(ip, username, password, enable_password, commands, ssh_tunnel=None):
-    device = {
-        'device_type': 'arista_eos',
-        'ip': 'localhost' if ssh_tunnel else ip,
-        'username': username,
-        'password': password,
-        'port': 10022 if ssh_tunnel else 22,
-    }
-
-    results = {}
-
-    try:
-        with ConnectHandler(**device) as net_connect:
-            if enable_password:
-                net_connect.enable()
-
-            for command in commands:
-                output = net_connect.send_command(command)
-                results[command] = output
-
-        return results
-
-    except Exception as e:
-        return str(e)
-
-# Device basic show Command page
+# 첫 번째 페이지: Device basic show Command
 def command_executor():
     st.title("Device basic show Command")
 
@@ -142,69 +72,91 @@ def command_executor():
 
             for ip in ip_list:
                 st.subheader(f"Results for {ip}")
-                ssh_tunnel = setup_ssh_tunnel(ip, ssh_username=username, ssh_password=password)
-                if ssh_tunnel:
-                    results = connect_and_run_commands(ip, username, password, enable_password, commands, ssh_tunnel)
-                    ssh_tunnel.close()
-                else:
-                    st.error("SSH tunnel setup failed.")
+                results = connect_and_run_commands(ip, username, password, enable_password, commands)
 
                 if isinstance(results, dict):
                     for command, output in results.items():
-                        st.markdown(f"**Command: `{command}`**")
-                        st.text_area("", output, height=200)
-                        st.markdown("***")
+                        st.markdown(f"**Command: {command}**")  # 명령어 제목을 굵게 표시
+                        st.text_area("", output, height=200)  # 결과를 상자 안에 표시
+                        st.markdown("***")  # 구분선 추가 (더 두껍게)
                 else:
                     st.error(f"Failed to retrieve data from the device {ip}: {results}")
         else:
             st.warning("Please fill in all the fields and select at least one command.")
 
-# IP Configurator page
+def connect_and_run_commands(ip, username, password, enable_password, commands):
+    # Netmiko 연결 설정
+    device = {
+        'device_type': 'cisco_ios',
+        'ip': ip,
+        'username': username,
+        'password': password,
+    }
+
+    results = {}
+
+    try:
+        # 장비에 연결
+        with ConnectHandler(**device) as net_connect:
+            # Enable mode로 전환 (enable_password가 있는 경우에만)
+            if enable_password:
+                net_connect.enable()
+
+            # 선택한 명령어 실행
+            for command in commands:
+                output = net_connect.send_command(command)
+                results[command] = output
+
+        return results
+
+    except Exception as e:
+        return str(e)
+
+# 두 번째 페이지: IP 설정
 def configure_ips(ip, username, password, enable_password, interfaces, starting_cidr, description):
     device = {
         'device_type': 'cisco_ios',
-        'ip': 'localhost',
+        'ip': ip,
         'username': username,
         'password': password,
-        'port': 10022,  # Local port if tunneling
     }
 
     try:
-        ssh_tunnel = setup_ssh_tunnel(ip, ssh_username=username, ssh_password=password)
-        if ssh_tunnel:
-            with ConnectHandler(**device) as net_connect:
-                if enable_password:
-                    net_connect.enable()
+        with ConnectHandler(**device) as net_connect:
+            # Enable mode로 전환 (enable_password가 있는 경우에만)
+            if enable_password:
+                net_connect.enable()
 
-                net_connect.config_mode()
+            net_connect.config_mode()
 
-                config_commands = []
+            config_commands = []
 
-                network = ipaddress.IPv4Network(starting_cidr, strict=False)
-                subnet_mask = str(network.netmask)
-                base_ip = int(network.network_address)
+            # 입력된 CIDR을 기반으로 서브넷 마스크와 시작 IP 계산
+            network = ipaddress.IPv4Network(starting_cidr, strict=False)
+            subnet_mask = str(network.netmask)
+            base_ip = int(network.network_address)
 
-                for index, interface in enumerate(interfaces):
-                    new_network_ip = ipaddress.IPv4Address(base_ip + index * network.num_addresses)
-                    config_ip = str(new_network_ip)
+            # 각 인터페이스에 대해 동일한 description 적용
+            for index, interface in enumerate(interfaces):
+                new_network_ip = ipaddress.IPv4Address(base_ip + index * network.num_addresses)
+                config_ip = str(new_network_ip)  # 네트워크 주소 그대로 사용
 
-                    config_commands.append(f"interface {interface}")
-                    config_commands.append("no switchport")
-                    config_commands.append(f"ip address {config_ip} {subnet_mask}")
+                config_commands.append(f"interface {interface}")
+                config_commands.append("no switchport")
+                config_commands.append(f"ip address {config_ip} {subnet_mask}")
 
-                    if description:
-                        config_commands.append(f"description {description}")
+                if description:  # description이 입력된 경우
+                    config_commands.append(f"description {description}")
 
-                output = net_connect.send_config_set(config_commands)
-                st.text(output)
+            # 생성된 모든 명령어를 한 번에 전송
+            output = net_connect.send_config_set(config_commands)
+            st.text(output)
 
-                st.success("IP configuration complete.")
-            ssh_tunnel.close()
-        else:
-            st.error("SSH tunnel setup failed.")
+            st.success("IP configuration complete.")
     except Exception as e:
         st.error(f"Failed to configure IP on the device {ip}: {e}")
 
+# IP Configurator 페이지
 def ip_configurator():
     st.title("Interface IP Configurator")
 
@@ -223,7 +175,7 @@ def ip_configurator():
         else:
             st.warning("Please fill in all the fields.")
 
-# VXLAN Troubleshooting page
+# 세 번째 페이지: VXLAN 트러블슈팅 (Arista EOS 명령어 사용)
 def vxlan_troubleshooting():
     st.title("VXLAN Troubleshooting")
 
@@ -232,13 +184,14 @@ def vxlan_troubleshooting():
     password = st.text_input("Password", "", type="password")
     enable_password = st.text_input("Enable Password", "", type="password")
 
+    # 필요 없는 명령어를 제거하고, 명령어를 수정한 VXLAN 관련 Arista EOS 명령어 리스트
     commands = st.multiselect(
         "Select VXLAN Troubleshooting Commands",
         [
             "show interfaces vxlan 1", 
             "show vxlan vtep", 
-            "show vxlan vtep detail", 
-            "show vxlan address-table", 
+            "show vxlan vtep detail",  # 수정됨
+            "show vxlan address-table",  # 수정됨
             "show vxlan flood vtep", 
             "show interfaces vxlan 1 counters"
         ]
@@ -247,24 +200,47 @@ def vxlan_troubleshooting():
     if st.button("Run VXLAN Commands"):
         if ip and username and password and commands:
             st.subheader(f"Results for {ip}")
-            ssh_tunnel = setup_ssh_tunnel(ip, ssh_username=username, ssh_password=password)
-            if ssh_tunnel:
-                results = connect_and_run_commands_arista(ip, username, password, enable_password, commands, ssh_tunnel)
-                ssh_tunnel.close()
-            else:
-                st.error("SSH tunnel setup failed.")
+            results = connect_and_run_commands_arista(ip, username, password, enable_password, commands)
 
             if isinstance(results, dict):
                 for command, output in results.items():
-                    st.markdown(f"**Command: `{command}`**")
-                    st.text_area("", output, height=200)
-                    st.markdown("***")
+                    st.markdown(f"**Command: {command}**")  # 명령어 제목을 굵게 표시
+                    st.text_area("", output, height=200)  # 결과를 상자 안에 표시
+                    st.markdown("***")  # 구분선 추가 (더 두껍게)
             else:
                 st.error(f"Failed to retrieve data from the device {ip}: {results}")
         else:
             st.warning("Please fill in all the fields and select at least one command.")
 
-# Page selector
+def connect_and_run_commands_arista(ip, username, password, enable_password, commands):
+    # Netmiko 연결 설정 (Arista EOS 장비용)
+    device = {
+        'device_type': 'arista_eos',
+        'ip': ip,
+        'username': username,
+        'password': password,
+    }
+
+    results = {}
+
+    try:
+        # 장비에 연결
+        with ConnectHandler(**device) as net_connect:
+            # Enable mode로 전환 (enable_password가 있는 경우에만)
+            if enable_password:
+                net_connect.enable()
+
+            # 선택한 명령어 실행
+            for command in commands:
+                output = net_connect.send_command(command)
+                results[command] = output
+
+        return results
+
+    except Exception as e:
+        return str(e)
+
+# 페이지 선택
 page = st.sidebar.selectbox("Select a page", ("Device basic show Command", "IP Configurator", "VXLAN Troubleshooting"))
 
 if page == "Device basic show Command":
@@ -273,3 +249,6 @@ elif page == "IP Configurator":
     ip_configurator()
 else:
     vxlan_troubleshooting()
+
+
+이 코드를 streamlit 클라우드에 업로드 한 뒤 ssh 접속을 할건데 ssh 접속이 가능하게 수정해줘
