@@ -22,6 +22,26 @@ page_bg_img = '''
 .stApp > div:nth-child(3) {
     filter: none;
 }
+
+/* 텍스트와 입력 필드의 가독성 향상을 위한 스타일 */
+div[data-testid="stMarkdownContainer"] {
+    background-color: rgba(0, 0, 0, 0.7); /* 반투명한 어두운 배경 */
+    padding: 10px;
+    border-radius: 10px;
+    color: #ffffff; /* 밝은 글씨 색 */
+}
+
+.stTextInput, .stTextArea, .stSelectbox, .stMultiselect {
+    background-color: rgba(0, 0, 0, 0.5); /* 입력 필드의 배경 색 조정 */
+    color: #ffffff; /* 입력 필드의 글씨 색 조정 */
+    border-radius: 10px; /* 모서리 둥글게 */
+}
+
+.stButton button {
+    background-color: #1f77b4; /* 버튼 배경색 변경 */
+    color: #ffffff; /* 버튼 텍스트 색상 */
+    border-radius: 10px; /* 버튼 모서리 둥글게 */
+}
 </style>
 '''
 
