@@ -5,7 +5,7 @@ import ipaddress
 # 사이드바에 이미지를 추가
 st.sidebar.image("https://raw.githubusercontent.com/pDuKyu/Network/main/arista-center.jpg", use_column_width=True)
 
-# CSS를 이용하여 메인 페이지 배경에 이미지를 설정하고, 텍스트 필드와 버튼의 스타일을 통일
+# CSS를 이용하여 메인 페이지 배경에 어두운 오버레이를 추가
 page_bg_img = '''
 <style>
 .stApp {
@@ -13,44 +13,24 @@ page_bg_img = '''
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    position: relative;
 }
 
-/* 텍스트와 입력 필드, 버튼의 스타일을 통일하여 깔끔하게 */
-.stTextInput, .stTextArea, .stSelectbox, .stMultiselect {
-    background-color: rgba(0, 0, 0, 0.7); /* 반투명한 어두운 배경 */
-    color: #ffffff; /* 흰색 글씨 */
-    border: none; /* 테두리 제거 */
-    border-radius: 5px; /* 모서리를 약간 둥글게 */
-    padding: 10px; /* 패딩 추가 */
-    font-family: Arial, sans-serif; /* 폰트 설정 */
-    margin-bottom: 15px; /* 아래쪽 여백 추가 */
+.stApp::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 어두운 오버레이 추가 */
+    z-index: -1; /* 오버레이가 콘텐츠 뒤에 위치하도록 */
 }
 
-.stButton button {
-    background-color: rgba(0, 0, 0, 0.7); /* 버튼 배경 색상 통일 */
-    color: #ffffff; /* 흰색 텍스트 */
-    border: none; /* 테두리 제거 */
-    border-radius: 5px; /* 모서리 둥글게 */
-    padding: 10px 20px; /* 버튼 내부 패딩 */
-    font-family: Arial, sans-serif; /* 폰트 설정 */
-    font-size: 16px; /* 텍스트 크기 */
-    cursor: pointer; /* 커서 포인터로 변경 */
-    transition: background-color 0.3s ease; /* 호버 효과 */
+.stTextInput, .stTextArea, .stSelectbox, .stMultiselect, .stButton button {
+    position: relative; /* 오버레이 위에 텍스트가 나타나도록 */
+    z-index: 1;
 }
-
-.stButton button:hover {
-    background-color: rgba(50, 50, 50, 0.8); /* 호버 시 약간 더 밝은 색으로 변경 */
-}
-
-/* 텍스트와 입력 필드에 동일한 스타일 적용 */
-div[data-testid="stMarkdownContainer"] {
-    background-color: rgba(0, 0, 0, 0.7); /* 반투명한 어두운 배경 */
-    padding: 10px;
-    border-radius: 5px;
-    color: #ffffff; /* 흰색 텍스트 */
-    font-family: Arial, sans-serif; /* 폰트 설정 */
-}
-
 </style>
 '''
 
