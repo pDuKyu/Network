@@ -5,22 +5,22 @@ import ipaddress
 # 사이드바에 이미지를 추가 (raw 형식으로 URL을 설정)
 st.sidebar.image("https://raw.githubusercontent.com/pDuKyu/Network/main/arista-center.jpg", use_column_width=True)
 
-# CSS를 이용하여 메인 페이지 배경에 이미지를 설정 (블러 처리 없음)
+# CSS를 이용하여 메인 페이지 배경에 블러 처리된 이미지를 설정
 page_bg_img = '''
 <style>
-.stApp {
+.stApp::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-image: url("https://raw.githubusercontent.com/pDuKyu/Network/main/shutterstock_1696920283-2.webp");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-}
-
-.css-18e3th9 {
-    backdrop-filter: none;
-}
-
-.stApp > div:nth-child(3) {
-    filter: none;
+    filter: blur(8px);
+    z-index: -1;  /* 콘텐츠를 가리지 않도록 뒤로 보냄 */
 }
 </style>
 '''
