@@ -8,6 +8,14 @@ st.sidebar.image("https://raw.githubusercontent.com/pDuKyu/Network/main/arista-c
 # CSS를 이용하여 메인 페이지 배경에 블러 처리된 이미지를 설정
 page_bg_img = '''
 <style>
+.stApp {
+    background: url("https://raw.githubusercontent.com/pDuKyu/Network/main/shutterstock_1696920283-2.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: blur(8px);
+}
+
 .stApp::before {
     content: "";
     position: absolute;
@@ -15,13 +23,10 @@ page_bg_img = '''
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url("https://raw.githubusercontent.com/pDuKyu/Network/main/shutterstock_1696920283-2.webp");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    filter: blur(8px);
-    z-index: -1;  /* 콘텐츠를 가리지 않도록 뒤로 보냄 */
+    background-color: rgba(255, 255, 255, 0.3);  /* 투명도 추가 */
+    z-index: -1;
 }
+
 </style>
 '''
 
