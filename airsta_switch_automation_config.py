@@ -5,7 +5,7 @@ import ipaddress
 # 사이드바에 이미지를 추가
 st.sidebar.image("https://raw.githubusercontent.com/pDuKyu/Network/main/arista-center.jpg", use_column_width=True)
 
-# CSS를 이용하여 메인 페이지 배경에 어두운 오버레이를 추가
+# CSS를 이용하여 메인 페이지 배경 이미지를 설정하고, 약간의 어두운 필터를 적용
 page_bg_img = '''
 <style>
 .stApp {
@@ -13,23 +13,7 @@ page_bg_img = '''
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    position: relative;
-}
-
-.stApp::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* 어두운 오버레이 추가 */
-    z-index: -1; /* 오버레이가 콘텐츠 뒤에 위치하도록 */
-}
-
-.stTextInput, .stTextArea, .stSelectbox, .stMultiselect, .stButton button {
-    position: relative; /* 오버레이 위에 텍스트가 나타나도록 */
-    z-index: 1;
+    filter: brightness(0.5); /* 배경 이미지를 어둡게 처리 */
 }
 </style>
 '''
