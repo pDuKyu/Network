@@ -2,6 +2,32 @@ import streamlit as st
 from netmiko import ConnectHandler
 import ipaddress
 
+# 사이드바에 이미지를 추가
+st.sidebar.image("https://github.com/pDuKyu/Network/raw/main/arista-center.jpg", use_column_width=True)
+
+# CSS를 이용하여 메인 페이지 배경에 이미지를 블러 처리하여 설정
+page_bg_img = '''
+<style>
+.stApp {
+    background-image: url("https://github.com/pDuKyu/Network/raw/main/shutterstock_1696920283-2.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    filter: blur(8px);
+}
+
+.css-18e3th9 {
+    backdrop-filter: blur(0px);
+}
+
+.stApp > div:nth-child(3) {
+    filter: none;
+}
+</style>
+'''
+
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
 # 첫 번째 페이지: Device basic show Command
 def command_executor():
     st.title("Device basic show Command")
@@ -199,4 +225,3 @@ elif page == "IP Configurator":
     ip_configurator()
 else:
     vxlan_troubleshooting()
-
