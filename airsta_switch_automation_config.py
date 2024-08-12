@@ -2,10 +2,10 @@ import streamlit as st
 from netmiko import ConnectHandler
 import ipaddress
 
-# 사이드바에 이미지를 추가 (원래 상태로 복구)
+# 사이드바에 이미지를 추가
 st.sidebar.image("https://raw.githubusercontent.com/pDuKyu/Network/main/arista-center.jpg", use_column_width=True)
 
-# CSS를 이용하여 메인 페이지 배경에 이미지를 설정하고, 텍스트 필드의 스타일을 개선
+# CSS를 이용하여 메인 페이지 배경에 이미지를 설정하고, 텍스트 필드와 버튼의 스타일을 통일
 page_bg_img = '''
 <style>
 .stApp {
@@ -15,40 +15,42 @@ page_bg_img = '''
     background-attachment: fixed;
 }
 
-/* 텍스트와 입력 필드의 스타일 개선 */
-div[data-testid="stMarkdownContainer"] {
-    background-color: rgba(0, 0, 0, 0.6); /* 반투명한 어두운 배경 */
-    padding: 10px;
-    border-radius: 8px;
-    color: #ffffff; /* 밝은 글씨 색 */
-    font-family: Arial, sans-serif; /* 폰트 변경 */
-}
-
+/* 텍스트와 입력 필드, 버튼의 스타일을 통일하여 깔끔하게 */
 .stTextInput, .stTextArea, .stSelectbox, .stMultiselect {
-    background-color: rgba(255, 255, 255, 0.8); /* 입력 필드의 배경을 약간 밝게 */
-    color: #000000; /* 입력 필드의 글씨 색상 */
+    background-color: rgba(0, 0, 0, 0.7); /* 반투명한 어두운 배경 */
+    color: #ffffff; /* 흰색 글씨 */
     border: none; /* 테두리 제거 */
-    border-radius: 8px; /* 모서리 둥글게 */
+    border-radius: 5px; /* 모서리를 약간 둥글게 */
     padding: 10px; /* 패딩 추가 */
-    font-family: Arial, sans-serif; /* 폰트 변경 */
-    margin-bottom: 10px; /* 하단 여백 추가 */
+    font-family: Arial, sans-serif; /* 폰트 설정 */
+    margin-bottom: 15px; /* 아래쪽 여백 추가 */
 }
 
 .stButton button {
-    background-color: #1f77b4; /* 버튼 배경색 */
-    color: #ffffff; /* 버튼 텍스트 색상 */
+    background-color: rgba(0, 0, 0, 0.7); /* 버튼 배경 색상 통일 */
+    color: #ffffff; /* 흰색 텍스트 */
     border: none; /* 테두리 제거 */
-    border-radius: 8px; /* 버튼 모서리 둥글게 */
-    padding: 10px 20px; /* 패딩 추가 */
-    font-family: Arial, sans-serif; /* 폰트 변경 */
-    font-size: 16px; /* 버튼 텍스트 크기 조정 */
-    margin-top: 20px; /* 상단 여백 추가 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    padding: 10px 20px; /* 버튼 내부 패딩 */
+    font-family: Arial, sans-serif; /* 폰트 설정 */
+    font-size: 16px; /* 텍스트 크기 */
+    cursor: pointer; /* 커서 포인터로 변경 */
     transition: background-color 0.3s ease; /* 호버 효과 */
 }
 
 .stButton button:hover {
-    background-color: #1361a3; /* 호버 시 버튼 색상 변경 */
+    background-color: rgba(50, 50, 50, 0.8); /* 호버 시 약간 더 밝은 색으로 변경 */
 }
+
+/* 텍스트와 입력 필드에 동일한 스타일 적용 */
+div[data-testid="stMarkdownContainer"] {
+    background-color: rgba(0, 0, 0, 0.7); /* 반투명한 어두운 배경 */
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff; /* 흰색 텍스트 */
+    font-family: Arial, sans-serif; /* 폰트 설정 */
+}
+
 </style>
 '''
 
