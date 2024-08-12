@@ -2,14 +2,14 @@ import streamlit as st
 from netmiko import ConnectHandler
 import ipaddress
 
-# 사이드바에 이미지를 추가
-st.sidebar.image("https://github.com/pDuKyu/Network/raw/main/arista-center.jpg", use_column_width=True)
+# 사이드바에 이미지를 추가 (raw 형식으로 URL을 설정)
+st.sidebar.image("https://raw.githubusercontent.com/pDuKyu/Network/main/arista-center.jpg", use_column_width=True)
 
-# CSS를 이용하여 메인 페이지 배경에 이미지를 블러 처리하여 설정
+# CSS를 이용하여 메인 페이지 배경에 이미지를 블러 처리하여 설정 (raw 형식으로 URL을 설정)
 page_bg_img = '''
 <style>
 .stApp {
-    background-image: url("https://github.com/pDuKyu/Network/raw/main/shutterstock_1696920283-2.webp");
+    background-image: url("https://raw.githubusercontent.com/pDuKyu/Network/main/shutterstock_1696920283-2.webp");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
