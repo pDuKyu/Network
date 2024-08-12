@@ -5,7 +5,7 @@ import ipaddress
 # 사이드바에 이미지를 추가
 st.sidebar.image("https://raw.githubusercontent.com/pDuKyu/Network/main/arista-center.jpg", use_column_width=True)
 
-# CSS를 이용하여 상단과 하단의 여백을 제거하고, 페이지를 전체 화면으로 확장
+# CSS를 이용하여 상단과 하단의 여백을 제거하고, 페이지를 전체 화면으로 확장하며, 배경에 어둡고 블러 처리된 오버레이를 추가
 page_bg_img = '''
 <style>
 .stApp {
@@ -38,6 +38,7 @@ page_bg_img = '''
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7); /* 어두운 오버레이 추가 */
+    filter: blur(5px); /* 배경 블러 처리 */
     z-index: 1; /* 오버레이를 텍스트 뒤로 보내기 */
     pointer-events: none; /* 오버레이가 상호작용을 방해하지 않도록 설정 */
 }
