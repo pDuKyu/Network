@@ -37,7 +37,7 @@ page_bg_img = '''
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* 어두운 오버레이 추가 */
+    background-color: rgba(0, 0, 0, 0.5); /* 어두운 오버레이 추가 */
     filter: blur(5px); /* 배경 블러 처리 */
     z-index: 1; /* 오버레이를 텍스트 뒤로 보내기 */
     pointer-events: none; /* 오버레이가 상호작용을 방해하지 않도록 설정 */
