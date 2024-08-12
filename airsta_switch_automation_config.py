@@ -249,6 +249,3 @@ elif page == "IP Configurator":
     ip_configurator()
 else:
     vxlan_troubleshooting()
-
-
-이 코드를 streamlit 클라우드에 업로드 한 뒤 ssh 접속을 할건데 ssh 접속이 가능하게 수정해줘
