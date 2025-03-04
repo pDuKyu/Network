@@ -2032,9 +2032,9 @@ def custom_warning(message):
 
 # 이미지를 URL로 추가하는 코드
 image_url = "https://github.com/pDuKyu/switch/blob/main/20210112_163404.jpg?raw=true"
-use_column_width = True
+use_container_width = True
 caption=''
-st.sidebar.image(image_url, caption=caption, use_column_width=use_column_width)
+st.sidebar.image(image_url, caption=caption, use_container_width=use_container_width)
 
 
 # 한글 요일 매핑
